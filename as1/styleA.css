@@ -27,6 +27,7 @@ body {
     height: 1000px;
     float:left;     /* 前面還有空間往前擠*/
     position:fixed; /* display怎麼被排版 */
+    background-color: beige;
 }
 
 ul{
