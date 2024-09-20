@@ -59,6 +59,7 @@ ul a{
     height: 150px;
     background-color: pink;
     float:left;
+    position:fixed;
 }
 #footer {
     width: 800px;
