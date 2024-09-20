@@ -19,7 +19,6 @@ body {
 
 #banner-placeholder{
     height: 100px;
-    position:fixed;
 }   /* 避免因為banner固定造成後方物件上移而被banner蓋住；或設計nav在margin-top變banner的height  */
 
 #nav {
@@ -60,7 +59,6 @@ ul a{
     height: 150px;
     background-color: pink;
     float:left;
-    position:fixed;
 }
 #footer {
     width: 800px;
