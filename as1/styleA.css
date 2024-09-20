@@ -6,7 +6,6 @@ body {
 #wrapper {
     width: 800px;
     margin: 0 auto; /* auto自動把你置中  */
-	background-color: blueviolet; /* 將整個網頁置中  */
 }
 
 #banner {
