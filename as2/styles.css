@@ -1,0 +1,42 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.banner-div {
+    height: 50vh; /* Banner高度 */
+    background-color: orange; /* Banner背景顏色 */
+    color: white; /* Banner文字顏色 */
+    display: flex; /* 使用彈性佈局 */
+    justify-content: center; /* 水平居中 */
+    align-items: center; /* 垂直居中 */
+}
+
+.content-div {
+    padding: 1cm; /* 內邊距 */
+    height: 200vh; /* 內容區域高度 */
+}
+
+.section-bg {
+    background-color: lightgray; /* 區段背景顏色 */
+}
+
+.navbar {
+    transition: top 0.3s; /* 加入平滑過渡效果 */
+}
+
+.navbar-nav {
+    flex-direction: row; /* 將navbar的內容橫向排列 */
+}
+
+.navbar-nav .nav-item {
+    margin-left: 20px; /* 讓項目之間有空隙 */
+}
+
+
+
+
+
+
+
+
