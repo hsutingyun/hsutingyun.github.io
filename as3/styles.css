@@ -38,21 +38,17 @@ html {
     background-size: cover;
 }
 .background-section {
-    height: 120vh;
-    background-image: url('Webaw3_picture/p25.PNG');
+    height: 130vh;
+    background-image: url('Webaw3_picture/p02.PNG');
+    background-attachment: fixed;
     background-size: contain;
     background-position: center top;
     position: relative;
     background-repeat: no-repeat;
 }
 
-.content {
-    padding: 20px;
-    font-size: 1.2em;
-}
-
 #p03 {
-    height: 50vh;
+    height: 30vh;
     background-image: url("Webaw3_picture/p03.PNG");
     background-attachment: fixed;
     background-size: contain;
@@ -62,7 +58,7 @@ html {
 }
 
 #p04 {
-    height: 50vh;
+    height:30vh;
     background-image: url("Webaw3_picture/p04.PNG");
     background-attachment: fixed;
     background-repeat: none;
@@ -74,7 +70,7 @@ html {
 }
 
 #p05 {
-    height: 50vh;
+    height: 30vh;
     background-image: url("Webaw3_picture/p05.PNG");
     background-attachment: fixed;
     background-size: contain;
@@ -84,7 +80,7 @@ html {
 }
 
 #p06 {
-    height: 50vh;
+    height: 30vh;
     background-image: url("Webaw3_picture/p06.PNG");
     background-attachment: fixed;
     background-size: contain;
@@ -94,7 +90,7 @@ html {
 }
 
 #p07 {
-    height: 50vh;
+    height: 30vh;
     background-image: url("Webaw3_picture/p07.PNG");
     background-attachment: fixed;
     background-size: contain;
@@ -104,7 +100,7 @@ html {
 }
 
 #p08 {
-    height: 50vh;
+    height: 30vh;
     background-image: url("Webaw3_picture/p08.PNG");
     background-attachment: fixed;
     background-size: contain;
@@ -114,7 +110,7 @@ html {
 }
 
 #p09 {
-    height: 50vh;
+    height: 30vh;
     background-image: url("Webaw3_picture/p09.PNG");
     background-attachment: fixed;
     background-size: contain;
@@ -124,7 +120,7 @@ html {
 }
 
 #p10 {
-    height: 50vh;
+    height: 30vh;
     background-image: url("Webaw3_picture/p10.PNG");
     background-attachment: fixed;
     background-size: contain;
@@ -134,7 +130,7 @@ html {
 }
 
 #p11 {
-    height: 50vh;
+    height: 30vh;
     background-image: url("Webaw3_picture/p11.PNG");
     background-attachment: fixed;
     background-size: contain;
