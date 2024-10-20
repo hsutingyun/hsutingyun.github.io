@@ -6,19 +6,6 @@ html {
     /* 增加高度來產生滾動效果 */
 }
 
-@media (max-width: 600px) {
-    body {
-        font-size: 16px;
-    }
-}
-
-/* 平板版樣式 */
-@media (min-width: 601px) and (max-width: 1024px) {
-    body {
-        font-size: 17px;
-    }
-}
-
 .banner {
     background-position: center;
     background-repeat: no-repeat;
@@ -26,6 +13,31 @@ html {
     font-size: large;
     color: white;
 }
+
+.banner-text,
+.banner-title,
+.banner-subtitle {
+    position: absolute;
+    left: 20px;
+    color: white;
+}
+
+.banner-text {
+    bottom: 120px;
+    font-size: 20px;
+}
+
+
+.banner-title {
+    bottom: 80px;
+    font-size: 40px;
+}
+
+.banner-subtitle {
+    bottom: 50px;
+    font-size: 30px;
+}
+
 
 .sticky {
     position: sticky;
@@ -37,106 +49,117 @@ html {
     background-repeat: no-repeat;
     background-size: cover;
 }
+
 .background-section {
-    height: 130vh;
+    height: 120vh;
     background-image: url('Webaw3_picture/p02.PNG');
+    background-size: 59%;
+    background-position: center top;
+    position: relative;
+}
+
+.content {
+    padding: 20px;
+    font-size: 1.2em;
+}
+
+#p02 {
+    height: 37vh;
+    background-image: url("Webaw3_picture/p02.PNG");
     background-attachment: fixed;
-    background-size: contain;
+    background-size: 59%;
     background-position: center top;
     position: relative;
     background-repeat: no-repeat;
 }
-
 #p03 {
-    height: 30vh;
+    height: 37vh;
     background-image: url("Webaw3_picture/p03.PNG");
     background-attachment: fixed;
-    background-size: contain;
+    background-size: 59%;
     background-position: center top;
     position: relative;
     background-repeat: no-repeat;
 }
 
 #p04 {
-    height:30vh;
+    height: 37vh;
     background-image: url("Webaw3_picture/p04.PNG");
     background-attachment: fixed;
     background-repeat: none;
     background-position: 20% 0%;
-    background-size: contain;
+    background-size: 59%;
     background-position: center top;
     position: relative;
     background-repeat: no-repeat;
 }
 
 #p05 {
-    height: 30vh;
+    height: 37vh;
     background-image: url("Webaw3_picture/p05.PNG");
     background-attachment: fixed;
-    background-size: contain;
+    background-size: 59%;
     background-position: center top;
     position: relative;
     background-repeat: no-repeat;
 }
 
 #p06 {
-    height: 30vh;
+    height: 37vh;
     background-image: url("Webaw3_picture/p06.PNG");
     background-attachment: fixed;
-    background-size: contain;
+    background-size: 59%;
     background-position: center top;
     position: relative;
     background-repeat: no-repeat;
 }
 
 #p07 {
-    height: 30vh;
+    height: 37vh;
     background-image: url("Webaw3_picture/p07.PNG");
     background-attachment: fixed;
-    background-size: contain;
+    background-size: 59%;
     background-position: center top;
     position: relative;
     background-repeat: no-repeat;
 }
 
 #p08 {
-    height: 30vh;
+    height: 37vh;
     background-image: url("Webaw3_picture/p08.PNG");
     background-attachment: fixed;
-    background-size: contain;
+    background-size: 59%;
     background-position: center top;
     position: relative;
     background-repeat: no-repeat;
 }
 
 #p09 {
-    height: 30vh;
+    height: 37vh;
     background-image: url("Webaw3_picture/p09.PNG");
     background-attachment: fixed;
-    background-size: contain;
+    background-size: 59%;
     background-position: center top;
     position: relative;
     background-repeat: no-repeat;
 }
 
 #p10 {
-    height: 30vh;
+    height: 37vh;
     background-image: url("Webaw3_picture/p10.PNG");
     background-attachment: fixed;
-    background-size: contain;
+    background-size: 59%;
     background-position: center top;
     position: relative;
     background-repeat: no-repeat;
 }
 
 #p11 {
-    height: 30vh;
+    height: 50vh;
     background-image: url("Webaw3_picture/p11.PNG");
     background-attachment: fixed;
-    background-size: contain;
+    background-size: 59%;
     background-position: center top;
     position: relative;
     background-repeat: no-repeat;
 }
-
-
