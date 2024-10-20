@@ -1,0 +1,38 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 200%; /* 增加高度來產生滾動效果 */
+}
+.banner {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-size: large;
+    color: white;
+}
+
+.sticky {
+    position: sticky;
+    top: 0;
+}
+
+.bg {
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.background-section {
+    height: 120vh;
+    background-image: url('Webaw3_picture/p02.PNG');
+    /* 使用你的背景圖片 */
+    background-size: 59%;
+    background-position: center top;
+    /* 初始位置為上方 */
+    position: relative; 
+}
+
+.content {
+    padding: 20px;
+    font-size: 1.2em;
+}
