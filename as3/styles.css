@@ -1,8 +1,24 @@
-body, html {
+body,
+html {
     margin: 0;
     padding: 0;
-    height: 200%; /* 增加高度來產生滾動效果 */
+    height: 200%;
+    /* 增加高度來產生滾動效果 */
 }
+
+@media (max-width: 600px) {
+    body {
+        font-size: 16px;
+    }
+}
+
+/* 平板版樣式 */
+@media (min-width: 601px) and (max-width: 1024px) {
+    body {
+        font-size: 17px;
+    }
+}
+
 .banner {
     background-position: center;
     background-repeat: no-repeat;
@@ -21,18 +37,110 @@ body, html {
     background-repeat: no-repeat;
     background-size: cover;
 }
-
 .background-section {
     height: 120vh;
-    background-image: url('Webaw3_picture/p02.PNG');
-    /* 使用你的背景圖片 */
-    background-size: 59%;
+    background-image: url('Webaw3_picture/p25.PNG');
+    background-size: contain;
     background-position: center top;
-    /* 初始位置為上方 */
-    position: relative; 
+    position: relative;
+    background-repeat: no-repeat;
 }
 
 .content {
     padding: 20px;
     font-size: 1.2em;
 }
+
+#p03 {
+    height: 50vh;
+    background-image: url("Webaw3_picture/p03.PNG");
+    background-attachment: fixed;
+    background-size: contain;
+    background-position: center top;
+    position: relative;
+    background-repeat: no-repeat;
+}
+
+#p04 {
+    height: 50vh;
+    background-image: url("Webaw3_picture/p04.PNG");
+    background-attachment: fixed;
+    background-repeat: none;
+    background-position: 20% 0%;
+    background-size: contain;
+    background-position: center top;
+    position: relative;
+    background-repeat: no-repeat;
+}
+
+#p05 {
+    height: 50vh;
+    background-image: url("Webaw3_picture/p05.PNG");
+    background-attachment: fixed;
+    background-size: contain;
+    background-position: center top;
+    position: relative;
+    background-repeat: no-repeat;
+}
+
+#p06 {
+    height: 50vh;
+    background-image: url("Webaw3_picture/p06.PNG");
+    background-attachment: fixed;
+    background-size: contain;
+    background-position: center top;
+    position: relative;
+    background-repeat: no-repeat;
+}
+
+#p07 {
+    height: 50vh;
+    background-image: url("Webaw3_picture/p07.PNG");
+    background-attachment: fixed;
+    background-size: contain;
+    background-position: center top;
+    position: relative;
+    background-repeat: no-repeat;
+}
+
+#p08 {
+    height: 50vh;
+    background-image: url("Webaw3_picture/p08.PNG");
+    background-attachment: fixed;
+    background-size: contain;
+    background-position: center top;
+    position: relative;
+    background-repeat: no-repeat;
+}
+
+#p09 {
+    height: 50vh;
+    background-image: url("Webaw3_picture/p09.PNG");
+    background-attachment: fixed;
+    background-size: contain;
+    background-position: center top;
+    position: relative;
+    background-repeat: no-repeat;
+}
+
+#p10 {
+    height: 50vh;
+    background-image: url("Webaw3_picture/p10.PNG");
+    background-attachment: fixed;
+    background-size: contain;
+    background-position: center top;
+    position: relative;
+    background-repeat: no-repeat;
+}
+
+#p11 {
+    height: 50vh;
+    background-image: url("Webaw3_picture/p11.PNG");
+    background-attachment: fixed;
+    background-size: contain;
+    background-position: center top;
+    position: relative;
+    background-repeat: no-repeat;
+}
+
+
