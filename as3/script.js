@@ -10,7 +10,7 @@ window.addEventListener('scroll', function() {
       backgroundSection.style.backgroundPosition = "center top"; 
   } else {
       backgroundSection.classList.remove('sticky'); 
-      backgroundSection.style.backgroundImage = "url('Webaw3_picture/p02.PNG')";
+      backgroundSection.style.backgroundImage = "url('Webaw3_picture/p25.PNG')";
   }
 });
 
