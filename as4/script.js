@@ -14,8 +14,9 @@
             "uuid": "scrolling-image",
             "lazyload": true,
             "data": [
-                "https://hsutingyun.github.io/as4/webas4_picture/picture.jpeg",
-                "https://raw.githubusercontent.com/p4css/webScroll/main/images/ballon02.png"
+                "https://hsutingyun.github.io/as4/webas4_picture/p1.png",
+                "https://hsutingyun.github.io/as4/webas4_picture/p2.png",
+                "https://hsutingyun.github.io/as4/webas4_picture/p3.png"
             ],
             "skipLoadLocationRegExp": "editor"
         };
