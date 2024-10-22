@@ -1,4 +1,68 @@
-.full-height {
+.banner {
     height: 100vh;
-    background-color: pink;
+    background-image: url('https://www.twreporter.org/images/20170904111051-d48d3c2cac819681aaea37c95047971b-desktop.png');
+    background-size: cover;
+    background-position: center top;
+    position: relative;
+}
+.p01 {
+    height: 100vh;
+    background-image: url('https://www.twreporter.org/images/20170904111254-b8001a9c987617ba62c2b2778ad5a268-desktop.png');
+    background-size: cover;
+    background-position: center top;
+    position: relative;
+}
+.p02 {
+    height: 100vh;
+    background-image: url('https://www.twreporter.org/images/20170904111340-a7ce16c2b452b81e2601538bae71b402-desktop.png');
+    background-size: cover;
+    background-position: center top;
+    position: relative;
+}
+.p03 {
+    height: 100vh;
+    background-image: url('https://www.twreporter.org/images/20170904111405-28a6f7b31ea64a4eb6b4d95712d80eb9-desktop.png');
+    background-size: cover;
+    background-position: center top;
+    position: relative;
+}
+.scrolling-image{
+    height: 100vh;
+    background-size:80%;
+    background-position: center top;
+    position: relative;
+}
+.p05 {
+    height: 100vh;
+    background-image: url('https://www.twreporter.org/images/20170904140310-6e8d14e509e3f6797c88ccfb91f44807-desktop.png');
+    background-size: cover;
+    background-position: center top;
+    position: relative;
+}
+.p06 {
+    height: 100vh;
+    background-image: url('https://www.twreporter.org/images/20170904111513-f18d182892a872152c7ac786a7626d5b-desktop.png');
+    background-size: cover;
+    background-position: center top;
+    position: relative;
+}
+.p07 {
+    height: 100vh;
+    background-image: url('https://www.twreporter.org/images/20170904111534-d87c918e5714e88bc87929b1c2669927-desktop.png');
+    background-size: cover;
+    background-position: center top;
+    position: relative;
+}
+.p08 {
+    height: 100vh;
+    background-image: url('https://www.twreporter.org/images/20170904140625-27c7dc069943f44a67d6822ca3f97a98-tablet.png');
+    background-size: cover;
+    background-position: center top;
+    position: relative;
+}
+.footer {
+    height: 40vh;
+    background-color: rgb(252, 251, 243);
+    background-position: center top;
+    position: relative;
 }
