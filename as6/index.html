@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>翻翻卡</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- 新增 Banner 區塊 -->
+    <div class="banner">
+        <div class="banner-content">
+            <h1>翻翻卡小遊戲</h1>
+            <div class="scroll-indicator">
+                <span>向下捲動開始遊戲</span>
+                <div class="arrow"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-wrapper">
+        <div class="cards-section">
+            <div class="prompt-text">你想清楚答案了嗎？</div>
+            <div class="cards-container">
+                <div class="box">
+                    <div class="card front">
+                        <h2>問題一</h2>
+                        <p>1+1=?</p>
+                    </div>
+                    <div class="card back">答案是2</div>
+                </div>
+                <div class="box">
+                    <div class="card front">
+                        <h2>問題二</h2>
+                        <p>2+2=?</p>
+                    </div>
+                    <div class="card back">答案是4</div>
+                </div>
+                <div class="box">
+                    <div class="card front">
+                        <h2>問題三</h2>
+                        <p>3+3=?</p>
+                    </div>
+                    <div class="card back">答案是6</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
