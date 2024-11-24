@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>as7</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <!-- Opening Title -->
+    <div class="title-section">
+        <h1 style="color: white; font-weight: bold; font-size: 3em;">Stop Animal Testing</h1>
+    </div>
+
+    <!-- Main Scene -->
+    <div class="cage" style="background-color: rgb(79, 42, 42); height: 100vh">
+        <div id="scene1" class="scene sticky-top" style="height: 100vh; width: 100%; position: relative;">
+            <!-- Background Layer  (Lab) -->
+            <img class="scrollable background-layer" data-width="30" data-width2="45" src="./webphotos/Lab.png"
+                alt="Lab" style="position: absolute; height: 100vh;width: 100%; top: 0%; left: 0%;z-index: 8;">
+            <!-- Middle Layer  (Cage Frame) -->
+            <img class="scrollable middle-layer" data-width="30" data-width2="45" src="./webphotos/Cage.png"
+                alt="Cage Frame">
+            <!-- Foreground Layer (Door) -->
+            <div class="door"></div>
+            <!-- Foreground Layer (Mouse) -->
+            <img class="scrollable foreground-layer" data-top="45" data-top2="120" data-width="10" data-width2="30"
+                src="./webphotos/Mice.png" alt="Lab Mouse">
+
+        </div>
+
+    </div>
+
+    <!-- Transition Scene -->
+    <div style="background-color: black; height: 100vh">
+        <h2 style="color: white; font-weight: bold; font-size: 3em;position: relative;">眼前一片漆黑...</h2>
+        <h3 style="color: white; font-weight: bold; font-size: 2em;position: relative;">我被帶到了哪裡（好想逃走）</h3>
+    </div>
+    <div style="background-color: black; height: 300vh">
+        <div class="fof sticky-top" s tyle="background-color: black; height: 200vh">
+            <canvas></canvas>
+        </div>
+        <div style="background-color: black; height: 50vh"></div>
+    </div>
+    <div style="background-color: black; height: 100vh">
+        <h3 style="color: white; font-weight: bold; font-size: 2em;position: relative;">怎麼有那麼多雙眼睛在盯著我</h3>
+    </div>
+
+    <!-- Game Scene -->
+    <div id="scene2" class="scene" style="background-color: black; height: 150vh; position: relative;">
+        <!-- Background Layer (Lab ;Lab Table) -->
+        <img class="scrollable background-layer" src="./webphotos/Lab2.jpg" alt="Lab"
+            style="position: absolute; width: 100%;  height: 100%; top: 0; left: 0">
+        <img class="scrollable background-layer" src="./webphotos/Table.png" alt="Lab Table"
+            style="position: absolute; width: 120%;  height: 100%;top: 90vh;left: -10%;">
+        <!-- Middle Layer (Obstacles) -->
+        <img class="scrollable obstacles" data-left="100" data-left2="-20" src="./webphotos/Obstacle.png"
+            alt="Lab Items" style="position: absolute; width: 20%; top: 70%; left: 100%;">
+        <!-- Foreground Layer (Mouse) -->
+        <img class="scrollable mouse-character" data-left="0" data-left2="100" data-top="50" data-top2="50"
+            src="./webphotos/Mouse.png" alt="Lab Mouse" style="position: absolute; width: 20%; top: 70%; left: 0%;">
+        <h2 style="color: black; font-weight: bold; font-size: 5em;position: relative;top:40%">逃亡中....</h2>
+
+    </div>
+
+    <!-- Ending Scene -->
+    <div class="title-section"
+        style="background-color: black; height: 100vh; display: flex; justify-content: center; align-items: center">
+        <h1 style="color: white; font-weight: bold; font-size: 3em;">THE END</h1>
+    </div>
+</body>
+<script src="script.js"></script>
+
+</html>
