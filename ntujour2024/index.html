@@ -12,13 +12,12 @@
 
 <body>
     <!-- Banner Section -->
-    <div class="Banner">
+    <div class="wrapper">
         <div class="content">
-            <section class="section hero"></section>
-        </div>
-        <div class="image-container">
-            <img src="https://assets-global.website-files.com/63ec206c5542613e2e5aa784/643312a6bc4ac122fc4e3afa_main%20home.webp"
-                alt="image">
+            <section class="section hero">
+                <img src="https://assets-global.website-files.com/63ec206c5542613e2e5aa784/643312a6bc4ac122fc4e3afa_main%20home.webp"
+                    alt="hero image">
+            </section>
         </div>
     </div>
 
@@ -41,48 +40,49 @@
             <p>如果你是小麥，或是來台後，才發現自己懷孕的移工，你會怎麼做？</p>
         </div>
 
-        <!-- Memory Card Game -->
-        <div class="memory-game">
-            <div class="banner">
-                <div class="banner-content">
-                    <h1>如果你是小麥，或是來台後，才發現自己懷孕的移工，你會怎麼做？</h1>
-                    <div class="scroll-indicator">
-                        <span>向下捲動開始遊戲</span>
-                        <div class="arrow"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="container-wrapper">
-                <div class="cards-section">
-                    <div class="prompt-text">你想清楚答案了嗎？</div>
-                    <div class="cards-container">
-                        <div class="box">
-                            <div class="card front">
-                                <h2>問題一</h2>
-                                <p>以工作優先，為了還清重債或繼續賺錢，選擇到診所墮胎。</p>
-                            </div>
-                            <div class="card back">墮胎是身體的自主權，但手術風險、宗教信仰、放棄生命的掙扎……都可能帶來身心創傷。</div>
+        <!-- Card Game -->
+        <div class="cards-section">
+            <div class="cards-container">
+                <!-- 第一張卡片 -->
+                <div class="card-wrapper">
+                    <div class="card">
+                        <div class="front">
+                            <h2>問題一</h2>
+                            <p>以工作優先，為了還清重債或繼續賺錢，選擇到診所墮胎。</p>
                         </div>
-                        <div class="box">
-                            <div class="card front">
-                                <h2>問題二</h2>
-                                <p>2懷孕女性的工作權受到法律保障，我應該力爭正常的產假，並讓孩子平安誕生。</p>
-                            </div>
-                            <div class="card back">雇主與仲介可能不斷地勸說、威脅你自願終止聘雇，或找理由將你強迫解約。
-
-                                若雇主同意你在臺灣生產，接下來將面臨孩子的安置問題：自行找到在臺願意照顧孩子的人？請雇主讓你帶著孩子工作？將孩子送回家鄉讓親友撫養？</div>
-                        </div>
-                        <div class="box">
-                            <div class="card front">
-                                <h2>問題三</h2>
-                                <p>想保住孩子，也想避免解雇後遭到遣返，決定逃跑，成為法外移工。</p>
-                            </div>
-                            <div class="card back">活動時需時刻注意警察的查緝，若遭查獲會處以3~15萬元罰鍰，並立即遣返且永久不得再來臺工作。</div>
+                        <div class="back">
+                            <p>墮胎是身體的自主權，但手術風險、宗教信仰、放棄生命的掙扎……都可能帶來身心創傷。</p>
                         </div>
                     </div>
                 </div>
+
+                <!-- 第二張卡片 -->
+                <div class="card-wrapper">
+                    <div class="card">
+                        <div class="front">
+                            <h2>問題二</h2>
+                            <p>懷孕女性的工作權受到法律保障，我應該力爭正常的產假，並讓孩子平安誕生。</p>
+                        </div>
+                        <div class="back">
+                            <p>雇主與仲介可能不斷地勸說、威脅你自願終止聘雇，或找理由將你強迫解約。若雇主同意你在臺灣生產，接下來將面臨孩子的安置問題。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 第三張卡片 -->
+                <div class="card-wrapper">
+                    <div class="card">
+                        <div class="front">
+                            <h2>問題三</h2>
+                            <p>想保住孩子，也想避免解雇後遭到遣返，決定逃跑，成為法外移工。</p>
+                        </div>
+                        <div class="back">
+                            <p>活動時需時刻注意警察的查緝，若遭查獲會處以3~15萬元罰鍰，並立即遣返且永久不得再來臺工作。</p>
+                        </div>
+                    </div>
+                </div>
             </div>
+            <div class="prompt-text">點擊卡片看答案!</div>
         </div>
 
         <div class="text-content">
@@ -93,8 +93,8 @@
 
         <!-- Sticky Image-Text Section -->
         <!--數據一-->
-        <div class="row" style="height:150vh">
-            <div class="col-sm-6 sticky bg"
+        <div class="row" style="height:140vh">
+            <div class="col-sm-6 sticky-top bg"
                 style="height:100vh; background-size:contain;background-image:url('https://hsutingyun.github.io/ntujour2024/移工報導圖片/左圖右文/左圖右文1.png')">
             </div>
             <div class="col-sm-6">
@@ -104,8 +104,8 @@
             </div>
         </div>
         <!--數據二-->
-        <div class="row" style="height:150vh">
-            <div class="col-sm-6 sticky bg"
+        <div class="row" style="height:140vh">
+            <div class="col-sm-6 sticky-top bg"
                 style="height:100vh; background-size:contain;background-image:url('https://hsutingyun.github.io/ntujour2024/移工報導圖片/左圖右文/左圖右文2.png')">
             </div>
             <div class="col-sm-6">
@@ -116,8 +116,8 @@
             </div>
         </div>
         <!--數據三-->
-        <div class="row" style="height:150vh">
-            <div class="col-sm-6 sticky bg"
+        <div class="row" style="height:140vh">
+            <div class="col-sm-6 sticky-top bg"
                 style="height:100vh; background-size:contain;background-image:url('https://hsutingyun.github.io/ntujour2024/移工報導圖片/左圖右文/左圖右文3.png')">
             </div>
             <div class="col-sm-6">
@@ -129,8 +129,8 @@
             </div>
         </div>
         <!--數據四-->
-        <div class="row" style="height:150vh">
-            <div class="col-sm-6 sticky bg"
+        <div class="row" style="height:140vh">
+            <div class="col-sm-6 sticky-top bg"
                 style="height:100vh; background-size:contain;background-image:url('https://hsutingyun.github.io/ntujour2024/移工報導圖片/小J角色/小J1.png')">
             </div>
             <div class="col-sm-6">
@@ -185,7 +185,7 @@
                 </p>
             </div>
         </div>
-        <div>
+        <div class="delete">
             <!--轉場-->
             <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
                 <defs>
@@ -242,20 +242,45 @@
     <section id="section2">
         <!-- Text Adventure Game -->
         <div class="game-container">
-            <div class="scene">
-                <div class="background"></div>
-                <div id="character"></div>
-                <div class="room-items">
-                    <div class="air-conditioner"></div>
-                    <div class="photo-line"></div>
-                    <div class="sofa"></div>
-                    <div class="bed"></div>
+            <!-- 角色選擇區域 -->
+            <div class="character-selection">
+                <h2>挑選一個租客，聽聽他的故事。</h2>
+                <div class="character-buttons">
+                    <button class="character-btn" data-character="eric">
+                        <img src="https://hsutingyun.github.io/ntujour2024/移工報導圖片/小J角色/小J1.png" alt="Eric">
+                        <div class="character-info">
+                            <h3>阿賀</h3>
+                            <p>55歲，雇主，上班族。家裡有行動不便、需要隨時照料的82歲老父親</p>
+                        </div>
+                    </button>
+                    <button class="character-btn" data-character="xiaolin">
+                        <img src="https://hsutingyun.github.io/ntujour2024/移工報導圖片/小J角色/小J1.png" alt="小琳">
+                        <div class="character-info">
+                            <h3>Amy</h3>
+                            <p>27歲，移工。來台工作已三年，在臺灣有一位男朋友</p>
+                        </div>
+                    </button>
+                    <button class="character-btn" data-character="oldwang">
+                        <img src="https://hsutingyun.github.io/ntujour2024/移工報導圖片/小J角色/小J1.png" alt="老扁">
+                        <div class="character-info">
+                            <h3>小J</h3>
+                            <p>25歲，社會新鮮人。關切性別與勞權議題</p>
+                        </div>
+                    </button>
                 </div>
             </div>
 
-            <div class="dialog-box">
-                <div id="dialog-text"></div>
-                <div id="choices" class="choices"></div>
+            <!-- 遊戲對話區域 -->
+            <div class="game-container" style="display: none;">
+                <div class="scene">
+                    <div class="background"></div>
+                    <div class="character-avatar"></div>
+                    <div class="dialog-box">
+                        <div id="dialog-text"></div>
+                        <div class="choices"></div>
+                    </div>
+                </div>
+                <button class="back-btn" style="display: none;">返回選擇其他人物</button>
             </div>
         </div>
         <!--
@@ -365,6 +390,8 @@
     <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
     <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="script.js"></script>
 </body>
 
