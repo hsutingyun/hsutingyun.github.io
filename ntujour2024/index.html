@@ -1,18 +1,17 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-TW">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>移工不得好『孕』？——現實與政策的距離</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://codepen.io/GreenSock/pen/xxmzBrw.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 
-
 <body>
-
+    <!-- Banner Section -->
     <div class="Banner">
         <div class="content">
             <section class="section hero"></section>
@@ -25,25 +24,147 @@
         </div>
     </div>
 
-
-    <div class="content">
-        <div class="dialogue-container">
-            <div id="dialogue"></div>
-            <div class="choices" id="choices"></div>
+    <!-- Introduction Section -->
+    <section id="introduction">
+        <div class="parallax-container">
+            <div class="parallax-text">
+                <h2>導言</h2>
+                <p class="animated-text">為什麼小麥要隱瞞懷孕事實？
+                    面對移工的懷孕與生產，雇主與移工該怎麼辦？
+                </p>
+                <p>（以上故事改寫自真實新聞）</p>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <footer class="footer">
-        <p>上線時間：2024.12.x.</p>
-        <p>最後更新時間：2024.x.x.</p>
-        <p>&copy; Copyright © 2024臺大新聞所. All rights reserved. 版權所有，禁止擅自轉貼節錄
-        </p>
+    <!-- Section 1 -->
+    <section id="section1">
+        <div class="text-content">
+            <p>如果你是小麥，或是來台後，才發現自己懷孕的移工，你會怎麼做？</p>
+        </div>
+
+        <!-- Memory Card Game -->
+        <div class="memory-game">
+            <div class="cards-container">
+                <!-- Cards will be inserted by JavaScript -->
+            </div>
+        </div>
+
+        <div class="text-content">
+            <p>其實，小麥的故事不是個案，同樣的困境持續發生在臺灣各個角落……
+                根據勞動部、移民署、以及婦永盟數據統計
+            </p>
+        </div>
+
+        <!-- Sticky Image-Text Section -->
+        <div class="sticky-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 sticky-image">
+                        <img src="/api/placeholder/600/400" alt="Sticky Image">
+                    </div>
+                    <div class="col-sm-6 sticky-text">
+                        <p>在113年6月外籍移工人數已高達78萬5760人，超過48%為女性，且近8成為25至44歲的育齡婦女。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-content">
+            <p>數據背後的脈絡</p>
+        </div>
+        <div class="text-content">
+            <p>「擔心被遣返」是移工隱瞞懷孕，甚至逃跑的一大原因。
+            </p>
+        </div>
+        <!-- Sticky Image-Text Section -->
+        <div class="sticky-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 sticky-image">
+                        <img src="/api/placeholder/600/400" alt="Sticky Image">
+                    </div>
+                    <div class="col-sm-6 sticky-text">
+                        <p>生育vs.經濟根據監察院與報導者蒐集的訪談資料，不少移工反映曾遭到仲介威脅：「不能懷孕」，或在懷孕後被雇主勸說、強迫終止契約。由於移工來台須繳付高昂仲介費，使許多移工在出國工作前就負擔了龐大債務，一旦移工未賺取足夠金額即遭到解約，且未在時限內找到新雇主而被遣返的話，很可能使自己或家庭陷入巨大的經濟困難。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-content">
+            <p>近年來，政府與社會團體不斷地拓展更多管道，試圖解決移工與雇主在面對「懷孕」時的兩難與矛盾。究竟，有哪些措施在現實中發揮了效用？此議題在未來還隱藏哪些玄機值得社會持續關注與討論？
+            </p>
+        </div>
+
+    </section>
+
+    <!-- Section 2 -->
+    <section id="section2">
+        <!-- Text Adventure Game -->
+        <div class="text-adventure">
+            <div class="story-container">
+                <div id="story-text"></div>
+                <div id="choices"></div>
+            </div>
+        </div>
+        <div class="text-content">
+            <p>為深入了解現場的實際困境，我們特別訪問勵馨基金會移住者服務中心的曾以恩督導。
+            </p>
+        </div>
+
+        <!-- Video API Section -->
+        <div class="video-section">
+            <div class="container">
+                <div class="video-container">
+                    <video id="main-video" controls>
+                        <source src="video-url.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="video-text">
+                    <p>勵馨基金會長期關注女性工作者的職場權益，其「移住者服務中心」2022年正式開啟「懷孕移工諮詢服務」，除了提供專線、諮詢據點，也設置「安置中心」，讓有待產需求的移工經過組織評估及桃園市勞動局審核後，有能安心留住的場所。
+                        曾督導說，使用諮詢服務的移工多是想了解「懷孕或生小孩，還能不能居留在台灣？」，也有不少雇主會致電詢問相關問題。另外，隨著宣傳奏效與政府輔助，使用諮詢服務的人數逐年上漲，至2024年時，每月約有六十人使用服務。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Conclusion -->
+    <section id="conclusion">
+        <div class="container">
+            <h2>結論</h2>
+            <p>結論內容...</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>網頁工程：徐葶芸</p>
+            <p>設計：徐葶芸、鄭宇庭、韓丹文</p>
+            <p>文字、剪輯：鄭宇庭、韓丹文</p>
+            <p>採訪、攝影：徐葶芸、鄭宇庭、韓丹文</p>
+            <p>照片提供：自行拍攝、勵馨基金會</p>
+            <p>資料來源：</p>
+            <p>網路資源：監察院111/05/02報告
+                30萬育齡女移工在台 台灣如何面對懷孕失聯問題、給予友善生養環境？ - 事出有影
+                移民署中文網-移工
+                婦永盟-ICERD平行報告
+                台灣黑戶寶寶恐達萬人 無合法居留權欠缺資源</p>
+
+            <p>上線時間：2024.12.x.</p>
+            <p>最後更新時間：2024.x.x.</p>
+            <p>&copy; Copyright © 2024臺大新聞所. All rights reserved. 版權所有，禁止擅自轉貼節錄
+            </p>
+        </div>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="script.js"></script>
     <script type="text/javascript"
         src="https://unpkg.com/@twreporter/scrollable-image@1.3.1/dist/main-1f135a15f5704958e631.bundle.js"></script>
-    <script type="text/javascript" src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
     <script type="text/javascript" src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
 </body>
 
