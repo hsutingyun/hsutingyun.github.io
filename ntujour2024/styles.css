@@ -1,0 +1,564 @@
+/* Banner */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.wrapper,
+.content {
+    position: relative;
+    width: 100%;
+    z-index: 1;
+}
+
+.content {
+    overflow-x: hidden;
+}
+
+.content .section {
+    width: 100%;
+    height: 100vh;
+}
+
+.content .section.hero {
+    background-image: url(https://images.unsplash.com/photo-1589848315097-ba7b903cc1cc?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.image-container {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    perspective: 500px;
+    overflow: hidden;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+}
+
+.sticky {
+    position: sticky;
+    top: 0;
+}
+
+.bg {
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/*翻翻卡*/
+.front {
+    background-color: #ffffff;
+    border: 2px solid #ffb6c1;
+}
+
+.back {
+    background-color: #ffb6c1;
+    transform: rotateY(180deg);
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+@keyframes flipCard {
+    from {
+        transform: rotateY(0deg);
+    }
+
+    to {
+        transform: rotateY(180deg);
+    }
+}
+
+.flipped {
+    animation: flipCard 1s forwards;
+}
+
+
+/* 文字冒險遊戲 */
+.game-container {
+    width: 800px;
+    height: 600px;
+    position: relative;
+    background: #fff;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+
+.scene {
+    width: 100%;
+    height: 450px;
+    position: relative;
+    background: #f0f0f0;
+}
+
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #e6e6e6;
+}
+
+#character {
+    position: absolute;
+    bottom: 0;
+    left: 50px;
+    width: 200px;
+    height: 300px;
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 150"><rect x="30" y="50" width="40" height="60" fill="%23fff"/><circle cx="50" cy="40" r="20" fill="%23f4d03f"/></svg>');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.room-items {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.air-conditioner {
+    position: absolute;
+    top: 20px;
+    left: 50px;
+    width: 100px;
+    height: 30px;
+    background: #ddd;
+    border: 2px solid #999;
+}
+
+.photo-line {
+    position: absolute;
+    top: 80px;
+    right: 50px;
+    width: 200px;
+    height: 2px;
+    background: #999;
+}
+
+.photo-line::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    width: 100%;
+    height: 20px;
+    background-image: repeating-linear-gradient(90deg, transparent 0, transparent 30px, #666 30px, #666 40px);
+}
+
+.sofa {
+    position: absolute;
+    bottom: 50px;
+    left: 300px;
+    width: 150px;
+    height: 80px;
+    background: #8b4513;
+    border-radius: 10px 10px 0 0;
+}
+
+.bed {
+    position: absolute;
+    bottom: 50px;
+    right: 50px;
+    width: 200px;
+    height: 120px;
+    background: #a9a9a9;
+    border: 2px solid #808080;
+}
+
+.dialog-box {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 150px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px;
+}
+
+#dialog-text {
+    font-size: 18px;
+    margin-bottom: 15px;
+    min-height: 50px;
+}
+
+.choices {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.choice-button {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.3s ease;
+}
+
+.choice-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateX(5px);
+}
+
+/*轉場*/
+.container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.image-container {
+    position: relative;
+    width: 500px;
+    max-width: 90vw;
+    height: 500px;
+    margin-bottom: 20px;
+    background-color: #000000;
+    overflow: visible;
+    border-radius: 24px;
+}
+
+#displayed-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: url(#dissolve-filter);
+    -webkit-filter: url(#dissolve-filter);
+    /* Added for Safari compatibility */
+    transform: scale(1);
+    opacity: 1;
+    border-radius: 24px;
+}
+
+#delete-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 12px 24px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #650000;
+    color: #ff5c5c;
+    border: none;
+    border-radius: 25px;
+    transition: transform 0.2s ease;
+    z-index: 1;
+}
+
+#delete-image:hover {
+    transform: translate(-50%, -50%) scale(1.2);
+}
+
+#delete-image:active {
+    transform: translate(-50%, -50%) scale(0.9);
+}
+
+.hidden {
+    display: none;
+}
+
+/* Video*/
+.article-container {
+    position: relative;
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+
+.video-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+}
+
+.video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.content-sections {
+    position: relative;
+    z-index: 1;
+}
+
+.content-section {
+    min-height: 100vh;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: white;
+    background: rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+.content-section.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.content-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.content-section p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+    .content-section {
+        padding: 1rem;
+    }
+
+    .content-section h2 {
+        font-size: 2rem;
+    }
+
+    .content-section p {
+        font-size: 1rem;
+    }
+}
+
+/* Claud.ai 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.Banner,
+.content {
+    position: relative;
+    width: 100%;
+    z-index: 1;
+}
+
+.content {
+    overflow-x: hidden;
+}
+
+.content .section {
+    width: 100%;
+    height: 100vh;
+}
+
+.content .section.hero {
+    background-image: url(https://images.unsplash.com/photo-1589848315097-ba7b903cc1cc?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.image-container {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    perspective: 500px;
+    overflow: hidden;
+}
+
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+}
+
+ General Styles
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+section {
+    padding: 50px 0;
+}
+
+Banner Section 
+#banner {
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+.banner-image {
+    width: 100%;
+    height: 100%;
+    background-image: url('/api/placeholder/1920/1080');
+    background-size: cover;
+    background-position: center;
+}
+
+ Introduction Section 
+#introduction {
+    min-height: 100vh;
+    position: relative;
+}
+
+.parallax-container {
+    position: relative;
+    height: 100%;
+}
+
+.parallax-text {
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    margin: 20px;
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+ Section 1 
+.memory-game {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.card {
+    aspect-ratio: 3/4;
+    background: #ddd;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.card.flipped {
+    transform: rotateY(180deg);
+}
+
+.sticky-section {
+    position: relative;
+    padding: 50px 0;
+}
+
+.sticky-image {
+    position: sticky;
+    top: 20px;
+}
+
+/ Section 2 /
+.text-adventure {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.story-container {
+    background: #f5f5f5;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+#choices {
+    margin-top: 20px;
+}
+
+.choice-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    background: #fff;
+    border: 1px solid #ddd;
+    cursor: pointer;
+}
+
+.video-section {
+    margin: 50px 0;
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+}
+
+.video-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/ Conclusion & Footer /
+#conclusion,
+footer {
+    background: #0000;
+    padding: 40px 0;
+}
+
+footer {
+    margin-top: 50px;
+}
+
+/ Responsive Design /
+@media (max-width: 768px) {
+    .sticky-image {
+        position: relative;
+        top: 0;
+    }
+
+    .cards-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+    */
