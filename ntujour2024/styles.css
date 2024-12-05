@@ -3,6 +3,33 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family:
+        'Noto Serif TC',
+        'Source Han Serif',
+        'PingFang TC',
+        'Microsoft JhengHei',
+        'SimSun',
+        serif;
+}
+
+.row {
+    background-color: #000000;
+    color: #ddd;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.animate-storytelling {
+    background-color: #000000;
+}
+
+#div1 {
+    background-image: url("https://p4css.github.io/webScroll/assets/konoha.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .text-content {
@@ -17,7 +44,8 @@
 .content {
     position: relative;
     width: 100%;
-    z-index: 1;
+    z-index: 5;
+    background-color: #000000;
 }
 
 .content {
@@ -58,6 +86,7 @@
     background-position: center top;
     background-repeat: no-repeat;
     background-size: cover;
+    background-color: #000000;
 }
 
 .parallax-container {
