@@ -11,7 +11,12 @@
         'SimSun',
         serif;
 }
-
+.conclusion{
+    height: 300vh;
+    width: 100%;
+    background-color: #000000;
+    color: #ddd;
+}
 footer {
     text-align: left;
     padding: 7px;
@@ -43,7 +48,7 @@ footer {
     width: 100%;
     z-index: 5;
     background-color: #000000;
-    top:-3vh;
+    top: -3vh;
 }
 
 .content {
@@ -102,9 +107,9 @@ footer {
 /*翻翻卡*/
 /* 卡片容器樣式 */
 .cards,
-.text-content{
+.text-content {
     background-color: #000000;
-    color:#ddd;
+    color: #ddd;
 }
 
 .cards-container {
@@ -114,6 +119,7 @@ footer {
     flex-wrap: wrap;
     padding: 2rem;
 }
+
 
 .card-wrapper {
     perspective: 1000px;
@@ -555,6 +561,7 @@ footer {
 .babyEnding .eye:last-child {
     margin-left: 80px;
 }
+
 
 /* Media queries scoped to babyEnding */
 @media (max-width: 720px) {

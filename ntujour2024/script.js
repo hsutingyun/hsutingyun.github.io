@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
       this.characterData = {
         eric: {
           name: 'Eric',
-          avatar: 'https://hsutingyun.github.io/ntujour2024/移工報導圖片/小J角色/小J1.png',
+          avatar: 'https://hsutingyun.github.io/ntujour2024/picture/10.png',
           scenes: {
             start: {
               text: "如果家裡照顧長者的移工懷孕的話，您會怎麼辦？",
@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         xiaolin: {
           name: '小琳',
-          avatar: 'https://hsutingyun.github.io/ntujour2024/移工報導圖片/小J角色/小J1.png',
+          avatar: 'https://hsutingyun.github.io/ntujour2024/picture/11.png',
           scenes: {
             start: {
               text: "你好，我是小琳，和先生帶著四個孩子一起租屋生活。",
@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         oldwang: {
           name: '老扁',
-          avatar: 'https://hsutingyun.github.io/ntujour2024/移工報導圖片/小J角色/小J1.png',
+          avatar: 'https://hsutingyun.github.io/ntujour2024/picture/12.png',
           scenes: {
             start: {
               text: "我住在這裡很多年了，從年輕時就住在這個地下室...",
