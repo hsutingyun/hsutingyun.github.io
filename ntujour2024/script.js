@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
         scrollTrigger: {
           trigger: ".wrapper",
           start: "top top",
-          end: "+=150%",
+          end: "+=200%",
           pin: true,
           scrub: true,
           markers: true
