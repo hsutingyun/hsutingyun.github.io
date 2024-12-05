@@ -41,10 +41,57 @@ footer {
     display: flex;
     justify-content: center;
 }
-
+.story{
+    height: 100vh;
+}
 #p02 {
     height: 37vh;
-    background-image: url("https://p4css.github.io/webScroll/assets/naruto1.png");
+    background-image: url("https://hsutingyun.github.io/as3/Webaw3_picture/p02.PNG");
+    background-attachment: fixed;
+    background-size: 59%;
+    background-position: center top;
+    position: relative;
+    background-repeat: no-repeat;
+}
+#p03 {
+    height: 37vh;
+    background-image: url("https://hsutingyun.github.io/as3/Webaw3_picture/p03.PNG");
+    background-attachment: fixed;
+    background-size: 59%;
+    background-position: center top;
+    position: relative;
+    background-repeat: no-repeat;
+}
+#p04 {
+    height: 37vh;
+    background-image: url("https://hsutingyun.github.io/as3/Webaw3_picture/p04.PNG");
+    background-attachment: fixed;
+    background-size: 59%;
+    background-position: center top;
+    position: relative;
+    background-repeat: no-repeat;
+}
+#p05 {
+    height: 37vh;
+    background-image: url("https://hsutingyun.github.io/as3/Webaw3_picture/p05.PNG");
+    background-attachment: fixed;
+    background-size: 59%;
+    background-position: center top;
+    position: relative;
+    background-repeat: no-repeat;
+}
+#p06 {
+    height: 37vh;
+    background-image: url("https://hsutingyun.github.io/as3/Webaw3_picture/p06.PNG");
+    background-attachment: fixed;
+    background-size: 59%;
+    background-position: center top;
+    position: relative;
+    background-repeat: no-repeat;
+}
+#p07 {
+    height: 37vh;
+    background-image: url("https://hsutingyun.github.io/as3/Webaw3_picture/p07.PNG");
     background-attachment: fixed;
     background-size: 59%;
     background-position: center top;
@@ -87,12 +134,6 @@ footer {
     height: 100%;
     object-fit: cover;
     object-position: center center;
-}
-
-
-.sticky {
-    position: sticky;
-    top: 0;
 }
 
 .bg {
@@ -622,9 +663,10 @@ footer {
 /*scrolltrigger*/
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@700&display=swap");
 
-.hero2{
-    color:#ddd;
+.hero2 {
+    color: #ddd;
 }
+
 .hero2__inner {
     display: flex;
     position: relative;
