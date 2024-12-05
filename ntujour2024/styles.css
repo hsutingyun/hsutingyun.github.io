@@ -11,12 +11,22 @@
         'SimSun',
         serif;
 }
-.conclusion{
+
+.text {
+    color: #ddd;
+    font-size: medium;
+    letter-spacing: normal;
+    text-align: center;
+    background-color: #000000;
+}
+
+.conclusion {
     height: 300vh;
     width: 100%;
     background-color: #000000;
     color: #ddd;
 }
+
 footer {
     text-align: left;
     padding: 7px;
@@ -119,7 +129,6 @@ footer {
     flex-wrap: wrap;
     padding: 2rem;
 }
-
 
 .card-wrapper {
     perspective: 1000px;
@@ -365,6 +374,26 @@ footer {
 }
 
 /* Video*/
+.video-container {
+    height: 100vh;
+    /* 改為視窗高度而不是 100% */
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    z-index: 1;
+}
+
+#main-video {
+    position: absolute;
+    top: 0;
+    /* 加入這行 */
+    left: 0;
+    /* 加入這行 */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 .article-container {
     position: relative;
     width: 100%;
@@ -372,20 +401,6 @@ footer {
     overflow-x: hidden;
 }
 
-.video-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    z-index: -1;
-}
-
-.video-container video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
 
 .video-overlay {
     position: absolute;
@@ -601,6 +616,90 @@ footer {
 @-moz-document url-prefix() {
     .babyEnding svg {
         width: 100%;
+    }
+}
+
+/*scrolltrigger*/
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@700&display=swap");
+
+.hero2{
+    color:#ddd;
+}
+.hero2__inner {
+    display: flex;
+    position: relative;
+    width: 100vw;
+    max-height: 100vh;
+    overflow: hidden;
+
+    &::before {
+        content: "";
+        display: block;
+        padding-bottom: calc(100% / (16 / 9));
+    }
+}
+
+.hero2__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 160%;
+    object-fit: cover;
+}
+
+.hero2__content {
+    display: none;
+    position: absolute;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.hero2__headline {
+    --padding: 1.5vmin;
+    --duration: 400ms;
+    --delay: calc(var(--duration) / 2);
+    --ease: cubic-bezier(0.25, 1, 0.5, 1);
+
+    position: relative;
+    display: inline-block;
+    font-size: 10vmin;
+    overflow: hidden;
+    margin-top: calc(var(--padding) * -1);
+    padding: var(--padding);
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: calc(100% - var(--padding));
+        left: 0;
+        background-color: white;
+        width: 100%;
+        height: 1.5vmin;
+        transform: scaleX(0);
+        transition: transform var(--duration) var(--delay) var(--ease);
+    }
+
+    span {
+        display: block;
+        transform: translateY(110%);
+        transition: transform var(--duration) var(--ease);
+    }
+
+    .active & {
+        &::after {
+            transform: scaleX(1);
+            transition-delay: 0s;
+        }
+
+        span {
+            transform: translateY(0);
+            transition-delay: var(--delay);
+        }
     }
 }
 
