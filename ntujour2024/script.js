@@ -24,7 +24,31 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   const contentSections = document.querySelectorAll('.content-section');
+  // scrolltrigger
+  gsap.registerPlugin(ScrollTrigger);
 
+  gsap.to(".hero2", {
+    scrollTrigger: {
+      trigger: ".hero2",
+      scrub: true,
+      pin: true,
+      start: "center center",
+      end: "bottom -100%",
+      toggleClass: "active",
+      ease: "power2"
+    }
+  });
+
+  gsap.to(".hero2__image", {
+    scrollTrigger: {
+      trigger: ".hero2",
+      scrub: 0.5,
+      start: "top bottom",
+      end: "bottom -300%",
+      ease: "power2"
+    },
+    y: "-30%"
+  });
   // animate-storytelling (先暫放)
   //////////////////////////////////
   // Flip Card Functionality
