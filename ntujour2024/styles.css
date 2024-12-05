@@ -12,6 +12,13 @@
         serif;
 }
 
+footer {
+    text-align: left;
+    padding: 7px;
+    background-color: #A20B0B;
+    color: #ddd;
+}
+
 .row {
     background-color: #000000;
     color: #ddd;
@@ -20,24 +27,14 @@
     justify-content: center;
 }
 
-.animate-storytelling {
-    background-color: #000000;
-}
-
-#div1 {
-    background-image: url("https://p4css.github.io/webScroll/assets/konoha.jpg");
+#p02 {
+    height: 37vh;
+    background-image: url("https://p4css.github.io/webScroll/assets/naruto1.png");
     background-attachment: fixed;
-    background-position: center;
+    background-size: 59%;
+    background-position: center top;
+    position: relative;
     background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.text-content {
-    background-color: #000000;
-    color: #ddd;
-    align-items: center;
-    display: flex;
-    justify-content: center;
 }
 
 .wrapper,
@@ -46,6 +43,7 @@
     width: 100%;
     z-index: 5;
     background-color: #000000;
+    top:-3vh;
 }
 
 .content {
@@ -103,6 +101,12 @@
 
 /*翻翻卡*/
 /* 卡片容器樣式 */
+.cards,
+.text-content{
+    background-color: #000000;
+    color:#ddd;
+}
+
 .cards-container {
     display: flex;
     justify-content: center;
@@ -435,3 +439,162 @@
         font-size: 1rem;
     }
 }
+
+/*baby ending*/
+/* Scoping the SVG styles to the animate-storytelling section */
+.animate-storytelling svg {
+    display: block;
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+/* Scoping the SVG styles to the babyEnding section */
+.babyEnding {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000000;
+}
+
+.babyEnding svg {
+    width: 100%;
+}
+
+/* Baby ending specific styles scoped to their section */
+.babyEnding .st0 {
+    fill: #000000;
+}
+
+.babyEnding .st1 {
+    fill: #ebddc6;
+}
+
+.babyEnding .st2 {
+    fill: #e0c396;
+}
+
+.babyEnding .st3 {
+    fill: #e0c396;
+}
+
+.babyEnding .st4 {
+    fill: none;
+    stroke: #e0c396;
+    stroke-width: 4;
+    stroke-linecap: round;
+    stroke-miterlimit: 10;
+}
+
+.babyEnding .st5 {
+    display: none;
+    fill: #000000;
+}
+
+.babyEnding .st6 {
+    fill: #F41C33;
+}
+
+.babyEnding .st7 {
+    fill: #FFFFFF;
+}
+
+.babyEnding .st8 {
+    fill: #1C86F3;
+}
+
+.babyEnding .st9 {
+    display: none;
+    fill: #FFFFFF;
+}
+
+/* Brightness and pupils styles scoped to babyEnding */
+.babyEnding #brightness {
+    position: absolute;
+    z-index: -1;
+    box-shadow: 0 0 90px rgba(255, 255, 255, .6);
+    margin-top: 70px;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+}
+
+.babyEnding #pupils {
+    pointer-events: none;
+    position: absolute;
+}
+
+.babyEnding .eye {
+    margin-top: 35px;
+    position: relative;
+    display: inline-block;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    max-width: 50px;
+    max-height: 50px;
+    pointer-events: none;
+    transform: scale(1.1);
+}
+
+.babyEnding .eye:after {
+    position: absolute;
+    bottom: 16px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    background: #000000;
+    border-radius: 50%;
+    content: "";
+}
+
+.babyEnding .eye:last-child {
+    margin-left: 80px;
+}
+
+/* Media queries scoped to babyEnding */
+@media (max-width: 720px) {
+    .babyEnding svg {
+        min-width: 420px;
+    }
+
+    .babyEnding #brightness {
+        margin-top: 40px;
+        width: 190px;
+        height: 190px;
+    }
+
+    .babyEnding #pupils {
+        transform: scale(.6);
+    }
+}
+
+@media (max-height: 420px) {
+    .babyEnding svg {
+        min-width: 420px;
+        height: 100vh;
+    }
+
+    .babyEnding #brightness {
+        margin-top: 40px;
+        width: 190px;
+        height: 190px;
+    }
+
+    .babyEnding #pupils {
+        transform: scale(.6);
+    }
+}
+
+/* Firefox-specific styles */
+@-moz-document url-prefix() {
+    .babyEnding svg {
+        width: 100%;
+    }
+}
+
+/*animate-storytelling*/
