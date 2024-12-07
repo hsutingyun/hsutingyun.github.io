@@ -12,6 +12,11 @@
         serif;
 }
 
+.sticky {
+    position: sticky;
+    top: 10%;
+}
+
 .text {
     color: #ddd;
     font-size: medium;
@@ -41,9 +46,11 @@ footer {
     display: flex;
     justify-content: center;
 }
-.story{
+
+.story {
     height: 100vh;
 }
+
 #p02 {
     height: 37vh;
     background-image: url("https://hsutingyun.github.io/as3/Webaw3_picture/p02.PNG");
@@ -53,6 +60,7 @@ footer {
     position: relative;
     background-repeat: no-repeat;
 }
+
 #p03 {
     height: 37vh;
     background-image: url("https://hsutingyun.github.io/as3/Webaw3_picture/p03.PNG");
@@ -62,6 +70,7 @@ footer {
     position: relative;
     background-repeat: no-repeat;
 }
+
 #p04 {
     height: 37vh;
     background-image: url("https://hsutingyun.github.io/as3/Webaw3_picture/p04.PNG");
@@ -71,6 +80,7 @@ footer {
     position: relative;
     background-repeat: no-repeat;
 }
+
 #p05 {
     height: 37vh;
     background-image: url("https://hsutingyun.github.io/as3/Webaw3_picture/p05.PNG");
@@ -80,6 +90,7 @@ footer {
     position: relative;
     background-repeat: no-repeat;
 }
+
 #p06 {
     height: 37vh;
     background-image: url("https://hsutingyun.github.io/as3/Webaw3_picture/p06.PNG");
@@ -89,6 +100,7 @@ footer {
     position: relative;
     background-repeat: no-repeat;
 }
+
 #p07 {
     height: 37vh;
     background-image: url("https://hsutingyun.github.io/as3/Webaw3_picture/p07.PNG");
@@ -157,7 +169,12 @@ footer {
 
 /*翻翻卡*/
 /* 卡片容器樣式 */
-.cards,
+.cards {
+    background-color: #000000;
+    color: #ddd;
+    height: 200vh;
+}
+
 .text-content {
     background-color: #000000;
     color: #ddd;
@@ -229,7 +246,7 @@ footer {
     margin: 0;
 }
 
-/* 轉場 */
+/* 轉場 
 .delete {
     overflow: hidden;
     align-items: center;
@@ -261,7 +278,7 @@ footer {
     object-fit: cover;
     filter: url(#dissolve-filter);
     -webkit-filter: url(#dissolve-filter);
-    /* Added for Safari compatibility */
+   - Added for Safari compatibility -
     transform: scale(1);
     opacity: 1;
     border-radius: 24px;
@@ -294,7 +311,7 @@ footer {
 .hidden {
     display: none;
 }
-
+*/
 
 /* 文字冒險遊戲 */
 .game-container {
@@ -663,8 +680,20 @@ footer {
 /*scrolltrigger*/
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@700&display=swap");
 
+.container2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    color: white;
+    text-align: center;
+}
+
 .hero2 {
-    color: #ddd;
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
 }
 
 .hero2__inner {
@@ -673,12 +702,20 @@ footer {
     width: 100vw;
     max-height: 100vh;
     overflow: hidden;
-
+    height: 100%;
     &::before {
         content: "";
         display: block;
         padding-bottom: calc(100% / (16 / 9));
     }
+}
+
+.hero2__images {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
 .hero2__image {
@@ -687,7 +724,6 @@ footer {
     left: 0;
     width: 100%;
     height: 160%;
-    object-fit: cover;
 }
 
 .hero2__content {
@@ -744,5 +780,87 @@ footer {
         }
     }
 }
+
+/*數據動態*/
+.container4 {
+    display: flex;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.chart-container4 {
+    width: 50%;
+}
+
+.sticky-chart {
+    position: sticky;
+    top: 20px;
+    padding: 20px;
+    background: white;
+    height: 400px;
+    /* 固定高度以保持位置 */
+}
+
+.content-container4 {
+    width: 50%;
+    padding: 20px;
+}
+
+.section4 {
+    min-height: 80vh;
+    padding: 20px;
+    margin-bottom: 40px;
+}
+
+/*圖文搭配*/
+.container5 {
+    display: flex;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.image-container5 {
+    width: 50%;
+}
+
+.sticky-image {
+    position: sticky;
+    top: 20px;
+    padding: 20px;
+    background: white;
+    height: 400px;
+    /* 固定高度 */
+}
+
+.sticky-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /* 保持圖片比例 */
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.sticky-image img.active {
+    opacity: 1;
+}
+
+.content-container5 {
+    width: 50%;
+    padding: 20px;
+}
+
+.section5 {
+    min-height: 80vh;
+    padding: 20px;
+    margin-bottom: 40px;
+}
+
+/*video */
 
 /*animate-storytelling*/

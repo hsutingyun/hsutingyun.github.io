@@ -11,11 +11,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 
 <body>
     <!-- Banner Section -->
-    <div class="wrapper container-fluid">
+    <div class="wrapper">
         <div class="content">
             <section class="section hero">
                 <img src="https://hsutingyun.github.io/ntujour2024/picture/Banner.png" alt="hero image">
@@ -25,7 +28,7 @@
 
     <!-- Introduction Section -->
     <div id="introduction">
-        <div class="story"style="background-color: white;height:333vh">
+        <div class="story" style="background-color: white;height:333vh">
             <div id="p02" class="container-fluid"></div>
             <div id="p03" class="container-fluid"></div>
             <div id="p04" class="container-fluid"></div>
@@ -50,11 +53,11 @@
 
     <!-- Section 1 -->
     <div id="section1">
-    
-        <section class="container hero2">
+        <section class="container2 hero2">
             <div class="hero2__inner">
                 <div class="hero2__images">
-                    <img class="hero2__image" src="https://images.unsplash.com/photo-1508781197106-d8c535dcf276?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1200&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ" alt="Hero image">
+                    <img class="hero2__image" src="https://hsutingyun.github.io/ntujour2024/picture/baby.webp"
+                        alt="Hero image">
                 </div>
                 <div class="hero2__content">
                     <div class="hero2__headline">
@@ -66,7 +69,7 @@
 
         <!-- Card Game -->
         <div class="cards">
-            <div class="cards-container">
+            <div class="cards-container sticky">
                 <!-- 第一張卡片 -->
                 <div class="card-wrapper">
                     <div class="card">
@@ -118,7 +121,7 @@
                     </div>
                 </div>
             </div>
-            <div class="text">點擊卡片看答案!</div>
+
         </div>
 
         <div class="text">
@@ -128,58 +131,46 @@
         </div>
 
         <!-- Sticky Image-Text Section -->
-        <!--數據一-->
-        <div class="row" style="height:140vh">
-            <div class="col-sm-6 sticky-top" style="height:100vh">
-                <video autoplay muted loop style="width:100%; height:100%; object-fit:contain">
-                    <source src="https://hsutingyun.github.io/ntujour2024/picture/數據配圖/A.mp4" type="video/mp4">
-                </video>
+        <div class="container4">
+            <div class="chart-container4">
+                <div class="sticky-chart">
+                    <canvas id="dynamicChart"></canvas>
+                </div>
             </div>
-            <div class="col-sm-6 text">
-                <p>在113年6月外籍移工人數已高達78萬5760人，</p>
-                <p> 超過48%為女性，且近8成為25至44歲的育齡婦女。</p>
-            </div>
-        </div>
-        <!--數據二-->
-        <div class="row" style="height:140vh">
-            <div class="col-sm-6 sticky-top" style="height:100vh">
-                <video autoplay muted loop style="width:100%; height:100%; object-fit:contain">
-                    <source src="https://hsutingyun.github.io/ntujour2024/picture/數據配圖/B.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div class="col-sm-6 text">
-                <p>在台移工申請生育給付的人數，隨著時間從2021年3632人，2022年4900人，成長到了2023年則有5687人。然而，有更多的黑數還未顯露。</p>
-                <p> -截至113年9月-</p>
-            </div>
-        </div>
-        <!--數據三-->
-        <div class="row" style="height:140vh">
-            <div class="col-sm-6 sticky-top" style="height:100vh">
-                <video autoplay muted loop style="width:100%; height:100%; object-fit:contain">
-                    <source src="https://hsutingyun.github.io/ntujour2024/picture/數據配圖/C.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div class="col-sm-6 text">
-                <p>看護工及家庭移工失蹤人數高達30325人，</p>
-                <p> 女性更佔了29795人，高達98℅。</p>
-                <p> 目前，並沒有明確的數據說明究竟有多少女性為懷孕逃跑，</p>
-                <p> 然而根據NGO的估計，</p>
-            </div>
-        </div>
-        <!--數據四-->
-        <div class="row" style="height:140vh">
-            <div class="col-sm-6 sticky-top" style="height:100vh">
-                <video autoplay muted loop style="width:100%; height:100%; object-fit:contain">
-                    <source src="https://hsutingyun.github.io/ntujour2024/picture/數據配圖/D.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div class="col-sm-6 text">
-                <p>全台共有超過2000位的黑戶寶寶，</p>
-                <p> 而這卻不包含自宅生產等，</p>
-                <p> 因此真實數字仍舊成謎。</p>
-            </div>
-        </div>
 
+            <div class="content-container4">
+                <!-- 數據 一-->
+                <div class="section4" data-chart="pie" data-values="80,20" data-labels="25~44歲育齡婦女,其他">
+                    <h2>育齡婦女佔總移工人口</h2>
+                    <p>在113年6月外籍移工人數已高達78萬5760人，</p>
+                    <p> 超過48%為女性，且近8成為25至44歲的育齡婦女。</p>
+                </div>
+
+                <!-- 數據二 -->
+                <div class="section4" data-chart="line" data-values="3032,4900,5687" data-labels="2021,2022,2023">
+                    <h2>申請生育給付的移工人數</h2>
+                    <p>在台移工申請生育給付的人數，隨著時間從2021年3632人，2022年4900人，成長到了2023年則有5687人。然而，有更多的黑數還未顯露。</p>
+                    <p> -截至113年9月-</p>
+                </div>
+
+                <!-- 數據三 -->
+                <div class="section4" data-chart="pie" data-values="98,2" data-labels="女性逃逸社福移工,其他">
+                    <h2>逃逸社福移工中，女性佔...</h2>
+                    <p>看護工及家庭移工失蹤人數高達30325人，</p>
+                    <p> 女性更佔了29795人，高達98℅。</p>
+                    <p> 目前，並沒有明確的數據說明究竟有多少女性為懷孕逃跑，</p>
+                    <p> 然而根據NGO的估計，</p>
+                </div>
+
+                <!-- 數據四 -->
+                <div class="section4" data-chart="bar" data-values="2000" data-labels="黑戶寶寶">
+                    <h2>(小標）</h2>
+                    <p>全台共有超過2000位的黑戶寶寶，</p>
+                    <p> 而這卻不包含自宅生產等，</p>
+                    <p> 因此真實數字仍舊成謎。</p>
+                </div>
+            </div>
+        </div>
         <div class="text">
             <p>數據背後的脈絡</p>
         </div>
@@ -187,69 +178,73 @@
             <p>「擔心被遣返」是移工隱瞞懷孕，甚至逃跑的一大原因。</p>
         </div>
 
-        <!-- Sticky Image-Text Section -->
-        <!--數據一-->
-        <div class="row" style="height:150vh">
-            <div class="col-sm-6 sticky bg"
-                style="height:100vh; background-size:contain;background-image:url('https://hsutingyun.github.io/ntujour2024/picture/左圖右文/左圖右文1.png')">
+        <!-- 圖文搭配 -->
+        <div class="container5">
+            <div class="image-container5">
+                <div class="sticky-image">
+                    <!-- 預先載入所有圖片，但初始時都是隱藏的 -->
+                    <img src="https://hsutingyun.github.io/ntujour2024/picture/左圖右文/左圖右文1.png" alt="圖表1"
+                        data-image="image1" class="active">
+                    <img src="https://hsutingyun.github.io/ntujour2024/picture/左圖右文/左圖右文2.png" alt="圖表2"
+                        data-image="image2">
+                    <img src="https://hsutingyun.github.io/ntujour2024/picture/左圖右文/左圖右文3.png" alt="圖表3"
+                        data-image="image3">
+                </div>
             </div>
-            <div class="col-sm-6 text">
-                <p>在113年6月外籍移工人數已高達78萬5760人，</p>
-                <p>超過48%為女性，且近8成為25至44歲的育齡婦女。</p>
+
+            <div class="content-container5">
+                <!--圖文搭配一-->
+                <div class="section5" data-image="image1">
+                    <h2>一、生育vs.經濟</h2>
+                    <p>根據監察院與報導者蒐集的訪談資料，不少移工反映曾遭到仲介威脅：「不能懷孕」，或在懷孕後被雇主勸說、強迫終止契約。由於移工來台須繳付高昂仲介費，使許多移工在出國工作前就負擔了龐大債務，一旦移工未賺取足夠金額即遭到解約，且未在時限內找到新雇主而被遣返的話，很可能使自己或家庭陷入巨大的經濟困難。
+                    </p>
+                </div>
+                <!--圖文搭配二-->
+                <div class="section5" data-image="image2">
+                    <h2>二、現行政策</h2>
+                    <p>事實上，臺灣早在2015年取消移工在入國前的驗孕措施，也透過《性別平等工作法》保障移工產假、懷孕後不會被雇主單方面解雇的權益，並設有婦幼諮詢服務及安置中心。至於雇主方面，勞動部也推出長照系統下的喘息服務或短期照顧以補足受照顧者的空窗期需求。
+                    </p>
+                </div>
+                <!--圖文搭配三-->
+                <div class="section5" data-image="image3">
+                    <h2>三、政策與現實的距離</h2>
+                    <p>然而，政策常常難以接軌現實。許多雇主與仲介認為移工生產及產後恢復的空窗期若要尋找替代人力，供給往往嚴重不足且價格過於高昂，且伴隨煎熬的手續與等待過程，故會恐嚇移工不准在臺灣懷孕，若懷孕就要流掉，否則會被遣送回國。因為擔心被遣返，加上語言上對法律理解的困難，許多移工在懷孕時只能害怕地選擇流產或逃跑。
+                    </p>
+                </div>
             </div>
         </div>
-        <!--數據二-->
-        <div class="row" style="height:150vh">
-            <div class="col-sm-6 sticky-top bg"
-                style="height:100vh; background-size:contain;background-image:url('https://hsutingyun.github.io/ntujour2024/picture/左圖右文/左圖右文2.png')">
-            </div>
-            <div class="col-sm-6 text">
-                <p>在台移工申請生育給付的人數，</p>
-                <p> 隨著時間從2021年3632人，2022年4900人，</p>
-                <p> 成長到了2023年則有5687人。</p>
-                <p> 然而，有更多的黑數還未顯露。截至113年9月，</p>
-            </div>
-        </div>
-        <!--數據三-->
-        <div class="row" style="height:150vh">
-            <div class="col-sm-6 sticky-top bg"
-                style="height:100vh; background-size:contain;background-image:url('https://hsutingyun.github.io/ntujour2024/picture/左圖右文/左圖右文3.png')">
-            </div>
-            <div class="col-sm-6 text">
-                <p>看護工及家庭移工失蹤人數高達30325人，女性更佔了29795人，高達98℅。</p>
-                <p> 目前，並沒有明確的數據說明究竟有多少女性為懷孕逃跑，然而根據NGO的估計，</p>
-            </div>
-        </div>
-        <div class="delete">
-            <!--轉場-->
+
+
+        <!--<div class="delete">
+            轉場
             <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
                 <defs>
-                    <!-- 
+                !-- 
                     Define 'dissolve-filter' to create the dissolve effect.
                     Enlarged filter area to prevent clipping.
-                  -->
+                  --
                     <filter id="dissolve-filter" x="-200%" y="-200%" width="500%" height="500%"
                         color-interpolation-filters="sRGB" overflow="visible">
 
-                        <!-- Generate large-scale fractal noise -->
+                        !-- Generate large-scale fractal noise --
                         <feTurbulence type="fractalNoise" baseFrequency="0.004" numOctaves="1" result="bigNoise" />
 
-                        <!-- Enhance noise contrast -->
+                        !-- Enhance noise contrast --
                         <feComponentTransfer in="bigNoise" result="bigNoiseAdjusted">
                             <feFuncR type="linear" slope="3" intercept="-1" />
                             <feFuncG type="linear" slope="3" intercept="-1" />
                         </feComponentTransfer>
 
-                        <!-- Generate fine-grained fractal noise -->
+                        !-- Generate fine-grained fractal noise --
                         <feTurbulence type="fractalNoise" baseFrequency="1" numOctaves="1" result="fineNoise" />
 
-                        <!-- Merge the adjusted big noise and fine noise -->
+                        !-- Merge the adjusted big noise and fine noise --
                         <feMerge result="mergedNoise">
                             <feMergeNode in="bigNoiseAdjusted" />
                             <feMergeNode in="fineNoise" />
                         </feMerge>
 
-                        <!-- Apply displacement map to distort the image -->
+                        !-- Apply displacement map to distort the image --
                         <feDisplacementMap in="SourceGraphic" in2="mergedNoise" scale="0" xChannelSelector="R"
                             yChannelSelector="G" />
                     </filter>
@@ -257,14 +252,14 @@
             </svg>
 
             <div class="container">
-                <!-- Image Container -->
+                !-- Image Container --
                 <div class="image-container">
                     <img id="displayed-image" src="https://hsutingyun.github.io/ntujour2024/picture/左圖右文/左圖右文3.png"
                         alt="Selected Image">
                     <button id="delete-image">Delete Image</button>
                 </div>
             </div>
-        </div>
+        </div>-->
 
         <div class="text">
             <p>近年來，政府與社會團體不斷地拓展更多管道，</p>
@@ -319,11 +314,12 @@
                 <button class="back-btn" style="display: none;">返回選擇其他人物</button>
             </div>
         </div>
-    
+
         <div class="text-content">
             <p>為深入了解現場的實際困境，我們特別訪問勵馨基金會移住者服務中心的曾以恩督導。
             </p>
         </div>
+
 
         <!-- Video API Section -->
         <div class="article-container">
