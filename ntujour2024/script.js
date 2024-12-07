@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
           end: "+=200%",
           pin: true,
           scrub: true,
-          markers: true
+          markers: false
         }
       })
       .to(".hero img", {
@@ -27,25 +27,26 @@ document.addEventListener('DOMContentLoaded', function () {
   // scrolltrigger
   gsap.registerPlugin(ScrollTrigger);
 
+  // 单个动画控制
   gsap.to(".hero2", {
     scrollTrigger: {
       trigger: ".hero2",
       scrub: true,
       pin: true,
-      start: "center center",
-      end: "bottom -100%",
+      start: "top top", // 改为从顶部开始
+      end: "+=100%", // 减少滚动距离
       toggleClass: "active",
       ease: "power2"
     }
   });
 
+  // 图片视差效果
   gsap.to(".hero2__image", {
     scrollTrigger: {
       trigger: ".hero2",
       scrub: 0.5,
-      start: "top bottom",
-      end: "bottom -300%",
-      ease: "power2"
+      start: "top top",
+      end: "bottom top" // 修改结束点
     },
     y: "-30%"
   });
@@ -284,6 +285,135 @@ document.addEventListener('DOMContentLoaded', function () {
       }, 500);
     });
   }
+
+  //數據
+  let currentChart = null;
+  const ctx = document.getElementById('dynamicChart').getContext('2d');
+
+  // 創建圖表的函數
+  function createChart(type, labels, data) {
+    // 如果已經有圖表，先銷毀它
+    if (currentChart) {
+      currentChart.destroy();
+    }
+
+    // 根據圖表類型設置不同的配置
+    const config = {
+      type: type,
+      data: {
+        labels: labels,
+        datasets: [{
+          label: '數據',
+          data: data,
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.5)',
+            'rgba(54, 162, 235, 0.5)',
+            'rgba(255, 206, 86, 0.5)',
+            'rgba(75, 192, 192, 0.5)'
+          ],
+          borderColor: [
+            'rgb(255, 99, 132)',
+            'rgb(54, 162, 235)',
+            'rgb(255, 206, 86)',
+            'rgb(75, 192, 192)'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false
+      }
+    };
+
+    // 為不同類型的圖表添加特定選項
+    if (type === 'line') {
+      config.options.scales = {
+        y: {
+          beginAtZero: true
+        }
+      };
+    }
+
+    // 創建新圖表
+    currentChart = new Chart(ctx, config);
+  }
+
+  // 設置 Intersection Observer
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const section4 = entry.target;
+        const chartType = section4.dataset.chart;
+        const values = section4.dataset.values.split(',').map(Number);
+        const labels = section4.dataset.labels.split(',');
+
+        // 更新圖表
+        createChart(chartType, labels, values);
+      }
+    });
+  }, {
+    threshold: 0.5
+  });
+
+  // 觀察所有段落
+  document.querySelectorAll('.section4').forEach(section4 => {
+    observer.observe(section4);
+  });
+
+  // 初始化第一個圖表
+  const firstSection = document.querySelector('.section4');
+  createChart(
+    firstSection.dataset.chart,
+    firstSection.dataset.labels.split(','),
+    firstSection.dataset.values.split(',').map(Number)
+  );
+
+  // 圖文搭配
+  const chartObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const section4 = entry.target;
+        const chartType = section4.dataset.chart;
+        const values = section4.dataset.values.split(',').map(Number);
+        const labels = section4.dataset.labels.split(',');
+
+        // 更新圖表
+        createChart(chartType, labels, values);
+      }
+    });
+  }, {
+    threshold: 0.5
+  });
+
+  // 圖文搭配觀察器（新加入的）
+  const imageObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const section5 = entry.target;
+        const imageId = section5.dataset.image;
+
+        // 隱藏所有圖片
+        document.querySelectorAll('.sticky-image img').forEach(img => {
+          img.classList.remove('active');
+        });
+
+        // 顯示對應的圖片
+        document.querySelector(`.sticky-image img[data-image="${imageId}"]`).classList.add('active');
+      }
+    });
+  }, {
+    threshold: 0.5
+  });
+
+  // 分別觀察不同類型的段落
+  document.querySelectorAll('.section4').forEach(section4 => {
+    chartObserver.observe(section4);
+  });
+
+  document.querySelectorAll('.section5').forEach(section5 => {
+    imageObserver.observe(section5);
+  });
 
   // Video Background and Content Sections with ScrollTrigger
   const video = document.querySelector('.video-container video');
