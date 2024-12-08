@@ -27,26 +27,26 @@ document.addEventListener('DOMContentLoaded', function () {
   // scrolltrigger
   gsap.registerPlugin(ScrollTrigger);
 
-  // 单个动画控制
+  // 單個動畫控制
   gsap.to(".hero2", {
     scrollTrigger: {
       trigger: ".hero2",
       scrub: true,
       pin: true,
-      start: "top top", // 改为从顶部开始
-      end: "+=100%", // 减少滚动距离
+      start: "top top", // 改為從頂部開始
+      end: "+=100%", // 減少滾動距離
       toggleClass: "active",
       ease: "power2"
     }
   });
 
-  // 图片视差效果
+  // 圖片視差效果
   gsap.to(".hero2__image", {
     scrollTrigger: {
       trigger: ".hero2",
       scrub: 0.5,
       start: "top top",
-      end: "bottom top" // 修改结束点
+      end: "bottom top" // 修改結束點
     },
     y: "-30%"
   });
@@ -306,16 +306,16 @@ document.addEventListener('DOMContentLoaded', function () {
           label: '數據',
           data: data,
           backgroundColor: [
-            'rgba(255, 99, 132, 0.5)',
-            'rgba(54, 162, 235, 0.5)',
-            'rgba(255, 206, 86, 0.5)',
+            'rgba(255, 0, 0, 0.75)',
+            'rgba(255, 221, 51, 0.5)',
+            'rgba(255, 255, 255, 0.5)',
             'rgba(75, 192, 192, 0.5)'
           ],
           borderColor: [
-            'rgb(255, 99, 132)',
-            'rgb(54, 162, 235)',
-            'rgb(255, 206, 86)',
-            'rgb(75, 192, 192)'
+            'rgb(255, 255, 255)',
+            'rgb(255, 221, 51)',
+            'rgb(255, 255, 255)',
+            'rgb(255, 255, 255)'
           ],
           borderWidth: 1
         }]
@@ -416,77 +416,72 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   // Video Background and Content Sections with ScrollTrigger
-  const video = document.querySelector('.video-container video');
-  const articleContainer = document.querySelector('.article-container');
-
-  if (video && articleContainer) {
-    // 初始時暫停視頻
-    video.pause();
-
-    // 使用 GSAP ScrollTrigger 來控制視頻播放
+  // 處理文字動畫
+  document.querySelectorAll('.content-text6').forEach(content => {
     ScrollTrigger.create({
-      trigger: '.article-container',
-      start: 'top 100%', // 當 article-container 的頂部到達視窗 80% 的位置時
-      end: 'bottom 20%', // 當 article-container 的底部到達視窗 20% 的位置時
+      trigger: content,
+      start: 'top 70%',
+      end: 'bottom 30%',
+      toggleClass: {
+        targets: content,
+        className: 'active'
+      }
+    });
+  });
+
+  // 處理影片播放
+  document.querySelectorAll('.video-section6').forEach(section => {
+    const video = section.querySelector('video');
+
+    ScrollTrigger.create({
+      trigger: section,
+      start: 'top center',
+      end: 'bottom center',
       onEnter: () => {
+        // 暫停所有其他影片
+        document.querySelectorAll('video').forEach(v => {
+          if (v !== video) {
+            v.pause();
+            v.classList.remove('active');
+          }
+        });
+        // 播放當前影片
         video.play().catch(error => {
           console.log("Video play was prevented:", error);
         });
+        video.classList.add('active');
       },
       onLeave: () => {
         video.pause();
+        video.classList.remove('active');
       },
       onEnterBack: () => {
+        // 暫停所有其他影片
+        document.querySelectorAll('video').forEach(v => {
+          if (v !== video) {
+            v.pause();
+            v.classList.remove('active');
+          }
+        });
+        // 播放當前影片
         video.play().catch(error => {
           console.log("Video play was prevented:", error);
         });
+        video.classList.add('active');
       },
       onLeaveBack: () => {
         video.pause();
+        video.classList.remove('active');
       }
     });
 
-    // 處理視頻循環
+    // 影片循環播放  
     video.addEventListener('ended', () => {
       video.currentTime = 0;
       video.play().catch(error => {
         console.log("Video replay was prevented:", error);
       });
     });
-
-    // 處理頁面可見性變化
-    document.addEventListener('visibilitychange', () => {
-      if (document.hidden) {
-        video.pause();
-      } else {
-        // 檢查是否在觸發區域內
-        const trigger = ScrollTrigger.getById('videoTrigger');
-        if (trigger && trigger.isActive) {
-          video.play().catch(error => {
-            console.log("Video play was prevented:", error);
-          });
-        }
-      }
-    });
-  }
-
-  // Intersection Observer for content sections
-  const observerOptions = {
-    root: null,
-    threshold: 0.3,
-    rootMargin: '0px'
-  };
-
-  const sectionObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('active');
-      }
-    });
-  }, observerOptions);
-
-  contentSections.forEach(section => {
-    sectionObserver.observe(section);
   });
 
   // babyending //
