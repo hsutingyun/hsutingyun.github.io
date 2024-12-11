@@ -1,3 +1,4 @@
+
 /* Banner */
 * {
     margin: 0;
@@ -15,6 +16,7 @@
 .section1,
 .section2 {
     background-color: #000000;
+    position: relative;
 }
 
 .sticky {
@@ -65,66 +67,6 @@ footer {
 
 .story {
     height: 100vh;
-}
-
-#p02 {
-    height: 37vh;
-    background-image: url("https://hsutingyun.github.io/as3/Webaw3_picture/p02.PNG");
-    background-attachment: fixed;
-    background-size: 59%;
-    background-position: center top;
-    position: relative;
-    background-repeat: no-repeat;
-}
-
-#p03 {
-    height: 37vh;
-    background-image: url("https://hsutingyun.github.io/as3/Webaw3_picture/p03.PNG");
-    background-attachment: fixed;
-    background-size: 59%;
-    background-position: center top;
-    position: relative;
-    background-repeat: no-repeat;
-}
-
-#p04 {
-    height: 37vh;
-    background-image: url("https://hsutingyun.github.io/as3/Webaw3_picture/p04.PNG");
-    background-attachment: fixed;
-    background-size: 59%;
-    background-position: center top;
-    position: relative;
-    background-repeat: no-repeat;
-}
-
-#p05 {
-    height: 37vh;
-    background-image: url("https://hsutingyun.github.io/as3/Webaw3_picture/p05.PNG");
-    background-attachment: fixed;
-    background-size: 59%;
-    background-position: center top;
-    position: relative;
-    background-repeat: no-repeat;
-}
-
-#p06 {
-    height: 37vh;
-    background-image: url("https://hsutingyun.github.io/as3/Webaw3_picture/p06.PNG");
-    background-attachment: fixed;
-    background-size: 59%;
-    background-position: center top;
-    position: relative;
-    background-repeat: no-repeat;
-}
-
-#p07 {
-    height: 37vh;
-    background-image: url("https://hsutingyun.github.io/as3/Webaw3_picture/p07.PNG");
-    background-attachment: fixed;
-    background-size: 59%;
-    background-position: center top;
-    position: relative;
-    background-repeat: no-repeat;
 }
 
 .wrapper,
@@ -846,21 +788,36 @@ footer {
 .video-section6 {
     position: relative;
     height: 100vh;
-    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    /* 外邊距 */
 }
 
 .video-container6 {
     position: relative;
-    width: 100%;
-    height: 100%;
+    width: 80%;
+    /* 影片寬度佔容器80% */
+    max-width: 1200px;
+    /* 最大寬度 */
+    aspect-ratio: 16/9;
+    /* 保持影片比例 */
+    margin: 0 auto;
+    /* 水平置中 */
 }
 
 .video-container6 video {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    /* 保持影片比例 */
     opacity: 0;
     transition: opacity 0.5s ease;
+    border-radius: 10px;
+    /* 圓角 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* 陰影效果 */
 }
 
 .video-container6 video.active {
@@ -868,3 +825,167 @@ footer {
 }
 
 /*animate-storytelling*/
+.scroll-container {
+    height: 1000vh;
+    position: relative;
+}
+
+/* 第一個場景：監視器 */
+.sticky-container {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+.monitor-frame {
+    position: absolute;
+    width: 90%;
+    height: 90vh;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 20px solid #1a1a1a;
+    border-radius: 10px;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    background: #000;
+}
+
+.screen-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) 1px, transparent 1px, transparent 2px);
+    background-size: 100% 2px;
+    animation: scan 8s linear infinite;
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* 場景容器 */
+.scene-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* 場景圖層 */
+.scene-layer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.5s ease-out;
+}
+
+/* 監視器文字框 */
+.monitor-dialog {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    z-index: 3;
+}
+
+.monitor-text {
+    font-size: 1.2em;
+    line-height: 1.6;
+    color: #fff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+}
+
+.typing-hand {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 4;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    background-image: url('https://hsutingyun.github.io/ntujour2024/picture/taping.gif');
+    background-size: cover;
+    background-position: center;
+}
+
+.sticky-note {
+    position: absolute;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 5px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.5s ease;
+    color: #000;
+    z-index: 4;
+    width: 200px;
+    /* 調整便利貼寬度 /
+    height: 100px;
+    / 調整便利貼高度 */
+}
+
+.sticky-note:nth-child(1) {
+    top: 20%;
+    left: 15%;
+}
+
+.sticky-note:nth-child(2) {
+    top: 50%;
+    left: 70%;
+}
+
+.sticky-note:nth-child(3) {
+    top: 75%;
+    left: 30%;
+}
+
+.sticky-note:nth-child(4) {
+    top: 85%;
+    left: 55%;
+}
+
+.sticky-note.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+@keyframes scan {
+    0% {
+        background-position: 0 -100vh;
+    }
+
+    100% {
+        background-position: 0 100vh;
+    }
+}
+
+.monitor-status {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: #ff0000;
+    font-family: monospace;
+    z-index: 3;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}

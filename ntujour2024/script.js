@@ -1,4 +1,6 @@
+
 document.addEventListener('DOMContentLoaded', function () {
+
   // Banner Animation with GSAP
   console.clear();
   gsap.registerPlugin(ScrollTrigger);
@@ -50,8 +52,80 @@ document.addEventListener('DOMContentLoaded', function () {
     },
     y: "-30%"
   });
-  // animate-storytelling (先暫放)
-  //////////////////////////////////
+  // monitor
+  const monitorSection = () => {
+    const monitorTexts = [
+      "小麥（化名）來臺工作前已懷有身孕。",
+      "這天他臥在雇主家中的床將孩子生下，",
+      "面對時刻注視自己的監視器，",
+      "他將棉被緊緊的覆蓋下半身，仍難掩嬰兒的哭聲迴盪……"
+    ];
+
+    const monitorText = document.querySelector('.monitor-text');
+    const sceneLayers = document.querySelectorAll('.scene-layer');
+    const typingHand = document.querySelector('.typing-hand');
+    const stickyNotes = document.querySelectorAll('.sticky-note');
+
+    if (!monitorText || !sceneLayers.length || !typingHand || !stickyNotes.length) {
+      console.error('Monitor elements not found. Please check HTML structure.');
+      return;
+    }
+
+    let notesShown = false;
+
+    const showStickyNotes = () => {
+      if (!notesShown) {
+        notesShown = true;
+        stickyNotes.forEach((note, index) => {
+          setTimeout(() => {
+            note.classList.add('visible');
+          }, index * 500);
+        });
+      }
+    };
+
+    const hideStickyNotes = () => {
+      notesShown = false;
+      stickyNotes.forEach(note => {
+        note.classList.remove('visible');
+      });
+    };
+
+    const updateScene = () => {
+      const scrollPosition = window.scrollY;
+      const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollProgress = scrollPosition / totalScroll;
+      const textIndex = Math.floor(scrollProgress * monitorTexts.length);
+
+      console.log('Scroll Progress:', scrollProgress, 'Text Index:', textIndex);
+
+      if (textIndex >= 0 && textIndex < monitorTexts.length) {
+        monitorText.textContent = monitorTexts[textIndex];
+        monitorText.style.opacity = '1';
+        monitorText.style.transform = 'translateY(0)';
+
+        if (textIndex === 3) {
+          typingHand.style.opacity = '1';
+          showStickyNotes();
+        } else {
+          typingHand.style.opacity = '0';
+          hideStickyNotes();
+        }
+      }
+
+      sceneLayers.forEach((layer, index) => {
+        const speed = (index + 1) * 0.2;
+        const yPos = -scrollProgress * 100 * speed;
+        layer.style.transform = `translateY(${yPos}px)`;
+      });
+    };
+
+    window.addEventListener('scroll', updateScene);
+    window.addEventListener('load', updateScene);
+  };
+
+  // Initialize monitor section
+  monitorSection();
   // Flip Card Functionality
   const cards = document.querySelectorAll('.card');
   cards.forEach(card => {
@@ -65,62 +139,38 @@ document.addEventListener('DOMContentLoaded', function () {
     constructor() {
       this.characterData = {
         eric: {
-          name: 'Eric',
+          name: '阿賀',
           avatar: 'https://hsutingyun.github.io/ntujour2024/picture/10.png',
           scenes: {
             start: {
-              text: "如果家裡照顧長者的移工懷孕的話，您會怎麼辦？",
+              text: "如果家裡照顧長者的移工懷孕怎麼辦？",
               choices: [{
-                  text: "那移工還能照顧爸爸嗎……但人家懷孕就辭退好像也不合乎情理。",
-                  nextScene: "difficulties"
-                },
-                {
-                  text: "為什麼這麼多年都選擇租屋呢？",
-                  nextScene: "whyRent"
-                }
-              ]
+                text: "不知道怎麼辦。",
+                nextScene: "difficulties"
+              }, ]
             },
             difficulties: {
               text: "您有聽說過任何的協助資源嗎？",
               choices: [{
-                  text: "這聽起來很辛苦呢",
-                  nextScene: "experience"
-                },
-                {
-                  text: "那你有想過買房嗎？",
-                  nextScene: "buyHouse"
-                }
-              ]
+                text: "沒有啊！網路資訊好複雜，看不懂啦……也不知道可以去哪裡問。",
+                nextScene: "experience"
+              }, ]
             },
             experience: {
-              text: "是啊，但也是種生活經驗...",
+              text: "仲介有針對這種情況說明如何處理嗎？",
               choices: [{
-                text: "返回",
+                text: "仲介說早早和懷孕移工解約比較好啦，我也不了解有沒有其他辦法。",
                 nextScene: "start"
               }]
             },
-            buyHouse: {
-              text: "當然想過，但目前的房價實在太高了...",
-              choices: [{
-                text: "返回",
-                nextScene: "start"
-              }]
-            },
-            whyRent: {
-              text: "主要是因為工作地點常常變動...",
-              choices: [{
-                text: "返回",
-                nextScene: "start"
-              }]
-            }
           }
         },
         xiaolin: {
-          name: '小琳',
+          name: 'Amy',
           avatar: 'https://hsutingyun.github.io/ntujour2024/picture/11.png',
           scenes: {
             start: {
-              text: "你好，我是小琳，和先生帶著四個孩子一起租屋生活。",
+              text: "你好，我是Amy，和先生帶著四個孩子一起租屋生活。",
               choices: [{
                   text: "帶著孩子租屋一定很不容易吧？",
                   nextScene: "familyLife"
@@ -148,7 +198,7 @@ document.addEventListener('DOMContentLoaded', function () {
           }
         },
         oldwang: {
-          name: '老扁',
+          name: '小J',
           avatar: 'https://hsutingyun.github.io/ntujour2024/picture/12.png',
           scenes: {
             start: {
