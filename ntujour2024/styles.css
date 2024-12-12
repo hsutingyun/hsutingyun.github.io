@@ -1,7 +1,16 @@
+hr {
+    display: block;
+    margin-before: 0.5em;
+    margin-after: 0.5em;
+    margin-start: auto;
+    margin-end: auto;
+    border-style: inset;
+    border-width: 1px;
+}
 
 /* Banner */
 * {
-    margin: 0;
+    margin: 0;ㄡ
     padding: 0;
     box-sizing: border-box;
     font-family:

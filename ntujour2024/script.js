@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function () {
       this.characterData = {
         eric: {
           name: '阿賀',
-          avatar: 'https://hsutingyun.github.io/ntujour2024/picture/10.png',
+          avatar: 'https://hsutingyun.github.io/ntujour2024/picture/Characters/10.png',
           scenes: {
             start: {
               text: "如果家裡照顧長者的移工懷孕怎麼辦？",
@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         xiaolin: {
           name: 'Amy',
-          avatar: 'https://hsutingyun.github.io/ntujour2024/picture/11.png',
+          avatar: 'https://hsutingyun.github.io/ntujour2024/picture/Characters/11.png',
           scenes: {
             start: {
               text: "你好，我是Amy，和先生帶著四個孩子一起租屋生活。",
@@ -198,7 +198,7 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         oldwang: {
           name: '小J',
-          avatar: 'https://hsutingyun.github.io/ntujour2024/picture/12.png',
+          avatar: 'https://hsutingyun.github.io/ntujour2024/picture/Characters/12.png',
           scenes: {
             start: {
               text: "我住在這裡很多年了，從年輕時就住在這個地下室...",
@@ -320,20 +320,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // 初始化遊戲
   const game = new TextAdventure();
-
-  // Image Transition Effects
-  const deleteButton = document.getElementById('delete-image');
-  const displayedImage = document.getElementById('displayed-image');
-
-  if (deleteButton && displayedImage) {
-    deleteButton.addEventListener('click', function () {
-      displayedImage.style.transform = 'scale(0)';
-      displayedImage.style.opacity = '0';
-      setTimeout(() => {
-        displayedImage.classList.add('hidden');
-      }, 500);
-    });
-  }
 
   //數據
   let currentChart = null;
