@@ -245,6 +245,7 @@
             const scrollProgress = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
             const textIndex = Math.floor(scrollProgress * monitorTexts.length);
 
+            console.log('Scroll Progress:', scrollProgress, 'Text Index:', textIndex);
             // 更新監視器場景
             if (textIndex >= 0 && textIndex < monitorTexts.length) {
                 monitorText.textContent = monitorTexts[textIndex];
