@@ -57,7 +57,8 @@ document.addEventListener('DOMContentLoaded', function () {
       "小麥（化名）來臺工作前已懷有身孕。",
       "這天他臥在雇主家中的床將孩子生下，",
       "面對時刻注視自己的監視器，",
-      "他將棉被緊緊的覆蓋下半身，仍難掩嬰兒的哭聲迴盪……"
+      "他將棉被緊緊的覆蓋下半身，仍難掩嬰兒的哭聲迴盪……",
+      ""
     ];
 
     const monitorText = document.querySelector('.monitor-text');
@@ -90,20 +91,26 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     };
 
-    const updateScene = () => {
-      const scrollPosition = window.scrollY;
-      const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
-      const scrollProgress = scrollPosition / totalScroll;
-      const textIndex = Math.floor(scrollProgress * monitorTexts.length);
+    const getScrollProgress = () => {
+      const elem = document.querySelector('.scroll-container');
+      const rect = elem.getBoundingClientRect();
+      const top = rect.top;
+      const height = rect.height;
+      const dist = height * .9;
+      const progress = top / dist * -1;
+      return progress;
+    }
 
-      console.log('Scroll Progress:', scrollProgress, 'Text Index:', textIndex);
+    const updateScene = () => {
+      const scrollProgress = getScrollProgress();
+      const textIndex = Math.floor(scrollProgress * monitorTexts.length);
 
       if (textIndex >= 0 && textIndex < monitorTexts.length) {
         monitorText.textContent = monitorTexts[textIndex];
         monitorText.style.opacity = '1';
         monitorText.style.transform = 'translateY(0)';
 
-        if (textIndex === 3) {
+        if (textIndex === 4) {
           typingHand.style.opacity = '1';
           showStickyNotes();
         } else {
