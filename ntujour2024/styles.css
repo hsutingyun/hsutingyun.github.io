@@ -10,7 +10,7 @@ hr {
 
 /* Banner */
 * {
-    margin: 0;ㄡ
+    margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family:
@@ -20,6 +20,26 @@ hr {
         'Microsoft JhengHei',
         'SimSun',
         serif;
+}
+
+.picturecontainer {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+}
+
+.picturecontainer img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+
+    
 }
 
 .section1,
