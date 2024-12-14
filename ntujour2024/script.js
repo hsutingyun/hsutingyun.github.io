@@ -1,9 +1,13 @@
+document.addEventListener('load', () => {
+  console.log('loaded');
+  document.querySelector('.loading-screen').style.display = 'none';
+});
+
 document.addEventListener('DOMContentLoaded', function () {
 
   // Banner Animation with GSAP
   console.clear();
   gsap.registerPlugin(ScrollTrigger);
-
   window.addEventListener("load", () => {
     gsap
       .timeline({

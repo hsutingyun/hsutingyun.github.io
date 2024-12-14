@@ -8,6 +8,18 @@ hr {
     border-width: 1px;
 }
 
+.loading-screen {
+    position: absolute;
+    z-index: 87;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 /* Banner */
 * {
     margin: 0;
