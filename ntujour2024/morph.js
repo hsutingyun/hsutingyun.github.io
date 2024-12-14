@@ -1,408 +1,753 @@
 /*!
- * VERSION: 0.9.1
- * DATE: 2019-02-21
- * UPDATES AND DOCS AT: http://greensock.com
- *
- * @license Copyright (c) 2008-2019, GreenSock. All rights reserved.
- * MorphSVGPlugin is a Club GreenSock membership benefit; You must have a valid membership to use
- * this code without violating the terms of use. Visit http://greensock.com/club/ to sign up or get more details.
- * This work is subject to the software agreement that was issued with your membership.
- *
+ * MorphSVGPlugin 3.12.3
+ * https://greensock.com
+ * 
+ * @license Copyright 2023, GreenSock. All rights reserved.
+ * *** DO NOT DEPLOY THIS FILE ***
+ * This is a trial version that only works locally and on domains like codepen.io and codesandbox.io.
+ * Loading it on an unauthorized domain violates the license and will cause a redirect.
+ * Get the unrestricted file by joining Club GreenSock at https://greensock.com/club
  * @author: Jack Doyle, jack@greensock.com
  */
-var _gsScope = "undefined" != typeof module && module.exports && "undefined" != typeof global ? global : this || window;
-(_gsScope._gsQueue || (_gsScope._gsQueue = [])).push(function() {
-        "use strict";
 
-        function A(e) {
-            _gsScope.console && console.log(e)
+!function(t, e) {
+    "object" == typeof exports && "undefined" != typeof module ? e(exports) : "function" == typeof define && define.amd ? define(["exports"], e) : e((t = t || self).window = t.window || {})
+}(this, function(t) {
+    "use strict";
+    function m(t) {
+        return "string" == typeof t
+    }
+    var T = /[achlmqstvz]|(-?\d*\.?\d*(?:e[\-+]?\d+)?)[0-9]/gi
+      , S = /(?:(-)?\d*\.?\d*(?:e[\-+]?\d+)?)[0-9]/gi
+      , b = /[\+\-]?\d*\.?\d+e[\+\-]?\d+/gi
+      , r = /(^[#\.][a-z]|[a-y][a-z])/i
+      , E = Math.PI / 180
+      , H = Math.sin
+      , B = Math.cos
+      , D = Math.abs
+      , Q = Math.sqrt
+      , s = function _isNumber(t) {
+        return "number" == typeof t
+    }
+      , h = function _round(t) {
+        return Math.round(1e5 * t) / 1e5 || 0
+    };
+    function reverseSegment(t) {
+        var e, n = 0;
+        for (t.reverse(); n < t.length; n += 2)
+            e = t[n],
+            t[n] = t[n + 1],
+            t[n + 1] = e;
+        t.reversed = !t.reversed
+    }
+    var N = {
+        rect: "rx,ry,x,y,width,height",
+        circle: "r,cx,cy",
+        ellipse: "rx,ry,cx,cy",
+        line: "x1,x2,y1,y2"
+    };
+    function convertToPath(t, e) {
+        var n, r, o, a, i, s, h, l, c, g, p, f, u, d, P, m, _, v, w, y, x, M, T = t.tagName.toLowerCase(), b = .552284749831;
+        return "path" !== T && t.getBBox ? (s = function _createPath(t, e) {
+            var n, r = document.createElementNS("http://www.w3.org/2000/svg", "path"), o = [].slice.call(t.attributes), a = o.length;
+            for (e = "," + e + ","; -1 < --a; )
+                n = o[a].nodeName.toLowerCase(),
+                e.indexOf("," + n + ",") < 0 && r.setAttributeNS(null, n, o[a].nodeValue);
+            return r
+        }(t, "x,y,width,height,cx,cy,rx,ry,r,x1,x2,y1,y2,points"),
+        M = function _attrToObj(t, e) {
+            for (var n = e ? e.split(",") : [], r = {}, o = n.length; -1 < --o; )
+                r[n[o]] = +t.getAttribute(n[o]) || 0;
+            return r
+        }(t, N[T]),
+        "rect" === T ? (a = M.rx,
+        i = M.ry || a,
+        r = M.x,
+        o = M.y,
+        g = M.width - 2 * a,
+        p = M.height - 2 * i,
+        n = a || i ? "M" + (m = (d = (u = r + a) + g) + a) + "," + (v = o + i) + " V" + (w = v + p) + " C" + [m, y = w + i * b, P = d + a * b, x = w + i, d, x, d - (d - u) / 3, x, u + (d - u) / 3, x, u, x, f = r + a * (1 - b), x, r, y, r, w, r, w - (w - v) / 3, r, v + (w - v) / 3, r, v, r, _ = o + i * (1 - b), f, o, u, o, u + (d - u) / 3, o, d - (d - u) / 3, o, d, o, P, o, m, _, m, v].join(",") + "z" : "M" + (r + g) + "," + o + " v" + p + " h" + -g + " v" + -p + " h" + g + "z") : "circle" === T || "ellipse" === T ? (l = "circle" === T ? (a = i = M.r) * b : (a = M.rx,
+        (i = M.ry) * b),
+        n = "M" + ((r = M.cx) + a) + "," + (o = M.cy) + " C" + [r + a, o + l, r + (h = a * b), o + i, r, o + i, r - h, o + i, r - a, o + l, r - a, o, r - a, o - l, r - h, o - i, r, o - i, r + h, o - i, r + a, o - l, r + a, o].join(",") + "z") : "line" === T ? n = "M" + M.x1 + "," + M.y1 + " L" + M.x2 + "," + M.y2 : "polyline" !== T && "polygon" !== T || (n = "M" + (r = (c = (t.getAttribute("points") + "").match(S) || []).shift()) + "," + (o = c.shift()) + " L" + c.join(","),
+        "polygon" === T && (n += "," + r + "," + o + "z")),
+        s.setAttribute("d", rawPathToString(s._gsRawPath = stringToRawPath(n))),
+        e && t.parentNode && (t.parentNode.insertBefore(s, t),
+        t.parentNode.removeChild(t)),
+        s) : t
+    }
+    function arcToSegment(t, e, n, r, o, a, i, s, h) {
+        if (t !== s || e !== h) {
+            n = D(n),
+            r = D(r);
+            var l = o % 360 * E
+              , c = B(l)
+              , g = H(l)
+              , p = Math.PI
+              , f = 2 * p
+              , u = (t - s) / 2
+              , d = (e - h) / 2
+              , P = c * u + g * d
+              , m = -g * u + c * d
+              , _ = P * P
+              , v = m * m
+              , w = _ / (n * n) + v / (r * r);
+            1 < w && (n = Q(w) * n,
+            r = Q(w) * r);
+            var y = n * n
+              , x = r * r
+              , M = (y * x - y * v - x * _) / (y * v + x * _);
+            M < 0 && (M = 0);
+            var T = (a === i ? -1 : 1) * Q(M)
+              , b = n * m / r * T
+              , S = -r * P / n * T
+              , N = c * b - g * S + (t + s) / 2
+              , z = g * b + c * S + (e + h) / 2
+              , A = (P - b) / n
+              , R = (m - S) / r
+              , V = (-P - b) / n
+              , O = (-m - S) / r
+              , C = A * A + R * R
+              , j = (R < 0 ? -1 : 1) * Math.acos(A / Q(C))
+              , Y = (A * O - R * V < 0 ? -1 : 1) * Math.acos((A * V + R * O) / Q(C * (V * V + O * O)));
+            isNaN(Y) && (Y = p),
+            !i && 0 < Y ? Y -= f : i && Y < 0 && (Y += f),
+            j %= f,
+            Y %= f;
+            var I, L = Math.ceil(D(Y) / (f / 4)), W = [], F = Y / L, X = 4 / 3 * H(F / 2) / (1 + B(F / 2)), G = c * n, U = g * n, k = g * -r, q = c * r;
+            for (I = 0; I < L; I++)
+                P = B(o = j + I * F),
+                m = H(o),
+                A = B(o += F),
+                R = H(o),
+                W.push(P - X * m, m + X * P, A + X * R, R - X * A, A, R);
+            for (I = 0; I < W.length; I += 2)
+                P = W[I],
+                m = W[I + 1],
+                W[I] = P * G + m * k + N,
+                W[I + 1] = P * U + m * q + z;
+            return W[I - 2] = s,
+            W[I - 1] = h,
+            W
         }
-
-        function R(e) {
-            function t(e, t, r, o) {
-                g = (r - e) / 3, p = (o - t) / 3, s.push(e + g, t + p, r - g, o - p, r, o)
-            }
-            var r, o, n, i, a, h, s, l, f, g, p, c, u, d = (e + "").replace(q, function(e) {
-                    var t = +e;
-                    return t < 1e-4 && -1e-4 < t ? 0 : t
-                }).match(V) || [],
-                m = [],
-                _ = 0,
-                C = 0,
-                y = d.length,
-                S = 0,
-                v = "ERROR: malformed path: " + e;
-            if (!e || !isNaN(d[0]) || isNaN(d[1])) return A(v), m;
-            for (r = 0; r < y; r++)
-                if (u = a, isNaN(d[r]) ? h = (a = d[r].toUpperCase()) !== d[r] : r--, n = +d[r + 1], i = +d[r + 2], h && (n += _, i += C), r || (l = n, f = i), "M" === a) s && (s.length < 8 ? --m.length : S += s.length), _ = l = n, C = f = i, s = [n, i], m.push(s), r += 2, a = "L";
-                else if ("C" === a) h || (_ = C = 0), (s = s || [0, 0]).push(n, i, _ + +d[r + 3], C + +d[r + 4], _ += +d[r + 5], C += +d[r + 6]), r += 6;
-            else if ("S" === a) g = _, p = C, "C" !== u && "S" !== u || (g += _ - s[s.length - 4], p += C - s[s.length - 3]), h || (_ = C = 0), s.push(g, p, n, i, _ += +d[r + 3], C += +d[r + 4]), r += 4;
-            else if ("Q" === a) g = _ + 2 / 3 * (n - _), p = C + 2 / 3 * (i - C), h || (_ = C = 0), _ += +d[r + 3], C += +d[r + 4], s.push(g, p, _ + 2 / 3 * (n - _), C + 2 / 3 * (i - C), _, C), r += 4;
-            else if ("T" === a) g = _ - s[s.length - 4], p = C - s[s.length - 3], s.push(_ + g, C + p, n + 2 / 3 * (_ + 1.5 * g - n), i + 2 / 3 * (C + 1.5 * p - i), _ = n, C = i), r += 2;
-            else if ("H" === a) t(_, C, _ = n, C), r += 1;
-            else if ("V" === a) t(_, C, _, C = n + (h ? C - _ : 0)), r += 1;
-            else if ("L" === a || "Z" === a) "Z" === a && (n = l, i = f, s.closed = !0), ("L" === a || .5 < Math.abs(_ - n) || .5 < Math.abs(C - i)) && (t(_, C, n, i), "L" === a && (r += 2)), _ = n, C = i;
+    }
+    function stringToRawPath(t) {
+        function Ac(t, e, n, r) {
+            c = (n - t) / 3,
+            g = (r - e) / 3,
+            s.push(t + c, e + g, n - c, r - g, n, r)
+        }
+        var e, n, r, o, a, i, s, h, l, c, g, p, f, u, d, P = (t + "").replace(b, function(t) {
+            var e = +t;
+            return e < 1e-4 && -1e-4 < e ? 0 : e
+        }).match(T) || [], m = [], _ = 0, v = 0, w = P.length, y = 0, x = "ERROR: malformed path: " + t;
+        if (!t || !isNaN(P[0]) || isNaN(P[1]))
+            return console.log(x),
+            m;
+        for (e = 0; e < w; e++)
+            if (f = a,
+            isNaN(P[e]) ? i = (a = P[e].toUpperCase()) !== P[e] : e--,
+            r = +P[e + 1],
+            o = +P[e + 2],
+            i && (r += _,
+            o += v),
+            e || (h = r,
+            l = o),
+            "M" === a)
+                s && (s.length < 8 ? --m.length : y += s.length),
+                _ = h = r,
+                v = l = o,
+                s = [r, o],
+                m.push(s),
+                e += 2,
+                a = "L";
+            else if ("C" === a)
+                i || (_ = v = 0),
+                (s = s || [0, 0]).push(r, o, _ + 1 * P[e + 3], v + 1 * P[e + 4], _ += 1 * P[e + 5], v += 1 * P[e + 6]),
+                e += 6;
+            else if ("S" === a)
+                c = _,
+                g = v,
+                "C" !== f && "S" !== f || (c += _ - s[s.length - 4],
+                g += v - s[s.length - 3]),
+                i || (_ = v = 0),
+                s.push(c, g, r, o, _ += 1 * P[e + 3], v += 1 * P[e + 4]),
+                e += 4;
+            else if ("Q" === a)
+                c = _ + 2 / 3 * (r - _),
+                g = v + 2 / 3 * (o - v),
+                i || (_ = v = 0),
+                _ += 1 * P[e + 3],
+                v += 1 * P[e + 4],
+                s.push(c, g, _ + 2 / 3 * (r - _), v + 2 / 3 * (o - v), _, v),
+                e += 4;
+            else if ("T" === a)
+                c = _ - s[s.length - 4],
+                g = v - s[s.length - 3],
+                s.push(_ + c, v + g, r + 2 / 3 * (_ + 1.5 * c - r), o + 2 / 3 * (v + 1.5 * g - o), _ = r, v = o),
+                e += 2;
+            else if ("H" === a)
+                Ac(_, v, _ = r, v),
+                e += 1;
+            else if ("V" === a)
+                Ac(_, v, _, v = r + (i ? v - _ : 0)),
+                e += 1;
+            else if ("L" === a || "Z" === a)
+                "Z" === a && (r = h,
+                o = l,
+                s.closed = !0),
+                ("L" === a || .5 < D(_ - r) || .5 < D(v - o)) && (Ac(_, v, r, o),
+                "L" === a && (e += 2)),
+                _ = r,
+                v = o;
             else if ("A" === a) {
-                if (c = function(e, t, r, o, n, i, a, h, s) {
-                        if (e !== h || t !== s) {
-                            r = Math.abs(r), o = Math.abs(o);
-                            var l = n % 360 * U,
-                                f = Q(l),
-                                g = E(l),
-                                p = (e - h) / 2,
-                                c = (t - s) / 2,
-                                u = f * p + g * c,
-                                d = -g * p + f * c,
-                                m = u * u,
-                                _ = d * d,
-                                C = m / (r * r) + _ / (o * o);
-                            1 < C && (r = W(C) * r, o = W(C) * o);
-                            var y = r * r,
-                                S = o * o,
-                                v = (y * S - y * _ - S * m) / (y * _ + S * m);
-                            v < 0 && (v = 0);
-                            var x = (i === a ? -1 : 1) * W(v),
-                                w = r * d / o * x,
-                                b = -o * u / r * x,
-                                M = f * w - g * b + (e + h) / 2,
-                                T = g * w + f * b + (t + s) / 2,
-                                N = (u - w) / r,
-                                P = (d - b) / o,
-                                z = (-u - w) / r,
-                                A = (-d - b) / o,
-                                R = N * N + P * P,
-                                O = (P < 0 ? -1 : 1) * Math.acos(N / W(R)),
-                                L = (N * A - P * z < 0 ? -1 : 1) * Math.acos((N * z + P * A) / W(R * (z * z + A * A)));
-                            isNaN(L) && (L = H), !a && 0 < L ? L -= Z : a && L < 0 && (L += Z), O %= Z, L %= Z;
-                            for (var G = Math.ceil(Math.abs(L) / (Z / 4)), I = [], F = L / G, Y = 4 / 3 * E(F / 2) / (1 + Q(F / 2)), j = f * r, B = g * r, V = g * -o, X = f * o, D = 0; D < G; D++) u = Q(n = O + D * F), d = E(n), N = Q(n += F), P = E(n), I.push(u - Y * d, d + Y * u, N + Y * P, P - Y * N, N, P);
-                            for (D = 0; D < I.length; D += 2) u = I[D], d = I[D + 1], I[D] = u * j + d * V + M, I[D + 1] = u * B + d * X + T;
-                            return I[D - 2] = h, I[D - 1] = s, I
-                        }
-                    }(_, C, +d[r + 1], +d[r + 2], +d[r + 3], +d[r + 4], +d[r + 5], (h ? _ : 0) + +d[r + 6], (h ? C : 0) + +d[r + 7]))
-                    for (o = 0; o < c.length; o++) s.push(c[o]);
-                _ = s[s.length - 2], C = s[s.length - 1], r += 7
-            } else A(v);
-            return (r = s.length) < 6 ? (m.pop(), r = 0) : s[0] === s[r - 2] && s[1] === s[r - 1] && (s.closed = !0), m.totalPoints = S + r, m
+                if (u = P[e + 4],
+                d = P[e + 5],
+                c = P[e + 6],
+                g = P[e + 7],
+                n = 7,
+                1 < u.length && (u.length < 3 ? (g = c,
+                c = d,
+                n--) : (g = d,
+                c = u.substr(2),
+                n -= 2),
+                d = u.charAt(1),
+                u = u.charAt(0)),
+                p = arcToSegment(_, v, +P[e + 1], +P[e + 2], +P[e + 3], +u, +d, (i ? _ : 0) + 1 * c, (i ? v : 0) + 1 * g),
+                e += n,
+                p)
+                    for (n = 0; n < p.length; n++)
+                        s.push(p[n]);
+                _ = s[s.length - 2],
+                v = s[s.length - 1]
+            } else
+                console.log(x);
+        return (e = s.length) < 6 ? (m.pop(),
+        e = 0) : s[0] === s[e - 2] && s[1] === s[e - 1] && (s.closed = !0),
+        m.totalPoints = y + e,
+        m
+    }
+    function rawPathToString(t) {
+        s(t[0]) && (t = [t]);
+        var e, n, r, o, a = "", i = t.length;
+        for (n = 0; n < i; n++) {
+            for (o = t[n],
+            a += "M" + h(o[0]) + "," + h(o[1]) + " C",
+            e = o.length,
+            r = 2; r < e; r++)
+                a += h(o[r++]) + "," + h(o[r++]) + " " + h(o[r++]) + "," + h(o[r++]) + " " + h(o[r++]) + "," + h(o[r]) + " ";
+            o.closed && (a += "z")
         }
-
-        function x(e, t) {
-            for (var r, o, n, i, a, h, s, l, f, g, p, c, u, d = 0, m = e.length, _ = t / ((m - 2) / 6), C = 2; C < m; C += 6)
-                for (d += _; .999999 < d;) r = e[C - 2], o = e[C - 1], n = e[C], i = e[C + 1], a = e[C + 2], h = e[C + 3], s = e[C + 4], l = e[C + 5], f = r + (n - r) * (u = 1 / ((Math.floor(d) || 1) + 1)), f += ((p = n + (a - n) * u) - f) * u, p += (a + (s - a) * u - p) * u, g = o + (i - o) * u, g += ((c = i + (h - i) * u) - g) * u, c += (h + (l - h) * u - c) * u, e.splice(C, 4, r + (n - r) * u, o + (i - o) * u, f, g, f + (p - f) * u, g + (c - g) * u, p, c, a + (s - a) * u, h + (l - h) * u), C += 6, m += 6, d--;
-            return e
+        return a
+    }
+    function y() {
+        return a || "undefined" != typeof window && (a = window.gsap) && a.registerPlugin && a
+    }
+    function z(t) {
+        return "function" == typeof t
+    }
+    function M(t) {
+        return console && console.warn(t)
+    }
+    function P() {
+        return String.fromCharCode.apply(null, arguments)
+    }
+    function U(t) {
+        var e, n = t.length, r = 0, o = 0;
+        for (e = 0; e < n; e++)
+            r += t[e++],
+            o += t[e];
+        return [r / (n / 2), o / (n / 2)]
+    }
+    function V(t) {
+        var e, n, r, o = t.length, a = t[0], i = a, s = t[1], h = s;
+        for (r = 6; r < o; r += 6)
+            a < (e = t[r]) ? a = e : e < i && (i = e),
+            s < (n = t[r + 1]) ? s = n : n < h && (h = n);
+        return t.centerX = (a + i) / 2,
+        t.centerY = (s + h) / 2,
+        t.size = (a - i) * (s - h)
+    }
+    function W(t, e) {
+        void 0 === e && (e = 3);
+        for (var n, r, o, a, i, s, h, l, c, g, p, f, u, d, P, m, _ = t.length, v = t[0][0], w = v, y = t[0][1], x = y, M = 1 / e; -1 < --_; )
+            for (n = (i = t[_]).length,
+            a = 6; a < n; a += 6)
+                for (c = i[a],
+                g = i[a + 1],
+                p = i[a + 2] - c,
+                d = i[a + 3] - g,
+                f = i[a + 4] - c,
+                P = i[a + 5] - g,
+                u = i[a + 6] - c,
+                m = i[a + 7] - g,
+                s = e; -1 < --s; )
+                    v < (r = ((h = M * s) * h * u + 3 * (l = 1 - h) * (h * f + l * p)) * h + c) ? v = r : r < w && (w = r),
+                    y < (o = (h * h * m + 3 * l * (h * P + l * d)) * h + g) ? y = o : o < x && (x = o);
+        return t.centerX = (v + w) / 2,
+        t.centerY = (y + x) / 2,
+        t.left = w,
+        t.width = v - w,
+        t.top = x,
+        t.height = y - x,
+        t.size = (v - w) * (y - x)
+    }
+    function X(t, e) {
+        return e.length - t.length
+    }
+    function Y(t, e) {
+        var n = t.size || V(t)
+          , r = e.size || V(e);
+        return Math.abs(r - n) < (n + r) / 20 ? e.centerX - t.centerX || e.centerY - t.centerY : r - n
+    }
+    function Z(t, e) {
+        var n, r, o = t.slice(0), a = t.length, i = a - 2;
+        for (e |= 0,
+        n = 0; n < a; n++)
+            r = (n + e) % i,
+            t[n++] = o[r],
+            t[n] = o[1 + r]
+    }
+    function $(t, e, n, r, o) {
+        var a, i, s, h, l = t.length, c = 0, g = l - 2;
+        for (n *= 6,
+        i = 0; i < l; i += 6)
+            h = t[a = (i + n) % g] - (e[i] - r),
+            s = t[1 + a] - (e[i + 1] - o),
+            c += v(s * s + h * h);
+        return c
+    }
+    function _(t, e, n) {
+        var r, o, a, i = t.length, s = U(t), h = U(e), l = h[0] - s[0], c = h[1] - s[1], g = $(t, e, 0, l, c), p = 0;
+        for (a = 6; a < i; a += 6)
+            (o = $(t, e, a / 6, l, c)) < g && (g = o,
+            p = a);
+        if (n)
+            for (reverseSegment(r = t.slice(0)),
+            a = 6; a < i; a += 6)
+                (o = $(r, e, a / 6, l, c)) < g && (g = o,
+                p = -a);
+        return p / 6
+    }
+    function aa(t, e, n) {
+        for (var r, o, a, i, s, h, l = t.length, c = 1e20, g = 0, p = 0; -1 < --l; )
+            for (h = (r = t[l]).length,
+            s = 0; s < h; s += 6)
+                o = r[s] - e,
+                a = r[s + 1] - n,
+                (i = v(o * o + a * a)) < c && (c = i,
+                g = r[s],
+                p = r[s + 1]);
+        return [g, p]
+    }
+    function ba(t, e, n, r, o, a) {
+        var i, s, h, l, c = e.length, g = 0, p = Math.min(t.size || V(t), e[n].size || V(e[n])) * r, f = 1e20, u = t.centerX + o, d = t.centerY + a;
+        for (i = n; i < c && !((e[i].size || V(e[i])) < p); i++)
+            s = e[i].centerX - u,
+            h = e[i].centerY - d,
+            (l = v(s * s + h * h)) < f && (g = i,
+            f = l);
+        return l = e[g],
+        e.splice(g, 1),
+        l
+    }
+    function ca(t, e) {
+        var n, r, o, a, i, s, h, l, c, g, p, f, u, d, P = 0, m = t.length, _ = e / ((m - 2) / 6);
+        for (u = 2; u < m; u += 6)
+            for (P += _; .999999 < P; )
+                n = t[u - 2],
+                r = t[u - 1],
+                o = t[u],
+                a = t[u + 1],
+                i = t[u + 2],
+                s = t[u + 3],
+                h = t[u + 4],
+                l = t[u + 5],
+                c = n + (o - n) * (d = 1 / ((Math.floor(P) || 1) + 1)),
+                c += ((p = o + (i - o) * d) - c) * d,
+                p += (i + (h - i) * d - p) * d,
+                g = r + (a - r) * d,
+                g += ((f = a + (s - a) * d) - g) * d,
+                f += (s + (l - s) * d - f) * d,
+                t.splice(u, 4, n + (o - n) * d, r + (a - r) * d, c, g, c + (p - c) * d, g + (f - g) * d, p, f, i + (h - i) * d, s + (l - s) * d),
+                u += 6,
+                m += 6,
+                P--;
+        return t
+    }
+    function da(t, e, n, r, o) {
+        var a, i, s, h, l, c, g, p = e.length - t.length, f = 0 < p ? e : t, u = 0 < p ? t : e, d = 0, P = "complexity" === r ? X : Y, m = "position" === r ? 0 : "number" == typeof r ? r : .8, v = u.length, w = "object" == typeof n && n.push ? n.slice(0) : [n], y = "reverse" === w[0] || w[0] < 0, x = "log" === n;
+        if (u[0]) {
+            if (1 < f.length && (t.sort(P),
+            e.sort(P),
+            f.size || W(f),
+            u.size || W(u),
+            c = f.centerX - u.centerX,
+            g = f.centerY - u.centerY,
+            P === Y))
+                for (v = 0; v < u.length; v++)
+                    f.splice(v, 0, ba(u[v], f, v, m, c, g));
+            if (p)
+                for (p < 0 && (p = -p),
+                f[0].length > u[0].length && ca(u[0], (f[0].length - u[0].length) / 6 | 0),
+                v = u.length; d < p; )
+                    f[v].size || V(f[v]),
+                    h = (s = aa(u, f[v].centerX, f[v].centerY))[0],
+                    l = s[1],
+                    u[v++] = [h, l, h, l, h, l, h, l],
+                    u.totalPoints += 8,
+                    d++;
+            for (v = 0; v < t.length; v++)
+                a = e[v],
+                i = t[v],
+                (p = a.length - i.length) < 0 ? ca(a, -p / 6 | 0) : 0 < p && ca(i, p / 6 | 0),
+                y && !1 !== o && !i.reversed && reverseSegment(i),
+                (n = w[v] || 0 === w[v] ? w[v] : "auto") && (i.closed || Math.abs(i[0] - i[i.length - 2]) < .5 && Math.abs(i[1] - i[i.length - 1]) < .5 ? "auto" === n || "log" === n ? (w[v] = n = _(i, a, !v || !1 === o),
+                n < 0 && (y = !0,
+                reverseSegment(i),
+                n = -n),
+                Z(i, 6 * n)) : "reverse" !== n && (v && n < 0 && reverseSegment(i),
+                Z(i, 6 * (n < 0 ? -n : n))) : !y && ("auto" === n && Math.abs(a[0] - i[0]) + Math.abs(a[1] - i[1]) + Math.abs(a[a.length - 2] - i[i.length - 2]) + Math.abs(a[a.length - 1] - i[i.length - 1]) > Math.abs(a[0] - i[i.length - 2]) + Math.abs(a[1] - i[i.length - 1]) + Math.abs(a[a.length - 2] - i[0]) + Math.abs(a[a.length - 1] - i[1]) || n % 2) ? (reverseSegment(i),
+                w[v] = -1,
+                y = !0) : "auto" === n ? w[v] = 0 : "reverse" === n && (w[v] = -1),
+                i.closed !== a.closed && (i.closed = a.closed = !1));
+            return x && M("shapeIndex:[" + w.join(",") + "]"),
+            t.shapeIndex = w
         }
-
-        function O(e, t) {
-            for (var r, o, n = "", i = e.length, a = Math.pow(10, t || 2), h = 0; h < e.length; h++) {
-                for (i = (o = e[h]).length, n += "M" + (o[0] * a | 0) / a + " " + (o[1] * a | 0) / a + " C", r = 2; r < i; r++) n += (o[r] * a | 0) / a + " ";
-                o.closed && (n += "z")
-            }
-            return n
+    }
+    function ea(t, e, n, r, o) {
+        var a = stringToRawPath(t[0])
+          , i = stringToRawPath(t[1]);
+        da(a, i, e || 0 === e ? e : "auto", n, o) && (t[0] = rawPathToString(a),
+        t[1] = rawPathToString(i),
+        "log" !== r && !0 !== r || M('precompile:["' + t[0] + '","' + t[1] + '"]'))
+    }
+    function ga(t, e) {
+        var n, r, o, a, i, s, h, l = 0, c = parseFloat(t[0]), g = parseFloat(t[1]), p = c + "," + g + " ";
+        for (n = .5 * e / (.5 * (o = t.length) - 1),
+        r = 0; r < o - 2; r += 2) {
+            if (l += n,
+            s = parseFloat(t[r + 2]),
+            h = parseFloat(t[r + 3]),
+            .999999 < l)
+                for (i = 1 / (Math.floor(l) + 1),
+                a = 1; .999999 < l; )
+                    p += (c + (s - c) * i * a).toFixed(2) + "," + (g + (h - g) * i * a).toFixed(2) + " ",
+                    l--,
+                    a++;
+            p += s + "," + h + " ",
+            c = s,
+            g = h
         }
-
-        function w(e) {
-            for (var t = [], r = e.length - 1, o = 0; - 1 < --r;) t[o++] = e[r], t[o++] = e[r + 1], r--;
-            for (r = 0; r < o; r++) e[r] = t[r];
-            e.reversed = !e.reversed
+        return p
+    }
+    function ha(t) {
+        var e = t[0].match(L) || []
+          , n = t[1].match(L) || []
+          , r = n.length - e.length;
+        0 < r ? t[0] = ga(e, r) : t[1] = ga(n, -r)
+    }
+    function ia(e) {
+        return isNaN(e) ? ha : function(t) {
+            ha(t),
+            t[1] = function _offsetPoints(t, e) {
+                if (!e)
+                    return t;
+                var n, r, o, a = t.match(L) || [], i = a.length, s = "";
+                for (n = "reverse" === e ? (r = i - 1,
+                -2) : (r = (2 * (parseInt(e, 10) || 0) + 1 + 100 * i) % i,
+                2),
+                o = 0; o < i; o += 2)
+                    s += a[r - 1] + "," + a[r] + " ",
+                    r = (r + n) % i;
+                return s
+            }(t[1], parseInt(e, 10))
         }
-
-        function b(e) {
-            for (var t = e.length, r = 0, o = 0, n = 0; n < t; n++) r += e[n++], o += e[n];
-            return [r / (t / 2), o / (t / 2)]
+    }
+    function ka(t, e) {
+        for (var n, r, o, a, i, s, h, l, c, g, p, f, u = t.length, d = .2 * (e || 1); -1 < --u; ) {
+            for (p = (r = t[u]).isSmooth = r.isSmooth || [0, 0, 0, 0],
+            f = r.smoothData = r.smoothData || [0, 0, 0, 0],
+            p.length = 4,
+            l = r.length - 2,
+            h = 6; h < l; h += 6)
+                o = r[h] - r[h - 2],
+                a = r[h + 1] - r[h - 1],
+                i = r[h + 2] - r[h],
+                s = r[h + 3] - r[h + 1],
+                c = w(a, o),
+                g = w(s, i),
+                (n = Math.abs(c - g) < d) && (f[h - 2] = c,
+                f[h + 2] = g,
+                f[h - 1] = v(o * o + a * a),
+                f[h + 3] = v(i * i + s * s)),
+                p.push(n, n, 0, 0, n, n);
+            r[l] === r[0] && r[1 + l] === r[1] && (o = r[0] - r[l - 2],
+            a = r[1] - r[l - 1],
+            i = r[2] - r[0],
+            s = r[3] - r[1],
+            c = w(a, o),
+            g = w(s, i),
+            Math.abs(c - g) < d && (f[l - 2] = c,
+            f[2] = g,
+            f[l - 1] = v(o * o + a * a),
+            f[3] = v(i * i + s * s),
+            p[l - 2] = p[l - 1] = !0))
         }
-
-        function M(e) {
-            for (var t, r, o = e.length, n = e[0], i = n, a = e[1], h = a, s = 6; s < o; s += 6) n < (t = e[s]) ? n = t : t < i && (i = t), a < (r = e[s + 1]) ? a = r : r < h && (h = r);
-            return e.centerX = (n + i) / 2, e.centerY = (a + h) / 2, e.size = (n - i) * (a - h)
+        return t
+    }
+    function la(t) {
+        var e = t.trim().split(" ");
+        return {
+            x: (~t.indexOf("left") ? 0 : ~t.indexOf("right") ? 100 : isNaN(parseFloat(e[0])) ? 50 : parseFloat(e[0])) / 100,
+            y: (~t.indexOf("top") ? 0 : ~t.indexOf("bottom") ? 100 : isNaN(parseFloat(e[1])) ? 50 : parseFloat(e[1])) / 100
         }
-
-        function L(e, t) {
-            t = t || 3;
-            for (var r, o, n, i, a, h, s, l, f, g, p, c, u, d, m, _, C = e.length, y = e[0][0], S = y, v = e[0][1], x = v, w = 1 / t; - 1 < --C;)
-                for (r = (a = e[C]).length, i = 6; i < r; i += 6)
-                    for (f = a[i], g = a[i + 1], p = a[i + 2] - f, d = a[i + 3] - g, c = a[i + 4] - f, m = a[i + 5] - g, u = a[i + 6] - f, _ = a[i + 7] - g, h = t; - 1 < --h;) y < (o = ((s = w * h) * s * u + 3 * (l = 1 - s) * (s * c + l * p)) * s + f) ? y = o : o < S && (S = o), v < (n = (s * s * _ + 3 * l * (s * m + l * d)) * s + g) ? v = n : n < x && (x = n);
-            return e.centerX = (y + S) / 2, e.centerY = (v + x) / 2, e.left = S, e.width = y - S, e.top = x, e.height = v - x, e.size = (y - S) * (v - x)
+    }
+    function oa(t, e, n, r) {
+        var o, a, i = this._origin, s = this._eOrigin, h = t[n] - i.x, l = t[n + 1] - i.y, c = v(h * h + l * l), g = w(l, h);
+        return h = e[n] - s.x,
+        l = e[n + 1] - s.y,
+        a = function _shortAngle(t) {
+            return t !== t % p ? t + (t < 0 ? f : -f) : t
+        }(o = w(l, h) - g),
+        !r && j && Math.abs(a + j.ca) < u && (r = j),
+        this._anchorPT = j = {
+            _next: this._anchorPT,
+            t: t,
+            sa: g,
+            ca: r && a * r.ca < 0 && Math.abs(a) > d ? o : a,
+            sl: c,
+            cl: v(h * h + l * l) - c,
+            i: n
         }
-
-        function T(e, t) {
-            return t.length - e.length
-        }
-
-        function N(e, t) {
-            var r = e.size || M(e),
-                o = t.size || M(t);
-            return Math.abs(o - r) < (r + o) / 20 ? t.centerX - e.centerX || t.centerY - e.centerY : o - r
-        }
-
-        function P(e, t) {
-            var r, o, n = e.slice(0),
-                i = e.length,
-                a = i - 2;
-            for (t |= 0, r = 0; r < i; r++) o = (r + t) % a, e[r++] = n[o], e[r] = n[1 + o]
-        }
-
-        function z(e, t, r, o, n) {
-            var i, a, h, s, l = e.length,
-                f = 0,
-                g = l - 2;
-            for (r *= 6, a = 0; a < l; a += 6) s = e[i = (a + r) % g] - (t[a] - o), h = e[1 + i] - (t[a + 1] - n), f += W(h * h + s * s);
-            return f
-        }
-
-        function G(e, t, r, o, n) {
-            var i, a, h, s, l, f, g, p = t.length - e.length,
-                c = 0 < p ? t : e,
-                u = 0 < p ? e : t,
-                d = 0,
-                m = "complexity" === o ? T : N,
-                _ = "position" === o ? 0 : "number" == typeof o ? o : .8,
-                C = u.length,
-                y = "object" == typeof r && r.push ? r.slice(0) : [r],
-                S = "reverse" === y[0] || y[0] < 0,
-                v = "log" === r;
-            if (u[0]) {
-                if (1 < c.length && (e.sort(m), t.sort(m), c.size || L(c), u.size || L(u), f = c.centerX - u.centerX, g = c.centerY - u.centerY, m === N))
-                    for (C = 0; C < u.length; C++) c.splice(C, 0, function(e, t, r, o, n, i) {
-                        for (var a, h, s, l = t.length, f = 0, g = Math.min(e.size || M(e), t[r].size || M(t[r])) * o, p = 1e20, c = e.centerX + n, u = e.centerY + i, d = r; d < l && !((t[d].size || M(t[d])) < g); d++) a = t[d].centerX - c, h = t[d].centerY - u, (s = W(a * a + h * h)) < p && (f = d, p = s);
-                        return s = t[f], t.splice(f, 1), s
-                    }(u[C], c, C, _, f, g));
-                if (p)
-                    for (p < 0 && (p = -p), c[0].length > u[0].length && x(u[0], (c[0].length - u[0].length) / 6 | 0), C = u.length; d < p;) c[C].size || M(c[C]), s = (h = function(e, t, r) {
-                        for (var o, n, i, a, h, s, l = e.length, f = 1e20, g = 0, p = 0; - 1 < --l;)
-                            for (s = (o = e[l]).length, h = 0; h < s; h += 6) n = o[h] - t, i = o[h + 1] - r, (a = W(n * n + i * i)) < f && (f = a, g = o[h], p = o[h + 1]);
-                        return [g, p]
-                    }(u, c[C].centerX, c[C].centerY))[0], l = h[1], u[C++] = [s, l, s, l, s, l, s, l], u.totalPoints += 8, d++;
-                for (C = 0; C < e.length; C++) i = t[C], a = e[C], (p = i.length - a.length) < 0 ? x(i, -p / 6 | 0) : 0 < p && x(a, p / 6 | 0), S && !1 !== n && !a.reversed && w(a), (r = y[C] || 0 === y[C] ? y[C] : "auto") && (a.closed || Math.abs(a[0] - a[a.length - 2]) < .5 && Math.abs(a[1] - a[a.length - 1]) < .5 ? "auto" === r || "log" === r ? (y[C] = r = function(e, t, r) {
-                    for (var o, n, i = e.length, a = b(e), h = b(t), s = h[0] - a[0], l = h[1] - a[1], f = z(e, t, 0, s, l), g = 0, p = 6; p < i; p += 6)(n = z(e, t, p / 6, s, l)) < f && (f = n, g = p);
-                    if (r)
-                        for (o = e.slice(0), w(o), p = 6; p < i; p += 6)(n = z(o, t, p / 6, s, l)) < f && (f = n, g = -p);
-                    return g / 6
-                }(a, i, !C || !1 === n), r < 0 && (S = !0, w(a), r = -r), P(a, 6 * r)) : "reverse" !== r && (C && r < 0 && w(a), P(a, 6 * (r < 0 ? -r : r))) : !S && ("auto" === r && Math.abs(i[0] - a[0]) + Math.abs(i[1] - a[1]) + Math.abs(i[i.length - 2] - a[a.length - 2]) + Math.abs(i[i.length - 1] - a[a.length - 1]) > Math.abs(i[0] - a[a.length - 2]) + Math.abs(i[1] - a[a.length - 1]) + Math.abs(i[i.length - 2] - a[0]) + Math.abs(i[i.length - 1] - a[1]) || r % 2) ? (w(a), y[C] = -1, S = !0) : "auto" === r ? y[C] = 0 : "reverse" === r && (y[C] = -1), a.closed !== i.closed && (a.closed = i.closed = !1));
-                return v && A("shapeIndex:[" + y.join(",") + "]"), e.shapeIndex = y
-            }
-        }
-
-        function n(e, t) {
-            for (var r, o, n, i, a = 0, h = parseFloat(e[0]), s = parseFloat(e[1]), l = h + "," + s + " ", f = e.length, g = .5 * t / (.5 * f - 1), p = 0; p < f - 2; p += 2) {
-                if (a += g, n = parseFloat(e[p + 2]), i = parseFloat(e[p + 3]), .999999 < a)
-                    for (o = 1 / (Math.floor(a) + 1), r = 1; .999999 < a;) l += (h + (n - h) * o * r).toFixed(2) + "," + (s + (i - s) * o * r).toFixed(2) + " ", a--, r++;
-                l += n + "," + i + " ", h = n, s = i
-            }
-            return l
-        }
-
-        function r(e) {
-            var t = e[0].match(X) || [],
-                r = e[1].match(X) || [],
-                o = r.length - t.length;
-            0 < o ? e[0] = n(t, o) : e[1] = n(r, -o)
-        }
-
-        function I(t) {
-            return isNaN(t) ? r : function(e) {
-                r(e), e[1] = function(e, t) {
-                    if (!t) return e;
-                    for (var r, o = e.match(X) || [], n = o.length, i = "", a = "reverse" === t ? (r = n - 1, -2) : (r = (2 * (parseInt(t, 10) || 0) + 1 + 100 * n) % n, 2), h = 0; h < n; h += 2) i += o[r - 1] + "," + o[r] + " ", r = (r + a) % n;
-                    return i
-                }(e[1], parseInt(t, 10))
-            }
-        }
-
-        function a(e, t) {
-            var r, o, n, i, a, h, s, l, f, g, p, c, u, d, m, _, C, y, S, v, x, w, b = e.tagName.toLowerCase(),
-                M = .552284749831;
-            return "path" !== b && e.getBBox ? (h = function(e, t) {
-                var r, o = _gsScope.document.createElementNS("http://www.w3.org/2000/svg", "path"),
-                    n = Array.prototype.slice.call(e.attributes),
-                    i = n.length;
-                for (t = "," + t + ","; - 1 < --i;) r = n[i].nodeName.toLowerCase(), -1 === t.indexOf("," + r + ",") && o.setAttributeNS(null, r, n[i].nodeValue);
-                return o
-            }(e, "x,y,width,height,cx,cy,rx,ry,r,x1,x2,y1,y2,points"), w = function(e, t) {
-                for (var r = t ? t.split(",") : [], o = {}, n = r.length; - 1 < --n;) o[r[n]] = +e.getAttribute(r[n]) || 0;
-                return o
-            }(e, ee[b]), "rect" === b ? (i = w.rx, a = w.ry, o = w.x, n = w.y, g = w.width - 2 * i, p = w.height - 2 * a, r = i || a ? "M" + (_ = (d = (u = o + i) + g) + i) + "," + (y = n + a) + " V" + (S = y + p) + " C" + [_, v = S + a * M, m = d + i * M, x = S + a, d, x, d - (d - u) / 3, x, u + (d - u) / 3, x, u, x, c = o + i * (1 - M), x, o, v, o, S, o, S - (S - y) / 3, o, y + (S - y) / 3, o, y, o, C = n + a * (1 - M), c, n, u, n, u + (d - u) / 3, n, d - (d - u) / 3, n, d, n, m, n, _, C, _, y].join(",") + "z" : "M" + (o + g) + "," + n + " v" + p + " h" + -g + " v" + -p + " h" + g + "z") : "circle" === b || "ellipse" === b ? (l = "circle" === b ? (i = a = w.r) * M : (i = w.rx, (a = w.ry) * M), r = "M" + ((o = w.cx) + i) + "," + (n = w.cy) + " C" + [o + i, n + l, o + (s = i * M), n + a, o, n + a, o - s, n + a, o - i, n + l, o - i, n, o - i, n - l, o - s, n - a, o, n - a, o + s, n - a, o + i, n - l, o + i, n].join(",") + "z") : "line" === b ? r = "M" + w.x1 + "," + w.y1 + " L" + w.x2 + "," + w.y2 : "polyline" !== b && "polygon" !== b || (r = "M" + (o = (f = (e.getAttribute("points") + "").match(X) || []).shift()) + "," + (n = f.shift()) + " L" + f.join(","), "polygon" === b && (r += "," + o + "," + n + "z")), h.setAttribute("d", O(h._gsRawPath = R(r))), t && e.parentNode && (e.parentNode.insertBefore(h, e), e.parentNode.removeChild(e)), h) : e
-        }
-
-        function F(e, t, r) {
-            var o, n, i = "string" == typeof e;
-            return (!i || h.test(e) || (e.match(X) || []).length < 3) && ((o = i ? p.selector(e) : e && e[0] ? e : [e]) && o[0] ? (n = ((o = o[0]).nodeName + "").toUpperCase(), t && "PATH" !== n && (o = a(o, !1), n = "PATH"), e = o.getAttribute("PATH" === n ? "d" : "points") || "", o === r && (e = o.getAttributeNS(null, "data-original") || e)) : (A("WARNING: invalid morph to: " + e), e = !1)), e
-        }
-
-        function Y(e, t) {
-            for (var r, o, n, i, a, h, s, l, f, g, p, c, u = e.length, d = .2 * (t || 1); - 1 < --u;) {
-                for (p = (o = e[u]).isSmooth = o.isSmooth || [0, 0, 0, 0], c = o.smoothData = o.smoothData || [0, 0, 0, 0], p.length = 4, l = o.length - 2, s = 6; s < l; s += 6) n = o[s] - o[s - 2], i = o[s + 1] - o[s - 1], a = o[s + 2] - o[s], h = o[s + 3] - o[s + 1], f = y(i, n), g = y(h, a), (r = Math.abs(f - g) < d) && (c[s - 2] = f, c[s + 2] = g, c[s - 1] = W(n * n + i * i), c[s + 3] = W(a * a + h * h)), p.push(r, r, 0, 0, r, r);
-                o[l] === o[0] && o[1 + l] === o[1] && (n = o[0] - o[l - 2], i = o[1] - o[l - 1], a = o[2] - o[0], h = o[3] - o[1], f = y(i, n), g = y(h, a), Math.abs(f - g) < d && (c[l - 2] = f, c[2] = g, c[l - 1] = W(n * n + i * i), c[3] = W(a * a + h * h), p[l - 2] = p[l - 1] = !0))
-            }
-            return e
-        }
-
-        function j(e) {
-            var t = e.trim().split(" ");
-            return {
-                x: (0 <= e.indexOf("left") ? 0 : 0 <= e.indexOf("right") ? 100 : isNaN(parseFloat(t[0])) ? 50 : parseFloat(t[0])) / 100,
-                y: (0 <= e.indexOf("top") ? 0 : 0 <= e.indexOf("bottom") ? 100 : isNaN(parseFloat(t[1])) ? 50 : parseFloat(t[1])) / 100
-            }
-        }
-        var B, H = Math.PI,
-            U = H / 180,
-            V = /[achlmqstvz]|(-?\d*\.?\d*(?:e[\-+]?\d+)?)[0-9]/gi,
-            X = /(?:(-|-=|\+=)?\d*\.?\d*(?:e[\-+]?\d+)?)[0-9]/gi,
-            h = /(^[#\.][a-z]|[a-y][a-z])/gi,
-            D = /[achlmqstvz]/gi,
-            q = /[\+\-]?\d*\.?\d+e[\+\-]?\d+/gi,
-            y = Math.atan2,
-            Q = Math.cos,
-            E = Math.sin,
-            W = Math.sqrt,
-            Z = 2 * H,
-            c = .3 * H,
-            u = .7 * H,
-            p = _gsScope._gsDefine.globals.TweenLite,
-            k = "MorphSVGPlugin",
-            J = 'greensock.com',
-            K = '/requires-membership/',
-            $ = function(e) {
-                return true
-                // for (var t = -1 !== (window ? window.location.href : "").indexOf('greensock') && -1 !== e.indexOf('localhost'), r = [
-                //     J,
-                //     'codepen.io',
-                //     'codepen.plumbing',
-                //     'codepen.dev',
-                //     'codepen.app',
-                //     'pens.cloud',
-                //     'pens.io',
-                //     'motiontricks.com',
-                //     'css-tricks.com',
-                //     'cdpn.io', 'gannon.tv', 'codecanyon.net',
-                //     'themeforest.net',
-                //     'cerebrax.co.uk', 'tympanus.net', 'tweenmax.com',
-                //     'tweenlite.com', 'plnkr.co', 'hotjar.com', 'webpackbin.com', 'archive.org', 'codesandbox.io', 'stackblitz.com', 'codier.io', 'jsfiddle.net'
-                // ], o = r.length; - 1 < --o;)
-                //     if (-1 !== e.indexOf(r[o])) return !0;
-                // return t && window && window.console && undefined, t
-            }(window ? window.location.host : ""),
-            ee = {
-                rect: "rx,ry,x,y,width,height",
-                circle: "r,cx,cy",
-                ellipse: "rx,ry,cx,cy",
-                line: "x1,x2,y1,y2"
-            },
-            te = "Use MorphSVGPlugin.convertToPath(elementOrSelectorText) to convert to a path before morphing.",
-            re = _gsScope._gsDefine.plugin({
-                propName: "morphSVG",
-                API: 2,
-                global: !0,
-                version: "0.9.2",
-                overwriteProps: ["morphSVG"],
-                init: function(e, t, r, o) {
-                    var n, i, a, h, s, l, f, g, p, c, u, d, m, _, C, y, S, v, x, w, b, M, T = e.nodeType ? window.getComputedStyle(e) : {},
-                        N = T.fill + "",
-                        P = !("none" === N || "0" === (N.match(X) || [])[3] || "evenodd" === T.fillRule),
-                        z = (t.origin || "50 50").split(",");
-                    if ("function" == typeof t && (t = t(o, e)), !$)
-                        return "http://" + J + K + "?plugin=" + k + "&source=codepen", !1;
-                    if (s = "POLYLINE" === (n = (e.nodeName + "").toUpperCase()) || "POLYGON" === n, "PATH" !== n && !s && !t.prop) return A("WARNING: cannot morph a <" + n + "> element. " + te), !1;
-                    if (i = "PATH" === n ? "d" : "points", ("string" == typeof t || t.getBBox || t[0]) && (t = {
-                            shape: t
-                        }), !t.prop && "function" != typeof e.setAttribute) return !1;
-                    if (h = F(t.shape || t.d || t.points || "", "d" == i, e), s && D.test(h)) return A("WARNING: a <" + n + "> cannot accept path data. " + te), !1;
-                    if (l = t.shapeIndex || 0 === t.shapeIndex ? t.shapeIndex : "auto", f = t.map || re.defaultMap, this._prop = t.prop, this._render = t.render || re.defaultRender, this._apply = "updateTarget" in t ? t.updateTarget : re.defaultUpdateTarget, this._rnd = Math.pow(10, isNaN(t.precision) ? 2 : +t.precision), this._tween = r, h) {
-                        if (this._target = e, S = "object" == typeof t.precompile, c = this._prop ? e[this._prop] : e.getAttribute(i), this._prop || e.getAttributeNS(null, "data-original") || e.setAttributeNS(null, "data-original", c), "d" == i || this._prop) {
-                            if (c = R(S ? t.precompile[0] : c), u = R(S ? t.precompile[1] : h), !S && !G(c, u, l, f, P)) return !1;
-                            for ("log" !== t.precompile && !0 !== t.precompile || A('precompile:["' + O(c) + '","' + O(u) + '"]'), (b = "linear" !== (t.type || re.defaultType)) && (c = Y(c, t.smoothTolerance), u = Y(u, t.smoothTolerance), c.size || L(c), u.size || L(u), w = j(z[0]), this._origin = c.origin = {
-                                    x: c.left + w.x * c.width,
-                                    y: c.top + w.y * c.height
-                                }, z[1] && (w = j(z[1])), this._eOrigin = {
-                                    x: u.left + w.x * u.width,
-                                    y: u.top + w.y * u.height
-                                }), m = (this._rawPath = e._gsRawPath = c).length; - 1 < --m;)
-                                for (C = c[m], y = u[m], g = C.isSmooth || [], p = y.isSmooth || [], _ = C.length, d = B = 0; d < _; d += 2) y[d] === C[d] && y[d + 1] === C[d + 1] || (b ? g[d] && p[d] ? (v = C.smoothData, x = y.smoothData, M = d + (d === _ - 4 ? 7 - _ : 5), this._controlPT = {
-                                    _next: this._controlPT,
-                                    i: d,
-                                    j: m,
-                                    l1s: v[d + 1],
-                                    l1c: x[d + 1] - v[d + 1],
-                                    l2s: v[M],
-                                    l2c: x[M] - v[M]
-                                }, a = this._tweenRotation(C, y, d + 2), this._tweenRotation(C, y, d, a), this._tweenRotation(C, y, M - 1, a), d += 4) : this._tweenRotation(C, y, d) : (a = this._addTween(C, d, C[d], y[d]), a = this._addTween(C, d + 1, C[d + 1], y[d + 1]) || a))
-                        } else a = this._addTween(e, "setAttribute", e.getAttribute(i) + "", h + "", "morphSVG", !1, i, I(l));
-                        b && (this._addTween(this._origin, "x", this._origin.x, this._eOrigin.x), a = this._addTween(this._origin, "y", this._origin.y, this._eOrigin.y)), a && (this._overwriteProps.push("morphSVG"), a.end = h, a.endProp = i)
-                    }
-                    return $
-                },
-                set: function(e) {
-                    var t, r, o, n, i, a, h, s, l, f, g, p, c, u = this._rawPath,
-                        d = this._controlPT,
-                        m = this._anchorPT,
-                        _ = this._rnd,
-                        C = this._target;
-                    if (this._super.setRatio.call(this, e), 1 === e && this._apply)
-                        for (o = this._firstPT; o;) o.end && (this._prop ? C[this._prop] = o.end : C.setAttribute(o.endProp, o.end)), o = o._next;
-                    else if (u) {
-                        for (; m;) a = m.sa + e * m.ca, i = m.sl + e * m.cl, m.t[m.i] = this._origin.x + Q(a) * i, m.t[m.i + 1] = this._origin.y + E(a) * i, m = m._next;
-                        for (r = e < .5 ? 2 * e * e : (4 - 2 * e) * e - 1; d;) c = (h = d.i) + (h === (n = u[d.j]).length - 4 ? 7 - n.length : 5), a = y(n[c] - n[h + 1], n[c - 1] - n[h]), g = E(a), p = Q(a), l = n[h + 2], f = n[h + 3], i = d.l1s + r * d.l1c, n[h] = l - p * i, n[h + 1] = f - g * i, i = d.l2s + r * d.l2c, n[c - 1] = l + p * i, n[c] = f + g * i, d = d._next;
-                        if (C._gsRawPath = u, this._apply) {
-                            for (t = "", s = 0; s < u.length; s++)
-                                for (i = (n = u[s]).length, t += "M" + (n[0] * _ | 0) / _ + " " + (n[1] * _ | 0) / _ + " C", h = 2; h < i; h++) t += (n[h] * _ | 0) / _ + " ";
-                            this._prop ? C[this._prop] = t : C.setAttribute("d", t)
-                        }
-                    }
-                    this._render && u && this._render.call(this._tween, u, C)
+    }
+    function pa(t) {
+        a = y(),
+        n = n || a && a.plugins.morphSVG,
+        a && n ? (C = a.utils.toArray,
+        n.prototype._tweenRotation = oa,
+        I = 1) : t && M("Please gsap.registerPlugin(MorphSVGPlugin)")
+    }
+    var a, C, j, I, n, w = Math.atan2, x = Math.cos, A = Math.sin, v = Math.sqrt, p = Math.PI, f = 2 * p, u = .3 * p, d = .7 * p, L = /[-+=\.]*\d+[\.e\-\+]*\d*[e\-\+]*\d*/gi, F = /(^[#\.][a-z]|[a-y][a-z])/i, G = /[achlmqstvz]/i, i = "MorphSVGPlugin", l = P(103, 114, 101, 101, 110, 115, 111, 99, 107, 46, 99, 111, 109), c = P(103, 115, 97, 112, 46, 99, 111, 109), g = /^(?:[0-9]{1,3}\.){3}[0-9]{1,3}:?\d*$/, k = function(t) {
+        var e = "undefined" != typeof window
+          , n = 0 === (e ? window.location.href : "").indexOf(P(102, 105, 108, 101, 58, 47, 47)) || -1 !== t.indexOf(P(108, 111, 99, 97, 108, 104, 111, 115, 116)) || g.test(t)
+          , r = [l, c, P(99, 111, 100, 101, 112, 101, 110, 46, 105, 111), P(99, 111, 100, 101, 112, 101, 110, 46, 112, 108, 117, 109, 98, 105, 110, 103), P(99, 111, 100, 101, 112, 101, 110, 46, 100, 101, 118), P(99, 111, 100, 101, 112, 101, 110, 46, 97, 112, 112), P(99, 111, 100, 101, 112, 101, 110, 46, 119, 101, 98, 115, 105, 116, 101), P(112, 101, 110, 115, 46, 99, 108, 111, 117, 100), P(99, 115, 115, 45, 116, 114, 105, 99, 107, 115, 46, 99, 111, 109), P(99, 100, 112, 110, 46, 105, 111), P(112, 101, 110, 115, 46, 105, 111), P(103, 97, 110, 110, 111, 110, 46, 116, 118), P(99, 111, 100, 101, 99, 97, 110, 121, 111, 110, 46, 110, 101, 116), P(116, 104, 101, 109, 101, 102, 111, 114, 101, 115, 116, 46, 110, 101, 116), P(99, 101, 114, 101, 98, 114, 97, 120, 46, 99, 111, 46, 117, 107), P(116, 121, 109, 112, 97, 110, 117, 115, 46, 110, 101, 116), P(116, 119, 101, 101, 110, 109, 97, 120, 46, 99, 111, 109), P(112, 108, 110, 107, 114, 46, 99, 111), P(104, 111, 116, 106, 97, 114, 46, 99, 111, 109), P(119, 101, 98, 112, 97, 99, 107, 98, 105, 110, 46, 99, 111, 109), P(97, 114, 99, 104, 105, 118, 101, 46, 111, 114, 103), P(99, 111, 100, 101, 115, 97, 110, 100, 98, 111, 120, 46, 105, 111), P(99, 115, 98, 46, 97, 112, 112), P(115, 116, 97, 99, 107, 98, 108, 105, 116, 122, 46, 99, 111, 109), P(115, 116, 97, 99, 107, 98, 108, 105, 116, 122, 46, 105, 111), P(99, 111, 100, 105, 101, 114, 46, 105, 111), P(109, 111, 116, 105, 111, 110, 116, 114, 105, 99, 107, 115, 46, 99, 111, 109), P(115, 116, 97, 99, 107, 111, 118, 101, 114, 102, 108, 111, 119, 46, 99, 111, 109), P(115, 116, 97, 99, 107, 101, 120, 99, 104, 97, 110, 103, 101, 46, 99, 111, 109), P(115, 116, 117, 100, 105, 111, 102, 114, 101, 105, 103, 104, 116, 46, 99, 111, 109), P(119, 101, 98, 99, 111, 110, 116, 97, 105, 110, 101, 114, 46, 105, 111), P(106, 115, 102, 105, 100, 100, 108, 101, 46, 110, 101, 116)]
+          , o = r.length;
+        for (setTimeout(function checkWarn() {
+            if (e)
+                if ("loading" === document.readyState || "interactive" === document.readyState)
+                    document.addEventListener("readystatechange", checkWarn);
+                else {
+                    document.removeEventListener("readystatechange", checkWarn);
+                    var t = "object" == typeof a ? a : e && window.gsap;
+                    e && window.console && !window._gsapWarned && "object" == typeof t && !1 !== t.config().trialWarn && (console.log(P(37, 99, 87, 97, 114, 110, 105, 110, 103), P(102, 111, 110, 116, 45, 115, 105, 122, 101, 58, 51, 48, 112, 120, 59, 99, 111, 108, 111, 114, 58, 114, 101, 100, 59)),
+                    console.log(P(65, 32, 116, 114, 105, 97, 108, 32, 118, 101, 114, 115, 105, 111, 110, 32, 111, 102, 32) + i + P(32, 105, 115, 32, 108, 111, 97, 100, 101, 100, 32, 116, 104, 97, 116, 32, 111, 110, 108, 121, 32, 119, 111, 114, 107, 115, 32, 108, 111, 99, 97, 108, 108, 121, 32, 97, 110, 100, 32, 111, 110, 32, 100, 111, 109, 97, 105, 110, 115, 32, 108, 105, 107, 101, 32, 99, 111, 100, 101, 112, 101, 110, 46, 105, 111, 32, 97, 110, 100, 32, 99, 111, 100, 101, 115, 97, 110, 100, 98, 111, 120, 46, 105, 111, 46, 32, 42, 42, 42, 32, 68, 79, 32, 78, 79, 84, 32, 68, 69, 80, 76, 79, 89, 32, 84, 72, 73, 83, 32, 70, 73, 76, 69, 32, 42, 42, 42, 32, 76, 111, 97, 100, 105, 110, 103, 32, 105, 116, 32, 111, 110, 32, 97, 110, 32, 117, 110, 97, 117, 116, 104, 111, 114, 105, 122, 101, 100, 32, 115, 105, 116, 101, 32, 118, 105, 111, 108, 97, 116, 101, 115, 32, 116, 104, 101, 32, 108, 105, 99, 101, 110, 115, 101, 32, 97, 110, 100, 32, 119, 105, 108, 108, 32, 99, 97, 117, 115, 101, 32, 97, 32, 114, 101, 100, 105, 114, 101, 99, 116, 46, 32, 80, 108, 101, 97, 115, 101, 32, 106, 111, 105, 110, 32, 67, 108, 117, 98, 32, 71, 114, 101, 101, 110, 83, 111, 99, 107, 32, 116, 111, 32, 103, 101, 116, 32, 102, 117, 108, 108, 32, 97, 99, 99, 101, 115, 115, 32, 116, 111, 32, 116, 104, 101, 32, 98, 111, 110, 117, 115, 32, 112, 108, 117, 103, 105, 110, 115, 32, 116, 104, 97, 116, 32, 98, 111, 111, 115, 116, 32, 121, 111, 117, 114, 32, 97, 110, 105, 109, 97, 116, 105, 111, 110, 32, 115, 117, 112, 101, 114, 112, 111, 119, 101, 114, 115, 46, 32, 68, 105, 115, 97, 98, 108, 101, 32, 116, 104, 105, 115, 32, 119, 97, 114, 110, 105, 110, 103, 32, 119, 105, 116, 104, 32, 103, 115, 97, 112, 46, 99, 111, 110, 102, 105, 103, 40, 123, 116, 114, 105, 97, 108, 87, 97, 114, 110, 58, 32, 102, 97, 108, 115, 101, 125, 41, 59)),
+                    console.log(P(37, 99, 71, 101, 116, 32, 117, 110, 114, 101, 115, 116, 114, 105, 99, 116, 101, 100, 32, 102, 105, 108, 101, 115, 32, 97, 116, 32, 104, 116, 116, 112, 115, 58, 47, 47, 103, 114, 101, 101, 110, 115, 111, 99, 107, 46, 99, 111, 109, 47, 99, 108, 117, 98), P(102, 111, 110, 116, 45, 115, 105, 122, 101, 58, 49, 54, 112, 120, 59, 99, 111, 108, 111, 114, 58, 35, 52, 101, 57, 56, 49, 53)),
+                    window._gsapWarned = 1)
                 }
-            });
-        re.prototype._tweenRotation = function(e, t, r, o) {
-            var n, i = this._origin,
-                a = this._eOrigin,
-                h = e[r] - i.x,
-                s = e[r + 1] - i.y,
-                l = W(h * h + s * s),
-                f = y(s, h),
-                h = t[r] - a.x,
-                s = t[r + 1] - a.y,
-                g = y(s, h) - f,
-                p = (n = g) !== n % H ? n + (n < 0 ? Z : -Z) : n;
-            return !o && B && Math.abs(p + B.ca) < c && (o = B), this._anchorPT = B = {
-                _next: this._anchorPT,
-                t: e,
-                sa: f,
-                ca: o && p * o.ca < 0 && Math.abs(p) > u ? g : p,
-                sl: l,
-                cl: W(h * h + s * s) - l,
-                i: r
+        }, 50); -1 < --o; )
+            if (-1 !== t.indexOf(r[o]))
+                return !0;
+        return n || !setTimeout(function() {
+            // e && (window.location.href = P(104, 116, 116, 112, 115, 58, 47, 47) + l + P(47, 114, 101, 113, 117, 105, 114, 101, 115, 45, 109, 101, 109, 98, 101, 114, 115, 104, 105, 112, 47) + "?plugin=" + i + "&source=trial")
+            e && (P(104, 116, 116, 112, 115, 58, 47, 47) + l + P(47, 114, 101, 113, 117, 105, 114, 101, 115, 45, 109, 101, 109, 98, 101, 114, 115, 104, 105, 112, 47) + "?plugin=" + i + "&source=trial")
+        }, 4e3)
+    }("undefined" != typeof window ? window.location.host : ""), q = "Use MorphSVGPlugin.convertToPath() to convert to a path before morphing.", J = {
+        version: "3.12.3",
+        name: "morphSVG",
+        rawVars: 1,
+        register: function register(t, e) {
+            a = t,
+            n = e,
+            pa()
+        },
+        init: function init(t, e, n, r, o) {
+            if (I || pa(1),
+            !e)
+                return M("invalid shape"),
+                !1;
+            var a, i, s, h, l, c, g, p, f, u, d, P, m, _, v, w, y, x, T, b, S, N;
+            if (z(e) && (e = e.call(n, r, t, o)),
+            "string" == typeof e || e.getBBox || e[0])
+                e = {
+                    shape: e
+                };
+            else if ("object" == typeof e) {
+                for (i in a = {},
+                e)
+                    a[i] = z(e[i]) && "render" !== i ? e[i].call(n, r, t, o) : e[i];
+                e = a
             }
-        }, re.pathFilter = function(e, t, r, o, n) {
-            var i = R(e[0]),
-                a = R(e[1]);
-            G(i, a, t || 0 === t ? t : "auto", r, n) && (e[0] = O(i), e[1] = O(a), "log" !== o && !0 !== o || A('precompile:["' + e[0] + '","' + e[1] + '"]'))
-        }, re.pointsFilter = r, re.getTotalSize = L, re.subdivideRawBezier = re.subdivideSegment = x, re.rawPathToString = O, re.defaultType = "linear", re.defaultUpdateTarget = !0, re.defaultMap = "size", re.stringToRawPath = re.pathDataToRawBezier = function(e) {
-            return R(F(e, !0))
-        }, re.equalizeSegmentQuantity = G, re.convertToPath = function(e, t) {
-            "string" == typeof e && (e = p.selector(e));
-            for (var r = e && 0 !== e.length ? e.length && e[0] && e[0].nodeType ? Array.prototype.slice.call(e, 0) : [e] : [], o = r.length; - 1 < --o;) r[o] = a(r[o], !1 !== t);
-            return r
-        }, re.pathDataToBezier = function(e, t) {
-            var r, o, n, i, a = R(F(e, !0))[0] || [],
-                h = 0,
-                s = (t = t || {}).align || t.relative,
-                l = t.matrix || [1, 0, 0, 1, 0, 0],
-                f = t.offsetX || 0,
-                g = t.offsetY || 0;
-            if ("relative" === s || !0 === s ? (f -= a[0] * l[0] + a[1] * l[2], g -= a[0] * l[1] + a[1] * l[3], h = "+=") : (f += l[4], g += l[5], (s = s && ("string" == typeof s ? p.selector(s) : s && s[0] ? s : [s])) && s[0] && (f -= (i = s[0].getBBox() || {
-                    x: 0,
-                    y: 0
-                }).x, g -= i.y)), r = [], n = a.length, l && "1,0,0,1,0,0" !== l.join(","))
-                for (o = 0; o < n; o += 2) r.push({
-                    x: h + (a[o] * l[0] + a[o + 1] * l[2] + f),
-                    y: h + (a[o] * l[1] + a[o + 1] * l[3] + g)
-                });
-            else
-                for (o = 0; o < n; o += 2) r.push({
-                    x: h + (a[o] + f),
-                    y: h + (a[o + 1] + g)
-                });
-            return r
-        }
-    }), _gsScope._gsDefine && _gsScope._gsQueue.pop()(),
-    function() {
-        "use strict";
-        false;
-    }();
+            var A = t.nodeType ? window.getComputedStyle(t) : {}
+              , R = A.fill + ""
+              , V = !("none" === R || "0" === (R.match(L) || [])[3] || "evenodd" === A.fillRule)
+              , O = (e.origin || "50 50").split(",");
+            if (l = "POLYLINE" === (a = (t.nodeName + "").toUpperCase()) || "POLYGON" === a,
+            "PATH" !== a && !l && !e.prop)
+                return M("Cannot morph a <" + a + "> element. " + q),
+                !1;
+            if (i = "PATH" === a ? "d" : "points",
+            !e.prop && !z(t.setAttribute))
+                return !1;
+            if (h = function _parseShape(t, e, n) {
+                var r, o;
+                return (!("string" == typeof t) || F.test(t) || (t.match(L) || []).length < 3) && ((r = C(t)[0]) ? (o = (r.nodeName + "").toUpperCase(),
+                e && "PATH" !== o && (r = convertToPath(r, !1),
+                o = "PATH"),
+                t = r.getAttribute("PATH" === o ? "d" : "points") || "",
+                r === n && (t = r.getAttributeNS(null, "data-original") || t)) : (M("WARNING: invalid morph to: " + t),
+                t = !1)),
+                t
+            }(e.shape || e.d || e.points || "", "d" === i, t),
+            l && G.test(h))
+                return M("A <" + a + "> cannot accept path data. " + q),
+                !1;
+            if (c = e.shapeIndex || 0 === e.shapeIndex ? e.shapeIndex : "auto",
+            g = e.map || J.defaultMap,
+            this._prop = e.prop,
+            this._render = e.render || J.defaultRender,
+            this._apply = "updateTarget"in e ? e.updateTarget : J.defaultUpdateTarget,
+            this._rnd = Math.pow(10, isNaN(e.precision) ? 2 : +e.precision),
+            this._tween = n,
+            h) {
+                if (this._target = t,
+                y = "object" == typeof e.precompile,
+                u = this._prop ? t[this._prop] : t.getAttribute(i),
+                this._prop || t.getAttributeNS(null, "data-original") || t.setAttributeNS(null, "data-original", u),
+                "d" === i || this._prop) {
+                    if (u = stringToRawPath(y ? e.precompile[0] : u),
+                    d = stringToRawPath(y ? e.precompile[1] : h),
+                    !y && !da(u, d, c, g, V))
+                        return !1;
+                    for ("log" !== e.precompile && !0 !== e.precompile || M('precompile:["' + rawPathToString(u) + '","' + rawPathToString(d) + '"]'),
+                    (S = "linear" !== (e.type || J.defaultType)) && (u = ka(u, e.smoothTolerance),
+                    d = ka(d, e.smoothTolerance),
+                    u.size || W(u),
+                    d.size || W(d),
+                    b = la(O[0]),
+                    this._origin = u.origin = {
+                        x: u.left + b.x * u.width,
+                        y: u.top + b.y * u.height
+                    },
+                    O[1] && (b = la(O[1])),
+                    this._eOrigin = {
+                        x: d.left + b.x * d.width,
+                        y: d.top + b.y * d.height
+                    }),
+                    this._rawPath = t._gsRawPath = u,
+                    m = u.length; -1 < --m; )
+                        for (v = u[m],
+                        w = d[m],
+                        p = v.isSmooth || [],
+                        f = w.isSmooth || [],
+                        _ = v.length,
+                        P = j = 0; P < _; P += 2)
+                            w[P] === v[P] && w[P + 1] === v[P + 1] || (S ? p[P] && f[P] ? (x = v.smoothData,
+                            T = w.smoothData,
+                            N = P + (P === _ - 4 ? 7 - _ : 5),
+                            this._controlPT = {
+                                _next: this._controlPT,
+                                i: P,
+                                j: m,
+                                l1s: x[P + 1],
+                                l1c: T[P + 1] - x[P + 1],
+                                l2s: x[N],
+                                l2c: T[N] - x[N]
+                            },
+                            s = this._tweenRotation(v, w, P + 2),
+                            this._tweenRotation(v, w, P, s),
+                            this._tweenRotation(v, w, N - 1, s),
+                            P += 4) : this._tweenRotation(v, w, P) : (s = this.add(v, P, v[P], w[P], 0, 0, 0, 0, 0, 1),
+                            s = this.add(v, P + 1, v[P + 1], w[P + 1], 0, 0, 0, 0, 0, 1) || s))
+                } else
+                    s = this.add(t, "setAttribute", t.getAttribute(i) + "", h + "", r, o, 0, ia(c), i);
+                S && (this.add(this._origin, "x", this._origin.x, this._eOrigin.x, 0, 0, 0, 0, 0, 1),
+                s = this.add(this._origin, "y", this._origin.y, this._eOrigin.y, 0, 0, 0, 0, 0, 1)),
+                s && (this._props.push("morphSVG"),
+                s.end = h,
+                s.endProp = i)
+            }
+            return k
+        },
+        render: function render(t, e) {
+            for (var n, r, o, a, i, s, h, l, c, g, p, f, u = e._rawPath, d = e._controlPT, P = e._anchorPT, m = e._rnd, _ = e._target, v = e._pt; v; )
+                v.r(t, v.d),
+                v = v._next;
+            if (1 === t && e._apply)
+                for (v = e._pt; v; )
+                    v.end && (e._prop ? _[e._prop] = v.end : _.setAttribute(v.endProp, v.end)),
+                    v = v._next;
+            else if (u) {
+                for (; P; )
+                    i = P.sa + t * P.ca,
+                    a = P.sl + t * P.cl,
+                    P.t[P.i] = e._origin.x + x(i) * a,
+                    P.t[P.i + 1] = e._origin.y + A(i) * a,
+                    P = P._next;
+                for (r = t < .5 ? 2 * t * t : (4 - 2 * t) * t - 1; d; )
+                    f = (s = d.i) + (s === (o = u[d.j]).length - 4 ? 7 - o.length : 5),
+                    i = w(o[f] - o[s + 1], o[f - 1] - o[s]),
+                    g = A(i),
+                    p = x(i),
+                    l = o[s + 2],
+                    c = o[s + 3],
+                    a = d.l1s + r * d.l1c,
+                    o[s] = l - p * a,
+                    o[s + 1] = c - g * a,
+                    a = d.l2s + r * d.l2c,
+                    o[f - 1] = l + p * a,
+                    o[f] = c + g * a,
+                    d = d._next;
+                if (_._gsRawPath = u,
+                e._apply) {
+                    for (n = "",
+                    h = 0; h < u.length; h++)
+                        for (a = (o = u[h]).length,
+                        n += "M" + (o[0] * m | 0) / m + " " + (o[1] * m | 0) / m + " C",
+                        s = 2; s < a; s++)
+                            n += (o[s] * m | 0) / m + " ";
+                    e._prop ? _[e._prop] = n : _.setAttribute("d", n)
+                }
+            }
+            e._render && u && e._render.call(e._tween, u, _)
+        },
+        kill: function kill() {
+            this._pt = this._rawPath = 0
+        },
+        getRawPath: function getRawPath(t) {
+            var e, n = (t = m(t) && r.test(t) && document.querySelector(t) || t).getAttribute ? t : 0;
+            return n && (t = t.getAttribute("d")) ? (n._gsPath || (n._gsPath = {}),
+            (e = n._gsPath[t]) && !e._dirty ? e : n._gsPath[t] = stringToRawPath(t)) : t ? m(t) ? stringToRawPath(t) : s(t[0]) ? [t] : t : console.warn("Expecting a <path> element or an SVG path data string")
+        },
+        stringToRawPath: stringToRawPath,
+        rawPathToString: rawPathToString,
+        normalizeStrings: function normalizeStrings(t, e, n) {
+            var r = n.shapeIndex
+              , o = n.map
+              , a = [t, e];
+            return ea(a, r, o),
+            a
+        },
+        pathFilter: ea,
+        pointsFilter: ha,
+        getTotalSize: W,
+        equalizeSegmentQuantity: da,
+        convertToPath: function convertToPath$1(t, e) {
+            return C(t).map(function(t) {
+                return convertToPath(t, !1 !== e)
+            })
+        },
+        defaultType: "linear",
+        defaultUpdateTarget: !0,
+        defaultMap: "size"
+    };
+    y() && a.registerPlugin(J),
+    t.MorphSVGPlugin = J,
+    t.default = J;
+    if (typeof (window) === "undefined" || window !== t) {
+        Object.defineProperty(t, "__esModule", {
+            value: !0
+        })
+    } else {
+        delete t.default
+    }
+});
