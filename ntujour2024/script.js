@@ -156,7 +156,186 @@ document.addEventListener('DOMContentLoaded', function () {
       this.classList.toggle('flipped');
     });
   });
+  // Text Adventure Game
+  class VisualNovelDialog {
+    constructor() {
+      this.characterData = {
+        oldwang: {
+          name: '小J',
+          avatar: 'https://hsutingyun.github.io/ntujour2024/picture/Characters/12.png',
+          scenes: {
+            start: {
+              dialog: [{
+                  type: 'character',
+                  text: "我住在這裡很多年了，從年輕時就住在這個地下室..."
+                },
+                {
+                  type: 'question',
+                  options: [{
+                      text: "屋頂漏水、蟑螂滿地的頂加生記",
+                      nextScene: "leakage"
+                    },
+                    {
+                      text: "辛酸血淚累積而成的找房經驗",
+                      nextScene: "experience"
+                    }
+                  ]
+                }
+              ]
+            },
+            leakage: {
+              dialog: [{
+                  type: 'character',
+                  text: "每到雨季就特別困擾，房東也不太理會這些問題..."
+                },
+                {
+                  type: 'question',
+                  options: [{
+                    text: "那您有想過要搬家嗎？",
+                    nextScene: "moveOut"
+                  }]
+                }
+              ]
+            },
+            moveOut: {
+              dialog: [{
+                  type: 'character',
+                  text: "想是想啦，但現在房租都漲很多，找到便宜又合適的很難..."
+                },
+                {
+                  type: 'question',
+                  options: [{
+                    text: "返回",
+                    nextScene: "start"
+                  }]
+                }
+              ]
+            },
+            experience: {
+              dialog: [{
+                  type: 'character',
+                  text: "找房子真的很辛苦，常常看到合適的，一問價錢就傻眼了..."
+                },
+                {
+                  type: 'question',
+                  options: [{
+                    text: "您都是怎麼找房子的呢？",
+                    nextScene: "searchMethod"
+                  }]
+                }
+              ]
+            },
+            searchMethod: {
+              dialog: [{
+                  type: 'character',
+                  text: "以前都是到處問親朋好友，現在比較多用網路找，但有時候照片跟實際差很多..."
+                },
+                {
+                  type: 'question',
+                  options: [{
+                    text: "返回",
+                    nextScene: "start"
+                  }]
+                }
+              ]
+            }
+          }
+        }
+      };
 
+      this.currentCharacter = 'oldwang';
+      this.currentScene = null;
+      this.currentDialogIndex = 0;
+      this.initializeGame();
+    }
+
+    initializeGame() {
+      const dialogBox = document.querySelector('.dialog-box');
+      const continueHint = document.querySelector('.continue-hint');
+
+      // 點擊對話框繼續對話
+      dialogBox.addEventListener('click', () => {
+        const currentScene = this.characterData[this.currentCharacter].scenes[this.currentScene];
+        if (!currentScene) return;
+
+        const currentDialog = currentScene.dialog[this.currentDialogIndex];
+        if (!currentDialog) return;
+
+        if (currentDialog.type === 'character') {
+          this.currentDialogIndex++;
+          this.updateDialog();
+        }
+      });
+
+      this.startGame();
+    }
+
+    startGame() {
+      const character = this.characterData[this.currentCharacter];
+
+      // 設置角色資訊
+      const avatar = document.querySelector('.character-avatar');
+      const name = document.querySelector('.character-name');
+      if (avatar) avatar.style.backgroundImage = `url(${character.avatar})`;
+      if (name) name.textContent = character.name;
+
+      this.showScene('start');
+    }
+
+    showScene(sceneId) {
+      const character = this.characterData[this.currentCharacter];
+      const scene = character.scenes[sceneId];
+
+      if (!scene) {
+        console.error('Scene not found:', sceneId);
+        return;
+      }
+
+      this.currentScene = sceneId;
+      this.currentDialogIndex = 0;
+      this.updateDialog();
+    }
+
+    updateDialog() {
+      const scene = this.characterData[this.currentCharacter].scenes[this.currentScene];
+      const currentDialog = scene.dialog[this.currentDialogIndex];
+
+      const dialogText = document.getElementById('dialog-text');
+      const questionBox = document.querySelector('.question-box');
+      const continueHint = document.querySelector('.continue-hint');
+
+      if (!currentDialog) return;
+
+      if (currentDialog.type === 'character') {
+        // 顯示角色對話
+        dialogText.textContent = currentDialog.text;
+        questionBox.style.display = 'none';
+        continueHint.style.display = 'block';
+      } else if (currentDialog.type === 'question') {
+        // 顯示問題選項
+        dialogText.textContent = '';
+        questionBox.style.display = 'flex';
+        continueHint.style.display = 'none';
+
+        // 更新問題按鈕
+        questionBox.innerHTML = '';
+        currentDialog.options.forEach(option => {
+          const button = document.createElement('button');
+          button.className = 'question-btn';
+          button.textContent = option.text;
+          button.addEventListener('click', () => {
+            this.showScene(option.nextScene);
+          });
+          questionBox.appendChild(button);
+        });
+      }
+    }
+  }
+
+  // 初始化遊戲
+  window.onload = () => {
+    const game = new VisualNovelDialog();
+  };
   // Text Adventure Game Class
   class TextAdventure {
     constructor() {
