@@ -366,7 +366,7 @@ document.addEventListener('DOMContentLoaded', function () {
               }]
             },
             ending: {
-              text: "對話結束，請按上方按鈕返回。"
+              text: "對話內容已結束，請按右上角按鍵，和其他人聊聊吧！。"
             }
           }
         },
@@ -396,7 +396,7 @@ document.addEventListener('DOMContentLoaded', function () {
               }]
             },
             ending: {
-              text: "對話結束，請按上方按鈕返回。"
+              text: "對話內容已結束，請按右上角按鍵，和其他人聊聊吧！。"
             }
           }
         },
@@ -426,7 +426,7 @@ document.addEventListener('DOMContentLoaded', function () {
               }]
             },
             ending: {
-              text: "對話結束，請按上方按鈕返回。"
+              text: "對話內容已結束，請按右上角按鍵，和其他人聊聊吧！。"
             }
           }
         }
