@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', function () {
             start: {
               text: "如果家裡照顧長者的移工懷孕怎麼辦？",
               choices: [{
-                text: "不知道怎麼辦。",
+                text: "那移工還能照顧爸爸嗎……但人家懷孕就辭退好像也不合乎情理。",
                 nextScene: "difficulties"
               }, ]
             },
@@ -179,28 +179,23 @@ document.addEventListener('DOMContentLoaded', function () {
           avatar: 'https://hsutingyun.github.io/ntujour2024/picture/Characters/11.png',
           scenes: {
             start: {
-              text: "你好，我是Amy，和先生帶著四個孩子一起租屋生活。",
+              text: "如果懷孕的話，您會怎麼做呢？",
               choices: [{
-                  text: "帶著孩子租屋一定很不容易吧？",
-                  nextScene: "familyLife"
-                },
-                {
-                  text: "為什麼選擇租屋而不買房呢？",
-                  nextScene: "whyRent"
-                }
-              ]
+                text: "還是想將小孩生下來吧，畢竟是個生命啊！",
+                nextScene: "familyLife"
+              }, ]
             },
             familyLife: {
-              text: "確實不容易，特別是找房子的時候...",
+              text: "若遇到雇主反對怎麼辦？",
               choices: [{
-                text: "返回",
-                nextScene: "start"
-              }]
+                text: "那樣只能離開了嗎？可是仲介費的債沒還完的話……我也不知道怎麼辦！",
+                nextScene: "whyborn"
+              }, ]
             },
-            whyRent: {
-              text: "現在的房價實在太高了，首付都付不起...",
+            whyborn: {
+              text: "那小孩如何撫養呢？",
               choices: [{
-                text: "返回",
+                text: "雖然很想送回家鄉，但是又不想加重家人的負擔...…或許會尋找臺灣有沒有朋友能幫忙照顧小孩。",
                 nextScene: "start"
               }]
             }
@@ -211,29 +206,23 @@ document.addEventListener('DOMContentLoaded', function () {
           avatar: 'https://hsutingyun.github.io/ntujour2024/picture/Characters/12.png',
           scenes: {
             start: {
-              text: "我住在這裡很多年了，從年輕時就住在這個地下室...",
+              text: "您認為懷孕移工的工作權需要保障嗎？",
               choices: [{
-                  text: "您為什麼會選擇住在地下室呢？",
-                  nextScene: "whyBasement"
-                },
-                {
-                  text: "這些年來生活上有遇到什麼困難嗎？",
-                  nextScene: "difficulties"
-                }
-              ]
+                text: "那當然！同樣是女性，懷孕就解雇的話太不合理了！",
+                nextScene: "whyBasement"
+              }, ]
             },
             whyBasement: {
-              text: "因為便宜，而且地點方便...",
+              text: "那您認為我們目前政策有什麼缺失嗎?",
               choices: [{
-                text: "返回",
-                nextScene: "start"
+                text: "比起缺失，倒不如說根本沒有好好推廣吧，移工和雇主對資訊的認知都不一樣！",
+                nextScene: "policy"
               }]
             },
-            difficulties: {
-              text: "颱風天最麻煩，地下室常常會淹水...",
+            policy: {
+              text: "您知道有哪些措施可以應對雇主在移工待產期間的需求呢？",
               choices: [{
-                text: "返回",
-                nextScene: "start"
+                text: "嗯…...我知道可以申請「暫緩轉換雇主函」，但詳細過程也不太清楚。",
               }]
             }
           }
