@@ -40,7 +40,6 @@ document.addEventListener('DOMContentLoaded', function () {
       })
   });
 
-  const contentSections = document.querySelectorAll('.content-section');
   // scrolltrigger
   gsap.registerPlugin(ScrollTrigger);
 
@@ -51,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function () {
       scrub: true,
       pin: true,
       start: "top top", // 改為從頂部開始
-      end: "+=100%", // 減少滾動距離
+      end: "bottom -400%",
       toggleClass: "active",
       ease: "power2"
     }
@@ -74,6 +73,8 @@ document.addEventListener('DOMContentLoaded', function () {
       "這天他臥在雇主家中的床將孩子生下，",
       "面對時刻注視自己的監視器，",
       "他將棉被緊緊的覆蓋下半身，仍難掩嬰兒的哭聲迴盪……",
+      "",
+      "",
       ""
     ];
 
@@ -126,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function () {
         monitorText.style.opacity = '1';
         monitorText.style.transform = 'translateY(0)';
 
-        if (textIndex === 4) {
+        if (textIndex >= 4) {
           typingHand.style.opacity = '1';
           showStickyNotes();
         } else {
@@ -182,8 +183,12 @@ document.addEventListener('DOMContentLoaded', function () {
               text: "仲介有針對這種情況說明如何處理嗎？",
               choices: [{
                 text: "仲介說早早和懷孕移工解約比較好啦，我也不了解有沒有其他辦法。",
+                nextScene: "ending"
               }]
             },
+            ending: {
+              text: "對話結束，請按上方按鈕返回。"
+            }
           }
         },
         xiaolin: {
@@ -208,7 +213,11 @@ document.addEventListener('DOMContentLoaded', function () {
               text: "那小孩如何撫養呢？",
               choices: [{
                 text: "雖然很想送回家鄉，但是又不想加重家人的負擔...…或許會尋找臺灣有沒有朋友能幫忙照顧小孩。",
+                nextScene: "ending"
               }]
+            },
+            ending: {
+              text: "對話結束，請按上方按鈕返回。"
             }
           }
         },
@@ -234,7 +243,11 @@ document.addEventListener('DOMContentLoaded', function () {
               text: "您知道有哪些措施可以應對雇主在移工待產期間的需求呢？",
               choices: [{
                 text: "嗯…...我知道可以申請「暫緩轉換雇主函」，但詳細過程也不太清楚。",
+                nextScene: "ending"
               }]
+            },
+            ending: {
+              text: "對話結束，請按上方按鈕返回。"
             }
           }
         }
