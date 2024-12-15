@@ -1,3 +1,4 @@
+
 hr {
     display: block;
     /* margin-before: 0.5em;
@@ -69,7 +70,6 @@ hr {
     height: 100%;
     object-fit: cover;
     object-position: center;
-
 
 }
 
@@ -153,7 +153,7 @@ footer {
     height: 100vh;
     overflow: hidden;
     perspective: 500px;
-    background-image: url(https://hsutingyun.github.io/ntujour2024/picture/baby.png);
+    background-image: url(https://hsutingyun.github.io/ntujour2024/picture/Picture&Text/baby.PNG);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -743,7 +743,7 @@ footer {
 /* Conclusion text*/
 .conclusion-container {
     height: 100vh;
-    background-color: black;
+    background-color: #940808;
     color: #FAFAFA;
     font-size: medium;
     letter-spacing: normal;
