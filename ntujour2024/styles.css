@@ -22,11 +22,12 @@ hr {
 
 .loading-content {
     background-color: #000;
+    z-index: 89;
     width: 100vw;
     height: 100vh;
     position: absolute;
     display: flex;
-    align-items: center 45%;
+    align-items: center;
     flex-direction: column;
 }
 
