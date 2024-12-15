@@ -207,6 +207,15 @@ footer {
     height: 200vh;
 }
 
+.card-img-container {
+    top: 5%;
+    height: 20vh;
+    width: 20vh;
+    padding-left: 5vh;
+    padding-right: 5vh;
+    padding-top: 10vh;
+}
+
 .text-content {
     background-color: #000000;
     color: #FAFAFA;
