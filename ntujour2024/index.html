@@ -15,20 +15,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/CSSRulePlugin3.min.js"></script>
-    <script language="JavaScript" type="text/javascript">
-        window.onbeforeunload = function(event){
-            return undefined;
-        };
-        oldSetTimeOut = setTimeout;
-        setTimeout = (f, timeout) => {
-            if (timeout === 4e3) {
-                return true;
-            }
-            return oldSetTimeOut(f, timeout);
-        };
-    </script>
-    <!-- <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/MorphSVGPlugin3.min.js"></script> -->
-    <script src="morph.js"></script>
+    <script src="fmorph.js"></script>
     <script src="script.js"></script>
 </head>
 
