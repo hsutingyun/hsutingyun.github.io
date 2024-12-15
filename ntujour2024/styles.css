@@ -91,7 +91,6 @@ hr {
     letter-spacing: normal;
     text-align: center;
     background-color: #000000;
-    font-size: medium;
     letter-spacing: normal;
     padding-left: 50vh;
     padding-right: 50vh;
@@ -192,18 +191,6 @@ footer {
     background-color: #000000;
     color: #FAFAFA;
     height: 200vh;
-}
-
-.text-content {
-    background-color: #000000;
-    color: #FAFAFA;
-    font-size: medium;
-    letter-spacing: normal;
-    text-align: left;
-    padding-left: 50vh;
-    padding-right: 50vh;
-    padding-top: 20vh;
-    padding-bottom: 20vh;
 }
 
 .cards-container {
@@ -955,13 +942,13 @@ video.blur {
 }
 
 .sticky-note:nth-child(3) {
-    top: 75%;
-    left: 30%;
+    top: 15%;
+    left: 65%;
 }
 
 .sticky-note:nth-child(4) {
-    top: 85%;
-    left: 55%;
+    top: 45%;
+    left: 17%;
 }
 
 .sticky-note.visible {
