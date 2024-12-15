@@ -29,7 +29,6 @@ document.addEventListener('DOMContentLoaded', function () {
           end: "+=200%",
           pin: true,
           scrub: true,
-          markers: false
         }
       })
       .to(".hero img", {
@@ -660,7 +659,6 @@ document.addEventListener('DOMContentLoaded', function () {
         trigger: content,
         start: 'top center',
         end: 'bottom center',
-        markers: true,
         toggleClass: 'active'
       });
     });
@@ -702,12 +700,6 @@ document.addEventListener('DOMContentLoaded', function () {
         onLeaveBack: () => {
           pauseVideo(video);
         }
-      });
-  
-      // 影片循環播放  
-      video.addEventListener('ended', () => {
-        video.currentTime = 0;
-        playVideo(video);
       });
     });
   });

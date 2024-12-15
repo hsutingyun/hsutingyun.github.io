@@ -24,12 +24,13 @@ hr {
 
 .loading-image-container {
     position: relative;
-    height: 20vh;
     background-color: black;
     display: flex;
 }
 
 .loading-image-container > img {
+    height: 20vh;
+    width: 20vh;
     color: white;
     display: flex;
 }
