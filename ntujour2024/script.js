@@ -654,65 +654,65 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Video Background and Content Sections with ScrollTrigger
   // 處理文字動畫
-  document.querySelectorAll('.content-text6').forEach(content => {
-    ScrollTrigger.create({
-      trigger: content,
-      start: 'top 70%',
-      end: 'bottom 30%',
-      toggleClass: {
-        targets: content,
-        className: 'active'
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.content-text6').forEach(content => {
+      ScrollTrigger.create({
+        trigger: content,
+        start: 'top center',
+        end: 'bottom center',
+        markers: true,
+        toggleClass: 'active'
+      });
+    });
+    document.querySelectorAll('.video-section6').forEach(section => {
+      const video = section.querySelector('video');
+      function pauseOthers(video) {
+        document.querySelectorAll('video').forEach(v => {
+          if (v !== video) {
+            v.pause();
+            v.classList.remove('active');
+          }
+        });
       }
+      function playVideo(video) {
+          video.play().catch(error => {
+            console.log("Video play was prevented:", error);
+          });
+          video.classList.add('active');
+      }
+      function pauseVideo(video) {
+        video.pause();
+        video.classList.remove('active');
+      }
+      ScrollTrigger.create({
+        trigger: section,
+        start: 'top center',
+        end: 'bottom center',
+        onEnter: () => {
+          pauseOthers(video);
+          playVideo(video);
+        },
+        onLeave: () => {
+          pauseVideo(video);
+        },
+        onEnterBack: () => {
+          pauseOthers(video);
+          playVideo(video);
+        },
+        onLeaveBack: () => {
+          pauseVideo(video);
+        }
+      });
+  
+      // 影片循環播放  
+      video.addEventListener('ended', () => {
+        video.currentTime = 0;
+        playVideo(video);
+      });
     });
   });
 
   // 處理影片播放
-  document.querySelectorAll('.video-section6').forEach(section => {
-    const video = section.querySelector('video');
-    function pauseOthers(video) {
-      document.querySelectorAll('video').forEach(v => {
-        if (v !== video) {
-          v.pause();
-          v.classList.remove('active');
-        }
-      });
-    }
-    function playVideo(video) {
-        video.play().catch(error => {
-          console.log("Video play was prevented:", error);
-        });
-        video.classList.add('active');
-    }
-    function pauseVideo(video) {
-      video.pause();
-      video.classList.remove('active');
-    }
-    ScrollTrigger.create({
-      trigger: section,
-      start: 'top center',
-      end: 'bottom center',
-      onEnter: () => {
-        pauseOthers(video);
-        playVideo(video);
-      },
-      onLeave: () => {
-        pauseVideo(video);
-      },
-      onEnterBack: () => {
-        pauseOthers(video);
-        playVideo(video);
-      },
-      onLeaveBack: () => {
-        pauseVideo(video);
-      }
-    });
-
-    // 影片循環播放  
-    video.addEventListener('ended', () => {
-      video.currentTime = 0;
-      playVideo(video);
-    });
-  });
 
   // babyending //
   let timer
