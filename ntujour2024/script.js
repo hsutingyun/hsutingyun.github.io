@@ -579,12 +579,14 @@ document.addEventListener('DOMContentLoaded', function () {
           }
         }
       };
-      config.options.legend = {
-        display: false
-      };
     }
 
     Chart.defaults.color = '#FAFAFA';
+    Chart.overrides['line'].plugins = {
+      legend: {
+        display: false
+      }
+    };
     // 創建新圖表
     currentChart = new Chart(ctx, config);
   }
