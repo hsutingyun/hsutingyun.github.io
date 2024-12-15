@@ -148,7 +148,7 @@ footer {
     width: 100%;
     z-index: 5;
     background-color: #000000;
-    top: -3vh;
+    top: 0vh;
 }
 
 .content {
@@ -287,76 +287,9 @@ footer {
     margin: 0;
 }
 
-/* 轉場 
-.delete {
-    overflow: hidden;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-}
-
-.container {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.image-container {
-    position: relative;
-    width: 500px;
-    max-width: 90vw;
-    height: 500px;
-    margin-bottom: 20px;
-    background-color: #000000;
-    overflow: visible;
-    border-radius: 24px;
-}
-
-#displayed-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: url(#dissolve-filter);
-    -webkit-filter: url(#dissolve-filter);
-   - Added for Safari compatibility -
-    transform: scale(1);
-    opacity: 1;
-    border-radius: 24px;
-}
-
-#delete-image {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 12px 24px;
-    font-size: 16px;
-    cursor: pointer;
-    background-color: #650000;
-    color: #ff5c5c;
-    border: none;
-    border-radius: 25px;
-    transition: transform 0.2s ease;
-    z-index: 1;
-}
-
-#delete-image:hover {
-    transform: translate(-50%, -50%) scale(1.2);
-}
-
-#delete-image:active {
-    transform: translate(-50%, -50%) scale(0.9);
-}
-
-.hidden {
-    display: none;
-}
-*/
-
 /* 文字冒險遊戲 */
 .game-container {
-    background-color: #000000;
+    background-color: #A20B0B;
     height: 100vh;
 }
 
@@ -785,11 +718,11 @@ footer {
 
 .sticky-image {
     position: sticky;
-    top: 20px;
-    padding: 20px;
+    top: 20%;
+    padding: 20;
     background: #FAFAFA;
-    height: 400px;
-    /* 固定高度 */
+    height: 50vh;
+    width: 50vh;
 }
 
 .sticky-image img {
@@ -910,6 +843,7 @@ footer {
     height: 100vh;
     width: 100%;
     overflow: hidden;
+    background-color: #000;
 }
 
 .monitor-frame {
