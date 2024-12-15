@@ -250,7 +250,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     initializeGame() {
       const dialogBox = document.querySelector('.dialog-box');
-      const continueHint = document.querySelector('.continue-hint');
+      // const continueHint = document.querySelector('.continue-hint');
 
       // 點擊對話框繼續對話
       dialogBox.addEventListener('click', () => {
@@ -300,24 +300,24 @@ document.addEventListener('DOMContentLoaded', function () {
       const currentDialog = scene.dialog[this.currentDialogIndex];
 
       const dialogText = document.getElementById('dialog-text');
-      const questionBox = document.querySelector('.question-box');
-      const continueHint = document.querySelector('.continue-hint');
+      // const questionBox = document.querySelector('.question-box');
+      // const continueHint = document.querySelector('.continue-hint');
 
       if (!currentDialog) return;
 
       if (currentDialog.type === 'character') {
         // 顯示角色對話
         dialogText.textContent = currentDialog.text;
-        questionBox.style.display = 'none';
-        continueHint.style.display = 'block';
+        // questionBox.style.display = 'none';
+        // continueHint.style.display = 'block';
       } else if (currentDialog.type === 'question') {
         // 顯示問題選項
         dialogText.textContent = '';
-        questionBox.style.display = 'flex';
-        continueHint.style.display = 'none';
+        // questionBox.style.display = 'flex';
+        // continueHint.style.display = 'none';
 
         // 更新問題按鈕
-        questionBox.innerHTML = '';
+        // questionBox.innerHTML = '';
         currentDialog.options.forEach(option => {
           const button = document.createElement('button');
           button.className = 'question-btn';
@@ -325,7 +325,7 @@ document.addEventListener('DOMContentLoaded', function () {
           button.addEventListener('click', () => {
             this.showScene(option.nextScene);
           });
-          questionBox.appendChild(button);
+          // questionBox.appendChild(button);
         });
       }
     }

@@ -248,6 +248,8 @@ footer {
     padding: 1.5rem;
     border-radius: 10px;
     text-align: center;
+    clip-path: polygon(calc(100% - 5vmin) 0, 100% 5vmin, 100% 100%, 0 100%, 0 0);
+
 }
 
 .front {
@@ -260,6 +262,10 @@ footer {
     background-color: #A20B0B;
     color: #FAFAFA;
     transform: rotateY(180deg);
+}
+
+.iwrap > img {
+    max-width: 100%;
 }
 
 /* 卡片標題樣式 */
