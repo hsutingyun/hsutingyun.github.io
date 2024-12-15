@@ -39,7 +39,7 @@ hr {
     color: #666;
     border-color: #666;
     pointer-events: none;
-};
+}
 
 /* Banner */
 * {
@@ -404,6 +404,10 @@ footer {
     position: fixed;
     top: 0;
     left: 0;
+}
+
+video.blur {
+    filter: blur(5px);
 }
 
 /* Scoping the SVG styles to the babyEnding section */
@@ -809,7 +813,7 @@ footer {
     object-fit: contain;
     /* 保持影片比例 */
     opacity: 0;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.5s ease, filter 0.5s ease;
     border-radius: 10px;
     /* 圓角 */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);

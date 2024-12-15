@@ -664,6 +664,14 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     document.querySelectorAll('.video-section6').forEach(section => {
       const video = section.querySelector('video');
+
+      video.addEventListener('ended', () => {
+        video.classList.add('blur');
+      });
+      video.addEventListener('play', () => {
+        video.classList.remove('blur');
+      });
+
       function pauseOthers(video) {
         document.querySelectorAll('video').forEach(v => {
           if (v !== video) {
