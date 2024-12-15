@@ -341,7 +341,7 @@ document.addEventListener('DOMContentLoaded', function () {
       this.characterData = {
         eric: {
           name: '阿賀',
-          avatar: 'https://hsutingyun.github.io/ntujour2024/picture/Characters/10.png',
+          avatar: 'https://hsutingyun.github.io/ntujour2024/picture/Characters/c1.PNG',
           scenes: {
             start: {
               text: "如果家裡照顧長者的移工懷孕怎麼辦？",
@@ -371,7 +371,7 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         xiaolin: {
           name: 'Amy',
-          avatar: 'https://hsutingyun.github.io/ntujour2024/picture/Characters/11.png',
+          avatar: 'https://hsutingyun.github.io/ntujour2024/picture/Characters/c2.PNG',
           scenes: {
             start: {
               text: "如果懷孕的話，您會怎麼做呢？",
@@ -401,7 +401,7 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         oldwang: {
           name: '小J',
-          avatar: 'https://hsutingyun.github.io/ntujour2024/picture/Characters/12.png',
+          avatar: 'https://hsutingyun.github.io/ntujour2024/picture/Characters/c3.PNG',
           scenes: {
             start: {
               text: "您認為懷孕移工的工作權需要保障嗎？",
