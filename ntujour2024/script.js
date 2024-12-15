@@ -2,7 +2,8 @@
 document.addEventListener('DOMContentLoaded', () => {
   var loadingScreen = document.querySelector(".loading-screen-content");
   loadingScreen.scrollIntoView();
-  document.body.style.overflow = "hidden";
+  document.body.style.overflowX = "hidden";
+  document.body.style.overflowY = "hidden";
   var button = document.querySelector(".finish-loading");
   button.setAttribute("disabled", "");
   window.addEventListener('load', () => {
@@ -12,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     button.addEventListener('click', () => {
       var loadingScreen = document.querySelector(".loading-screen-content");
       loadingScreen.style.display = "none";
-      document.body.style.overflow = "";
+      document.body.style.overflowY = "";
     });
   });
 });
