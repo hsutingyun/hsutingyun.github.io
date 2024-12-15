@@ -1,10 +1,21 @@
-document.addEventListener('load', () => {
-  console.log('loaded');
-  document.querySelector('.loading-screen').style.display = 'none';
+// Showing and hiding loading screen elements
+document.addEventListener('DOMContentLoaded', () => {
+  document.body.style.overflow = "hidden";
+  var button = document.querySelector(".finish-loading");
+  button.setAttribute("disabled", "");
+  window.addEventListener('load', () => {
+    var button = document.querySelector(".finish-loading");
+    button.removeAttribute("disabled");
+    button.innerHTML = "確認";
+    button.addEventListener('click', () => {
+      var loadingScreen = document.querySelector(".loading-screen-content");
+      loadingScreen.style.display = "none";
+      document.body.style.overflow = "";
+    });
+  });
 });
 
 document.addEventListener('DOMContentLoaded', function () {
-
   // Banner Animation with GSAP
   gsap.registerPlugin(ScrollTrigger);
   window.addEventListener("load", () => {
@@ -770,5 +781,5 @@ document.addEventListener('DOMContentLoaded', function () {
     shy()
   }
 
-  init()
+  init();
 });
