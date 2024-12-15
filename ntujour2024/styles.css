@@ -768,6 +768,8 @@ footer {
 .content-text6 {
     max-width: 800px;
     margin: 0 auto;
+    padding-top: 20vh;
+    padding-bottom: 20vh;
     opacity: 0;
     transform: translateY(20px);
     transition: all 0.5s ease;
