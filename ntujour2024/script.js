@@ -6,7 +6,6 @@ document.addEventListener('load', () => {
 document.addEventListener('DOMContentLoaded', function () {
 
   // Banner Animation with GSAP
-  console.clear();
   gsap.registerPlugin(ScrollTrigger);
   window.addEventListener("load", () => {
     gsap
