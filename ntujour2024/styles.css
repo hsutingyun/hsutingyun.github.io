@@ -15,7 +15,7 @@ hr {
     height: 100vh;
     padding-top: 10vh;
     padding-bottom: 20vh;
-    position: absolute;
+    position: fixed;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -32,6 +32,12 @@ hr {
     color: white;
     display: flex;
 }
+
+.finish-loading:disabled {
+    color: #666;
+    border-color: #666;
+    pointer-events: none;
+};
 
 /* Banner */
 * {
@@ -248,11 +254,6 @@ footer {
     border: 2px solid #A20B0B;
     color: #FAFAFA;
 }
-
-.finish-loading:disabled {
-    color: #666;
-    border-color: #666;
-};
 
 .back {
     background-color: #A20B0B;
