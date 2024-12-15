@@ -1,10 +1,23 @@
-document.addEventListener('load', () => {
-  console.log('loaded');
-  document.querySelector('.loading-screen').style.display = 'none';
+// Showing and hiding loading screen elements
+document.addEventListener('DOMContentLoaded', () => {
+  var loadingScreen = document.querySelector(".loading-screen-content");
+  loadingScreen.scrollIntoView();
+  document.body.style.overflow = "hidden";
+  var button = document.querySelector(".finish-loading");
+  button.setAttribute("disabled", "");
+  window.addEventListener('load', () => {
+    var button = document.querySelector(".finish-loading");
+    button.removeAttribute("disabled");
+    button.innerHTML = "確認";
+    button.addEventListener('click', () => {
+      var loadingScreen = document.querySelector(".loading-screen-content");
+      loadingScreen.style.display = "none";
+      document.body.style.overflow = "";
+    });
+  });
 });
 
 document.addEventListener('DOMContentLoaded', function () {
-
   // Banner Animation with GSAP
   gsap.registerPlugin(ScrollTrigger);
   window.addEventListener("load", () => {
@@ -464,55 +477,48 @@ document.addEventListener('DOMContentLoaded', function () {
   // 處理影片播放
   document.querySelectorAll('.video-section6').forEach(section => {
     const video = section.querySelector('video');
-
+    function pauseOthers(video) {
+      document.querySelectorAll('video').forEach(v => {
+        if (v !== video) {
+          v.pause();
+          v.classList.remove('active');
+        }
+      });
+    }
+    function playVideo(video) {
+        video.play().catch(error => {
+          console.log("Video play was prevented:", error);
+        });
+        video.classList.add('active');
+    }
+    function pauseVideo(video) {
+      video.pause();
+      video.classList.remove('active');
+    }
     ScrollTrigger.create({
       trigger: section,
       start: 'top center',
       end: 'bottom center',
       onEnter: () => {
-        // 暫停所有其他影片
-        document.querySelectorAll('video').forEach(v => {
-          if (v !== video) {
-            v.pause();
-            v.classList.remove('active');
-          }
-        });
-        // 播放當前影片
-        video.play().catch(error => {
-          console.log("Video play was prevented:", error);
-        });
-        video.classList.add('active');
+        pauseOthers(video);
+        playVideo(video);
       },
       onLeave: () => {
-        video.pause();
-        video.classList.remove('active');
+        pauseVideo(video);
       },
       onEnterBack: () => {
-        // 暫停所有其他影片
-        document.querySelectorAll('video').forEach(v => {
-          if (v !== video) {
-            v.pause();
-            v.classList.remove('active');
-          }
-        });
-        // 播放當前影片
-        video.play().catch(error => {
-          console.log("Video play was prevented:", error);
-        });
-        video.classList.add('active');
+        pauseOthers(video);
+        playVideo(video);
       },
       onLeaveBack: () => {
-        video.pause();
-        video.classList.remove('active');
+        pauseVideo(video);
       }
     });
 
     // 影片循環播放  
     video.addEventListener('ended', () => {
       video.currentTime = 0;
-      video.play().catch(error => {
-        console.log("Video replay was prevented:", error);
-      });
+      playVideo(video);
     });
   });
 
@@ -770,5 +776,5 @@ document.addEventListener('DOMContentLoaded', function () {
     shy()
   }
 
-  init()
+  init();
 });
