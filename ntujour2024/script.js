@@ -565,12 +565,23 @@ document.addEventListener('DOMContentLoaded', function () {
     // 為不同類型的圖表添加特定選項
     if (type === 'line') {
       config.options.scales = {
+        x: {
+          border: {
+            display: true,
+            color: '#FAFAFA'
+          }
+        },
         y: {
-          beginAtZero: true
+          beginAtZero: true,
+          border: {
+            display: true,
+            color: '#FAFAFA'
+          }
         }
       };
     }
 
+    Chart.defaults.color = '#FAFAFA';
     // 創建新圖表
     currentChart = new Chart(ctx, config);
   }
