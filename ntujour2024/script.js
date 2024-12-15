@@ -169,7 +169,6 @@ document.addEventListener('DOMContentLoaded', function () {
               text: "仲介有針對這種情況說明如何處理嗎？",
               choices: [{
                 text: "仲介說早早和懷孕移工解約比較好啦，我也不了解有沒有其他辦法。",
-                nextScene: "start"
               }]
             },
           }
@@ -196,7 +195,6 @@ document.addEventListener('DOMContentLoaded', function () {
               text: "那小孩如何撫養呢？",
               choices: [{
                 text: "雖然很想送回家鄉，但是又不想加重家人的負擔...…或許會尋找臺灣有沒有朋友能幫忙照顧小孩。",
-                nextScene: "start"
               }]
             }
           }
