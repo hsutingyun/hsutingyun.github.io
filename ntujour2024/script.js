@@ -579,6 +579,9 @@ document.addEventListener('DOMContentLoaded', function () {
           }
         }
       };
+      config.options.legend = {
+        display: false
+      };
     }
 
     Chart.defaults.color = '#FAFAFA';
