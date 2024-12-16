@@ -2,7 +2,8 @@
 document.addEventListener('DOMContentLoaded', () => {
   var loadingScreen = document.querySelector(".loading-screen-content");
   loadingScreen.scrollIntoView();
-  document.body.style.overflow = "hidden";
+  document.body.style.overflowX = "hidden";
+  document.body.style.overflowY = "hidden";
   var button = document.querySelector(".finish-loading");
   button.setAttribute("disabled", "");
   window.addEventListener('load', () => {
@@ -12,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     button.addEventListener('click', () => {
       var loadingScreen = document.querySelector(".loading-screen-content");
       loadingScreen.style.display = "none";
-      document.body.style.overflow = "";
+      document.body.style.overflowY = "";
     });
   });
 });
@@ -29,7 +30,6 @@ document.addEventListener('DOMContentLoaded', function () {
           end: "+=200%",
           pin: true,
           scrub: true,
-          markers: false
         }
       })
       .to(".hero img", {
@@ -251,7 +251,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     initializeGame() {
       const dialogBox = document.querySelector('.dialog-box');
-      const continueHint = document.querySelector('.continue-hint');
+      // const continueHint = document.querySelector('.continue-hint');
 
       // 點擊對話框繼續對話
       dialogBox.addEventListener('click', () => {
@@ -301,24 +301,24 @@ document.addEventListener('DOMContentLoaded', function () {
       const currentDialog = scene.dialog[this.currentDialogIndex];
 
       const dialogText = document.getElementById('dialog-text');
-      const questionBox = document.querySelector('.question-box');
-      const continueHint = document.querySelector('.continue-hint');
+      // const questionBox = document.querySelector('.question-box');
+      // const continueHint = document.querySelector('.continue-hint');
 
       if (!currentDialog) return;
 
       if (currentDialog.type === 'character') {
         // 顯示角色對話
         dialogText.textContent = currentDialog.text;
-        questionBox.style.display = 'none';
-        continueHint.style.display = 'block';
+        // questionBox.style.display = 'none';
+        // continueHint.style.display = 'block';
       } else if (currentDialog.type === 'question') {
         // 顯示問題選項
         dialogText.textContent = '';
-        questionBox.style.display = 'flex';
-        continueHint.style.display = 'none';
+        // questionBox.style.display = 'flex';
+        // continueHint.style.display = 'none';
 
         // 更新問題按鈕
-        questionBox.innerHTML = '';
+        // questionBox.innerHTML = '';
         currentDialog.options.forEach(option => {
           const button = document.createElement('button');
           button.className = 'question-btn';
@@ -326,7 +326,7 @@ document.addEventListener('DOMContentLoaded', function () {
           button.addEventListener('click', () => {
             this.showScene(option.nextScene);
           });
-          questionBox.appendChild(button);
+          // questionBox.appendChild(button);
         });
       }
     }
@@ -342,7 +342,7 @@ document.addEventListener('DOMContentLoaded', function () {
       this.characterData = {
         eric: {
           name: '阿賀',
-          avatar: 'https://hsutingyun.github.io/ntujour2024/picture/Characters/10.png',
+          avatar: 'https://hsutingyun.github.io/ntujour2024/picture/Characters/c1.PNG',
           scenes: {
             start: {
               text: "如果家裡照顧長者的移工懷孕怎麼辦？",
@@ -366,13 +366,13 @@ document.addEventListener('DOMContentLoaded', function () {
               }]
             },
             ending: {
-              text: "對話結束，請按上方按鈕返回。"
+              text: "對話內容已結束，請按右上角按鍵，和其他人聊聊吧！。"
             }
           }
         },
         xiaolin: {
           name: 'Amy',
-          avatar: 'https://hsutingyun.github.io/ntujour2024/picture/Characters/11.png',
+          avatar: 'https://hsutingyun.github.io/ntujour2024/picture/Characters/c2.PNG',
           scenes: {
             start: {
               text: "如果懷孕的話，您會怎麼做呢？",
@@ -396,13 +396,13 @@ document.addEventListener('DOMContentLoaded', function () {
               }]
             },
             ending: {
-              text: "對話結束，請按上方按鈕返回。"
+              text: "對話內容已結束，請按右上角按鍵，和其他人聊聊吧！。"
             }
           }
         },
         oldwang: {
           name: '小J',
-          avatar: 'https://hsutingyun.github.io/ntujour2024/picture/Characters/12.png',
+          avatar: 'https://hsutingyun.github.io/ntujour2024/picture/Characters/c3.PNG',
           scenes: {
             start: {
               text: "您認為懷孕移工的工作權需要保障嗎？",
@@ -426,7 +426,7 @@ document.addEventListener('DOMContentLoaded', function () {
               }]
             },
             ending: {
-              text: "對話結束，請按上方按鈕返回。"
+              text: "對話內容已結束，請按右上角按鍵，和其他人聊聊吧！。"
             }
           }
         }
@@ -566,12 +566,28 @@ document.addEventListener('DOMContentLoaded', function () {
     // 為不同類型的圖表添加特定選項
     if (type === 'line') {
       config.options.scales = {
+        x: {
+          border: {
+            display: true,
+            color: '#FAFAFA'
+          }
+        },
         y: {
-          beginAtZero: true
+          beginAtZero: true,
+          border: {
+            display: true,
+            color: '#FAFAFA'
+          }
         }
       };
     }
 
+    Chart.defaults.color = '#FAFAFA';
+    Chart.overrides['line'].plugins = {
+      legend: {
+        display: false
+      }
+    };
     // 創建新圖表
     currentChart = new Chart(ctx, config);
   }
@@ -660,12 +676,19 @@ document.addEventListener('DOMContentLoaded', function () {
         trigger: content,
         start: 'top center',
         end: 'bottom center',
-        markers: true,
         toggleClass: 'active'
       });
     });
     document.querySelectorAll('.video-section6').forEach(section => {
       const video = section.querySelector('video');
+
+      video.addEventListener('ended', () => {
+        video.classList.add('blur');
+      });
+      video.addEventListener('play', () => {
+        video.classList.remove('blur');
+      });
+
       function pauseOthers(video) {
         document.querySelectorAll('video').forEach(v => {
           if (v !== video) {
@@ -702,12 +725,6 @@ document.addEventListener('DOMContentLoaded', function () {
         onLeaveBack: () => {
           pauseVideo(video);
         }
-      });
-  
-      // 影片循環播放  
-      video.addEventListener('ended', () => {
-        video.currentTime = 0;
-        playVideo(video);
       });
     });
   });

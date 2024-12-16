@@ -24,12 +24,13 @@ hr {
 
 .loading-image-container {
     position: relative;
-    height: 20vh;
     background-color: black;
     display: flex;
 }
 
 .loading-image-container > img {
+    height: 20vh;
+    width: 20vh;
     color: white;
     display: flex;
 }
@@ -38,7 +39,7 @@ hr {
     color: #666;
     border-color: #666;
     pointer-events: none;
-};
+}
 
 /* Banner */
 * {
@@ -90,7 +91,6 @@ hr {
     letter-spacing: normal;
     text-align: center;
     background-color: #000000;
-    font-size: medium;
     letter-spacing: normal;
     padding-left: 50vh;
     padding-right: 50vh;
@@ -193,18 +193,6 @@ footer {
     height: 200vh;
 }
 
-.text-content {
-    background-color: #000000;
-    color: #FAFAFA;
-    font-size: medium;
-    letter-spacing: normal;
-    text-align: left;
-    padding-left: 50vh;
-    padding-right: 50vh;
-    padding-top: 20vh;
-    padding-bottom: 20vh;
-}
-
 .cards-container {
     display: flex;
     justify-content: center;
@@ -240,6 +228,7 @@ footer {
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -247,6 +236,8 @@ footer {
     padding: 1.5rem;
     border-radius: 10px;
     text-align: center;
+    clip-path: polygon(calc(100% - 5vmin) 0, 100% 5vmin, 100% 100%, 0 100%, 0 0);
+
 }
 
 .front {
@@ -259,6 +250,10 @@ footer {
     background-color: #A20B0B;
     color: #FAFAFA;
     transform: rotateY(180deg);
+}
+
+.iwrap > img {
+    max-width: 100%;
 }
 
 /* 卡片標題樣式 */
@@ -281,7 +276,7 @@ footer {
 }
 
 .character-selection {
-    max-width: 1200px;
+    max-width: 100%;
     margin: 0 auto;
     padding: 2rem;
     text-align: center;
@@ -322,7 +317,7 @@ footer {
 }
 
 .game-container {
-    width: 800px;
+    width: 100%;
     height: 75vh;
     margin: 2rem auto;
     position: relative;
@@ -336,14 +331,14 @@ footer {
     width: 100%;
     height: 100%;
     position: relative;
+    display: flex;
+    justify-content: center;
 }
 
 .character-avatar {
     width: 100%;
     height: 60vh;
-    left: 40vh;
     position: absolute;
-    transform: translateX(-50%);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -403,6 +398,10 @@ footer {
     position: fixed;
     top: 0;
     left: 0;
+}
+
+video.blur {
+    filter: blur(5px);
 }
 
 /* Scoping the SVG styles to the babyEnding section */
@@ -672,10 +671,10 @@ footer {
 
 .sticky-chart {
     position: sticky;
-    top: 20px;
-    padding: 20px;
+    top: 20vh;
+    padding: 5vmin;
     background: #0000;
-    height: 400px;
+    height: 40vh;
     /* 固定高度以保持位置 */
 }
 
@@ -694,8 +693,7 @@ footer {
 /*圖文搭配*/
 .container5 {
     display: flex;
-    gap: 2rem;
-    max-width: 1200px;
+    max-width: 100%;
     margin: 0 auto;
 }
 
@@ -706,10 +704,9 @@ footer {
 .sticky-image {
     position: sticky;
     top: 20%;
-    padding: 20;
-    background: #FAFAFA;
-    height: 50vh;
-    width: 50vh;
+    padding: 20vmin;
+    background: #00000000;
+    height: 50vmin;
 }
 
 .sticky-image img {
@@ -730,13 +727,12 @@ footer {
 
 .content-container5 {
     width: 50%;
-    padding: 20px;
 }
 
 .section5 {
     min-height: 80vh;
-    padding: 20px;
-    margin-bottom: 40px;
+    padding: 5vw;
+    margin-bottom: 5vw;
     color: #FAFAFA;
 }
 
@@ -794,7 +790,7 @@ footer {
     position: relative;
     width: 80%;
     /* 影片寬度佔容器80% */
-    max-width: 1200px;
+    max-width: 80%;
     /* 最大寬度 */
     aspect-ratio: 16/9;
     /* 保持影片比例 */
@@ -808,7 +804,7 @@ footer {
     object-fit: contain;
     /* 保持影片比例 */
     opacity: 0;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.5s ease, filter 0.5s ease;
     border-radius: 10px;
     /* 圓角 */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -883,7 +879,7 @@ footer {
 /* 監視器文字框 */
 .monitor-dialog {
     position: absolute;
-    bottom: 40px;
+    bottom: 5vh;
     left: 50%;
     transform: translateX(-50%);
     width: 80%;
@@ -946,13 +942,13 @@ footer {
 }
 
 .sticky-note:nth-child(3) {
-    top: 75%;
-    left: 30%;
+    top: 15%;
+    left: 65%;
 }
 
 .sticky-note:nth-child(4) {
-    top: 85%;
-    left: 55%;
+    top: 45%;
+    left: 17%;
 }
 
 .sticky-note.visible {
