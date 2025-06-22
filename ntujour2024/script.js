@@ -345,24 +345,27 @@ document.addEventListener('DOMContentLoaded', function () {
           avatar: 'https://hsutingyun.github.io/ntujour2024/picture/Characters/c1.PNG',
           scenes: {
             start: {
-              text: "如果家裡照顧長者的移工懷孕怎麼辦？",
+              text: "點擊角色 yada yada",
               choices: [{
-                text: "那移工還能照顧爸爸嗎……但人家懷孕就辭退好像也不合乎情理。",
-                nextScene: "difficulties"
+                text: "林先生您好，請自我介紹一下。",
+                nextScene: "step1"
               }, ]
             },
-            difficulties: {
-              text: "您有聽說過任何的協助資源嗎？",
+            step1: {
+              text: "我在一個關心移工權益的NGO擔任志工，關心在台移工的基本人權，期許外國來台工作者在未來都能享有安心生育以及撫養小孩的權利。",
               choices: [{
-                text: "沒有啊！網路資訊好複雜，看不懂啦……也不知道可以去哪裡問。",
-                nextScene: "experience"
-              }, ]
+                text: '您認為，「生育孩子」屬於移工在台灣工作期間的基本權益嗎？',
+                nextScene: 'step2_1'
+              }, {
+                text: '若要改善移工的懷孕困境，得先從哪個部分著手呢？',
+                nextScene: 'step2_2'
+              }]
             },
-            experience: {
-              text: "仲介有針對這種情況說明如何處理嗎？",
+            step2_1: {
+              text: '《性工法》保障勞工的生育權益，而這當然也包含移工朋友們！\n雖然多數民眾對此抱持顧慮，但我們這些志工仍會透過社會倡議，讓更多人理解移工媽媽們的處境。',
               choices: [{
-                text: "仲介說早早和懷孕移工解約比較好啦，我也不了解有沒有其他辦法。",
-                nextScene: "ending"
+                text: 'yada yada',
+                nextScene: 'ending'
               }]
             },
             ending: {
@@ -375,24 +378,54 @@ document.addEventListener('DOMContentLoaded', function () {
           avatar: 'https://hsutingyun.github.io/ntujour2024/picture/Characters/c2.PNG',
           scenes: {
             start: {
-              text: "如果懷孕的話，您會怎麼做呢？",
+              text: "點擊角色yada yada",
               choices: [{
-                text: "還是想將小孩生下來吧，畢竟是個生命啊！",
-                nextScene: "familyLife"
-              }, ]
+                text: "小姐您好，我們想聽聽您的工作生活。",
+                nextScene: "step1"
+              }]
             },
-            familyLife: {
-              text: "若遇到雇主反對怎麼辦？",
+            step1: {
+              text: "我是小雅，為了賺錢來到台灣工作。至今來台灣也五年了。丈夫和小孩都在印尼，幾乎兩年沒看到他們了。最近一起來的朋友剛懷孕，讓我也想要有第二胎……",
               choices: [{
-                text: "那樣只能離開了嗎？可是仲介費的債沒還完的話……我也不知道怎麼辦！",
-                nextScene: "whyborn"
-              }, ]
+                text: "請問您近期有懷孕的計畫嗎?",
+                nextScene: "step2_1"
+              }, {
+                text: "如果在台灣懷孕了，您會怎麼尋求幫助呢?",
+                nextScene: "step2_2"
+              }]
             },
-            whyborn: {
-              text: "那小孩如何撫養呢？",
+            step2_1: {
+              text: "可能回印尼再考慮吧。現在的工作要每天24小時照顧阿公，還需要把阿公抱上床或馬桶，實在不適合懷孕……",
               choices: [{
-                text: "雖然很想送回家鄉，但是又不想加重家人的負擔...…或許會尋找臺灣有沒有朋友能幫忙照顧小孩。",
-                nextScene: "ending"
+                text: '您的朋友在台灣懷孕時，有人幫忙嗎?',
+                nextScene: 'step3_1'
+              }, {
+                text: '為什麼這麼久沒有回家了呢?',
+                nextScene: 'step3_2'
+              }]
+            },
+            step2_2: {
+              text: '不知道耶……我試圖在TikTok上尋找資訊，可是上面說法很亂，就連我朋友也不知道哪個才是真的。',
+              choices: [{
+                text: '您的朋友在台灣懷孕時，有人幫忙嗎?',
+                nextScene: 'step3_1'
+              }, {
+                text: '為什麼這麼久沒有回家了呢?',
+                nextScene: 'step3_2'
+              }]
+            },
+            step3_1: {
+              text: '她的朋友有幫忙吧……聽說有些台灣人能協助我們處理懷孕的事，但我不清楚是誰，也不知道怎麼找到他們。',
+              choices: [{
+                text: 'yada yada',
+                nextScene: 'ending'
+              }]
+            },
+            step3_2: {
+              text: '雖然很想要回印尼看看家人，但是回去的話，這裡就沒人能照顧阿公了，沒有辦法啊……',
+              choices: [{
+                text: 'yada yada',
+                nextScene: 'ending'
               }]
             },
             ending: {
@@ -405,24 +438,74 @@ document.addEventListener('DOMContentLoaded', function () {
           avatar: 'https://hsutingyun.github.io/ntujour2024/picture/Characters/c3.PNG',
           scenes: {
             start: {
-              text: "您認為懷孕移工的工作權需要保障嗎？",
+              text: "點擊角色 yada yada",
               choices: [{
-                text: "那當然！同樣是女性，懷孕就解雇的話太不合理了！",
-                nextScene: "whyBasement"
+                text: "黃女士您好，請問您有僱用外籍移工的經驗嗎?",
+                nextScene: "step1"
               }, ]
             },
-            whyBasement: {
-              text: "那您認為我們目前政策有什麼缺失嗎?",
+            step1: {
+              text: '有，我曾經請過印尼移工照顧過媽媽，雖然那只有短短的三個月而已。',
               choices: [{
-                text: "比起缺失，倒不如說根本沒有好好推廣吧，移工和雇主對資訊的認知都不一樣！",
-                nextScene: "policy"
+                text: '您覺得台灣人對於移工足夠友善嗎?',
+                nextScene: 'step2_1'
+              }, {
+                text: '如果家裡的移工有在台懷孕的計畫，您會支持他嗎？',
+                nextScene: 'step2_2'
               }]
             },
-            policy: {
-              text: "您知道有哪些措施可以應對雇主在移工待產期間的需求呢？",
+            step2_1: {
+              text: '挺友善的吧。畢竟移工的工作是台灣人不太想做的，或多或少也是挺包容他們的……\n但老實說，新聞和FB上好像還是有一些比較偏激的意見存在啦。',
               choices: [{
-                text: "嗯…...我知道可以申請「暫緩轉換雇主函」，但詳細過程也不太清楚。",
-                nextScene: "ending"
+                text: 'yada yada',
+                nextScene: 'ending'
+              }]
+            },
+            step2_2: {
+              text: '我、我還是希望不要耶...…如果移工懷有身孕的同時還得把媽媽抱上抱下，感覺很容易受傷啊……若有個萬一，誰要負責呢？',
+              choices: [{
+                text: 'yada yada',
+                nextScene: 'ending'
+              }]
+            },
+            ending: {
+              text: "對話內容已結束，請按右上角按鍵，和其他人聊聊吧！。"
+            }
+          }
+        },
+        fourth: {
+          name: '小J',
+          avatar: 'https://hsutingyun.github.io/ntujour2024/picture/Characters/c3.PNG',
+          scenes: {
+            start: {
+              text: '點擊角色 yada yada',
+              choices: [{
+                text: '您好，我們有幾個問題想請教您。',
+                nextScene: 'step1'
+              }]
+            },
+            step1: {
+              text: '你們好，我是在勞動部任職的小蔡，為台灣的勞工把關權益，有什麼好奇的都歡迎問我吧。',
+              choices: [{
+                text: '現今臺灣社會中，移工的權益問題為何對我們如此重要?',
+                nextScene: 'step2_1'
+              }, {
+                text: '婦女移工的懷孕權益逐漸獲得保障，但移工寶寶的安置似乎仍是問題？',
+                nextScene: 'step2_2'
+              }]
+            },
+            step2_1: {
+              text: '移工挹注許多產業的勞動力，如台灣高齡化後所面臨的人力缺口，就需要仰賴這群來自異鄉的朋友支持。\n因此，創造一個讓移工安心工作、平安養育的環境，以吸引移工來台灣，就會是社會的重要課題。',
+              choices: [{
+                text: 'yada yada',
+                nextScene: 'ending'
+              }]
+            },
+            step2_2: {
+              text: '嗯……寶寶們後續的安置與醫療問題的確需要關心，但這方面是衛服部與其他單位負責，我們就比較難介入……\n實際上，許多社會工作需要各政府部門謹慎分工來完成，雖然依法行政有其必要，卻也因此缺乏彈性，讓改革難以完善。',
+              choices: [{
+                text: 'yada yada',
+                nextScene: 'ending'
               }]
             },
             ending: {
@@ -528,7 +611,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const ctx = document.getElementById('dynamicChart').getContext('2d');
 
   // 創建圖表的函數
-  function createChart(type, labels, data, prefix) {
+  function createChart(type, labels, data, prefix, title) {
     // 如果已經有圖表，先銷毀它
     if (currentChart) {
       currentChart.destroy();
@@ -559,7 +642,13 @@ document.addEventListener('DOMContentLoaded', function () {
       },
       options: {
         responsive: true,
-        maintainAspectRatio: false
+        maintainAspectRatio: false,
+        plugins: {
+          title: {
+            display: true,
+            text: title
+          }
+        }
       }
     };
 
@@ -601,9 +690,10 @@ document.addEventListener('DOMContentLoaded', function () {
         const values = section4.dataset.values.split(',').map(Number);
         const labels = section4.dataset.labels.split(',');
         const prefix = section4.dataset.prefix;
+        const title = section4.dataset.title;
 
         // 更新圖表
-        createChart(chartType, labels, values, prefix);
+        createChart(chartType, labels, values, prefix, title);
       }
     });
   }, {
@@ -632,9 +722,10 @@ document.addEventListener('DOMContentLoaded', function () {
         const values = section4.dataset.values.split(',').map(Number);
         const labels = section4.dataset.labels.split(',');
         const prefix = section4.dataset.prefix;
+        const title = section4.dataset.title;
 
         // 更新圖表
-        createChart(chartType, labels, values, prefix);
+        createChart(chartType, labels, values, prefix, title);
       }
     });
   }, {

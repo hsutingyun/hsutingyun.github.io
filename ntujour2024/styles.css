@@ -698,15 +698,15 @@ video.blur {
 }
 
 .image-container5 {
-    width: 50%;
+    width: 40%;
 }
 
 .sticky-image {
     position: sticky;
     top: 20%;
-    padding: 20vmin;
+    padding-left: 10vmin;
     background: #00000000;
-    height: 50vmin;
+    height: 50vh;
 }
 
 .sticky-image img {
@@ -726,12 +726,12 @@ video.blur {
 }
 
 .content-container5 {
-    width: 50%;
+    width: 60%;
 }
 
 .section5 {
     min-height: 80vh;
-    padding: 5vw;
+    padding-right: 10vw;
     margin-bottom: 5vw;
     color: #FAFAFA;
 }
