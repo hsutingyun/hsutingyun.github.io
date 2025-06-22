@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }
 
       sceneLayers.forEach((layer, index) => {
-        const speed = (index + 1) * 0.2;
+        const speed = (index + 1) * 0.6;
         const yPos = -scrollProgress * 100 * speed;
         layer.style.transform = `translateY(${yPos}px)`;
       });
@@ -528,7 +528,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const ctx = document.getElementById('dynamicChart').getContext('2d');
 
   // 創建圖表的函數
-  function createChart(type, labels, data) {
+  function createChart(type, labels, data, prefix) {
     // 如果已經有圖表，先銷毀它
     if (currentChart) {
       currentChart.destroy();
@@ -540,7 +540,7 @@ document.addEventListener('DOMContentLoaded', function () {
       data: {
         labels: labels,
         datasets: [{
-          label: '數據',
+          label: prefix,
           data: data,
           backgroundColor: [
             'rgba(255, 0, 0, 0.75)',
@@ -600,9 +600,10 @@ document.addEventListener('DOMContentLoaded', function () {
         const chartType = section4.dataset.chart;
         const values = section4.dataset.values.split(',').map(Number);
         const labels = section4.dataset.labels.split(',');
+        const prefix = section4.dataset.prefix;
 
         // 更新圖表
-        createChart(chartType, labels, values);
+        createChart(chartType, labels, values, prefix);
       }
     });
   }, {
@@ -630,9 +631,10 @@ document.addEventListener('DOMContentLoaded', function () {
         const chartType = section4.dataset.chart;
         const values = section4.dataset.values.split(',').map(Number);
         const labels = section4.dataset.labels.split(',');
+        const prefix = section4.dataset.prefix;
 
         // 更新圖表
-        createChart(chartType, labels, values);
+        createChart(chartType, labels, values, prefix);
       }
     });
   }, {
@@ -730,260 +732,4 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   // 處理影片播放
-
-  // babyending //
-  let timer
-  let rot
-  const eye = $(".eye")
-  const pupils = CSSRulePlugin.getRule(".eye:after")
-
-  // Functions //
-  // Moon
-  function rotateMoon() {
-    const rotateTL = gsap.timeline({
-      repeat: -1,
-      yoyo: true
-    })
-    rotateTL.set("#body", {
-      transformOrigin: "50% 50%"
-    })
-    rotateTL.to("#body", {
-      rotateZ: 12,
-      duration: 6,
-      ease: "power1.inOut"
-    })
-  }
-
-  function floatMoon() {
-    const floatTL = gsap.timeline({
-      repeat: -1,
-      yoyo: true
-    })
-    floatTL.to("#body", 2, {
-      y: -6,
-      ease: "power1.inOut"
-    })
-
-    const mouthCheeksTL = gsap.timeline({
-      repeat: -1,
-      yoyo: true
-    })
-    mouthCheeksTL.to("#mouth-cheeks", 2, {
-      y: -3,
-      ease: "power1.inOut"
-    })
-  }
-
-  function shimmeringStars() {
-    const starsTL = gsap.timeline({
-      repeat: -1,
-      delay: 1
-    })
-
-    starsTL.to("#star-7", .5, {
-      morphSVG: "#star-7-morph",
-      ease: "power3.Out"
-    })
-    starsTL.to("#star-7", .5, {
-      morphSVG: "#star-7",
-      ease: "power3.Out"
-    })
-
-    starsTL.to("#star-3", .5, {
-      delay: -.15,
-      morphSVG: "#star-3-morph",
-      ease: "power3.Out"
-    })
-    starsTL.to("#star-3", .5, {
-      morphSVG: "#star-3",
-      ease: "power3.Out"
-    })
-
-    starsTL.to("#star-12", .5, {
-      delay: -.35,
-      morphSVG: "#star-12-morph",
-      ease: "power3.Out"
-    })
-    starsTL.to("#star-12", .5, {
-      morphSVG: "#star-12",
-      ease: "power3.Out"
-    })
-
-    starsTL.to("#star-11", .5, {
-      delay: -.7,
-      morphSVG: "#star-11-morph",
-      ease: "power3.Out"
-    })
-    starsTL.to("#star-11", .5, {
-      morphSVG: "#star-11",
-      ease: "power3.Out"
-    })
-
-    starsTL.to("#star-2", .5, {
-      delay: -.35,
-      morphSVG: "#star-2-morph",
-      ease: "power3.Out"
-    })
-    starsTL.to("#star-2", .5, {
-      morphSVG: "#star-2",
-      ease: "power3.Out"
-    })
-
-    starsTL.to("#star-1", .5, {
-      delay: -.7,
-      morphSVG: "#star-1-morph",
-      ease: "power3.Out"
-    })
-    starsTL.to("#star-1", .5, {
-      morphSVG: "#star-1",
-      ease: "power3.Out"
-    })
-
-    starsTL.to("#star-6", .5, {
-      delay: -.7,
-      morphSVG: "#star-6-morph",
-      ease: "power3.Out"
-    })
-    starsTL.to("#star-6", .5, {
-      morphSVG: "#star-6",
-      ease: "power3.Out"
-    })
-
-    starsTL.to("#star-8", .5, {
-      delay: -.9,
-      morphSVG: "#star-8-morph",
-      ease: "power3.Out"
-    })
-    starsTL.to("#star-8", .5, {
-      morphSVG: "#star-8",
-      ease: "power3.Out"
-    })
-
-    starsTL.to("#star-4", .5, {
-      delay: -.9,
-      morphSVG: "#star-4-morph",
-      ease: "power3.Out"
-    })
-    starsTL.to("#star-4", .5, {
-      morphSVG: "#star-4",
-      ease: "power3.Out"
-    })
-
-    starsTL.to("#star-9", .5, {
-      delay: -.35,
-      morphSVG: "#star-9-morph",
-      ease: "power3.Out"
-    })
-    starsTL.to("#star-9", .5, {
-      morphSVG: "#star-9",
-      ease: "power3.Out"
-    })
-
-    starsTL.to("#star-10", .5, {
-      delay: -.35,
-      morphSVG: "#star-10-morph",
-      ease: "power3.Out"
-    })
-    starsTL.to("#star-10", .5, {
-      morphSVG: "#star-10",
-      ease: "power3.Out"
-    })
-
-    starsTL.to("#star-5", .5, {
-      delay: -.35,
-      morphSVG: "#star-5-morph",
-      ease: "power3.Out"
-    })
-    starsTL.to("#star-5", .5, {
-      morphSVG: "#star-5",
-      ease: "power3.Out"
-    })
-  }
-
-  // Pointer
-  function track() {
-    document.addEventListener("mousemove", (e) => {
-      pointerEyesStart()
-      pointerMouthStart()
-
-      clearTimeout(timer)
-
-      timer = setTimeout(() => {
-        pointerEyesStop()
-        pointerMouthStop()
-      }, 300)
-    })
-  }
-
-  function pointerEyesStart() {
-    const x = (eye.offset().left) + (eye.width() / 2)
-    const y = (eye.offset().top) + (eye.height() / 2)
-    const rad = Math.atan2(event.pageX - x, event.pageY - y)
-    rot = (rad * (180 / Math.PI) * -1) + 180
-    gsap.to(eye, 0, {
-      rotateZ: rot
-    })
-  }
-
-  function pointerEyesStop() {}
-
-  function pointerMouthStart() {
-    gsap.to("#mouth", .5, {
-      morphSVG: "#mouth-morph"
-    })
-    gsap.to("#teeth", .5, {
-      y: -1
-    })
-  }
-
-  function pointerMouthStop() {
-    gsap.to("#mouth", .5, {
-      morphSVG: "#mouth",
-      ease: "back.out(1.7)"
-    })
-  }
-
-  function shy() {
-    $("#moon").on("mouseenter", () => {
-      gsap.to("#cheek-left, #cheek-right", 1, {
-        fill: "#f7d4e8"
-      })
-      gsap.to("#cheek-left, #cheek-right", 1, {
-        scale: 1.5,
-        y: 3,
-        transformOrigin: "50% 50%"
-      })
-
-      gsap.to(pupils, 2, {
-        bottom: "11px",
-        ease: "elastic.out"
-      })
-    })
-    $("#moon").on("mouseleave", () => {
-      gsap.to("#cheek-left, #cheek-right", 1, {
-        fill: "#d3dced"
-      })
-      gsap.to("#cheek-left, #cheek-right", 1, {
-        scale: 1,
-        y: 0,
-        transformOrigin: "50% 50%"
-      })
-
-      gsap.to(pupils, 2, {
-        bottom: "16px",
-        ease: "elastic.out"
-      })
-    })
-  }
-
-  // Initialize
-  function init() {
-    rotateMoon()
-    floatMoon()
-    shimmeringStars()
-    track()
-    shy()
-  }
-
-  init();
 });
