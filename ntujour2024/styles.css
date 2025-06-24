@@ -527,7 +527,7 @@ footer {
     color: #FAFAFA;
 }
 
-/*圖文搭配*/
+/*圖文搭配（一）*/
 .container5 {
     display: flex;
     max-width: 100%;
@@ -567,6 +567,52 @@ footer {
 }
 
 .section5 {
+    min-height: 80vh;
+    padding-right: 10vw;
+    margin-bottom: 5vw;
+    color: #FAFAFA;
+}
+
+/*圖文搭配（二）*/
+.container6 {
+    display: flex;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.image-container6 {
+    width: 40%;
+}
+
+.sticky-image {
+    position: sticky;
+    top: 20%;
+    padding-left: 10vmin;
+    background: #00000000;
+    height: 50vh;
+}
+
+.sticky-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /* 保持圖片比例 */
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.sticky-image img.active {
+    opacity: 1;
+}
+
+.content-container6 {
+    width: 60%;
+}
+
+.section6 {
     min-height: 80vh;
     padding-right: 10vw;
     margin-bottom: 5vw;
@@ -810,7 +856,7 @@ footer {
     color: #ff0000;
     font-family: monospace;
     z-index: 3;
-    font-size:60px;
+    font-size: 60px;
     animation: blink 1s infinite;
 }
 
@@ -825,7 +871,7 @@ footer {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 .timeline ul {
-    background: #456990;
+    background: #0000;
     padding: 50px 0;
 }
 
@@ -835,7 +881,7 @@ footer {
     width: 6px;
     margin: 0 auto;
     padding-top: 50px;
-    background: #fff;
+    background: #ffff;
 }
 
 .timeline ul li::after {
@@ -856,7 +902,7 @@ footer {
     bottom: 0;
     width: 400px;
     padding: 15px;
-    background: #f45b69;
+    background: #ffff;
 }
 
 .timeline ul li div::before {
@@ -875,7 +921,7 @@ footer {
 .timeline ul li:nth-child(odd) div::before {
     left: -15px;
     border-width: 8px 16px 8px 0;
-    border-color: transparent #f45b69 transparent transparent;
+    border-color: transparent #ffff transparent transparent;
 }
 
 .timeline ul li:nth-child(even) div {
@@ -885,14 +931,15 @@ footer {
 .timeline ul li:nth-child(even) div::before {
     right: -15px;
     border-width: 8px 0 8px 16px;
-    border-color: transparent transparent transparent #f45b69;
+    border-color: transparent transparent transparent #ffff;
 }
 
 time {
     display: block;
     font-size: 1.2rem;
-    font-weight: bold;
+    font-weight: bolder;
     margin-bottom: 8px;
+    color:#A20B0B;
 }
 
 
@@ -904,7 +951,7 @@ time {
 }
 
 .timeline ul li.in-view::after {
-    background: #f45b69;
+    background: #A20B0B;
 }
 
 .timeline ul li div {
@@ -958,7 +1005,7 @@ time {
     .timeline ul li:nth-child(even) div::before {
         left: -15px;
         border-width: 8px 16px 8px 0;
-        border-color: transparent #f45b69 transparent transparent;
+        border-color: transparent #A20B0B transparent transparent;
     }
 }
 
@@ -1030,7 +1077,7 @@ time {
 
 mark {
     animation: highlight linear forwards;
-    animation-timeline: view(50% 20%);
+    animation-timeline: view(30% 20%);
     background: linear-gradient(to right,
             orange 50%,
             transparent 50%);
@@ -1041,21 +1088,3 @@ mark {
 }
 
 /* Eend | Hightlisht Style */
-article {
-    display: block;
-    min-height: 100vh;
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 15px;
-    padding-bottom: 50vh;
-
-    .imgbox {
-        min-height: 50vh;
-        background-color: #eee;
-        margin: 15px auto;
-        border-radius: 4px;
-    }
-}
-
-
