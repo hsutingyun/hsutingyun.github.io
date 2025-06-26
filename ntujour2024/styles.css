@@ -190,6 +190,15 @@ footer {
     background-color: #000000;
     color: #FAFAFA;
     height: 200vh;
+    position: relative;
+    z-index: 1;
+}
+
+.sticky-image {
+    position: sticky;
+    top: 10%;
+    z-index: 2;
+    background: none !important;
 }
 
 .cards-container {
@@ -346,7 +355,7 @@ footer {
 .dialog-box {
     position: absolute;
     bottom: 1vh;
-    width: 100%;
+    width: 40%;
     background-color: #000000;
     color: #FAFAFA;
     text-align: center;
@@ -359,6 +368,7 @@ footer {
     flex-direction: column;
     gap: 10px;
     margin-top: 1rem;
+    font-size: larger;
 }
 
 .choice-btn {
@@ -386,6 +396,9 @@ footer {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+}
+text {
+    font-size: large;
 }
 
 /*scrolltrigger*/
@@ -521,10 +534,21 @@ footer {
 }
 
 .section4 {
-    min-height: 80vh;
-    padding: 20px;
+    min-height: 100vh;
+    padding: 40px;
     margin-bottom: 40px;
     color: #FAFAFA;
+
+}
+
+/* 針對圖表標題 */
+.chart-title {
+    font-size: 9px !important;
+}
+
+/* 針對圖表標籤 */
+.chart-labels {
+    font-size: 9px !important;
 }
 
 /*圖文搭配（一）*/
@@ -939,7 +963,7 @@ time {
     font-size: 1.2rem;
     font-weight: bolder;
     margin-bottom: 8px;
-    color:#A20B0B;
+    color: #A20B0B;
 }
 
 
