@@ -101,15 +101,14 @@ hr {
 }
 
 .conclusion {
-    height: 300vh;
+    height: 250vh;
     width: 100%;
     background-color: #000000;
-    color: #FAFAFA;
 }
 
 footer {
     text-align: left;
-    background-color: #A20B0B;
+    background-color: #000000;
     color: #FAFAFA;
     font-size: medium;
     letter-spacing: normal;
@@ -203,6 +202,7 @@ footer {
     z-index: 2;
     background: none !important;
 }
+
 
 .cards-container {
     display: flex;
@@ -400,6 +400,7 @@ footer {
     border-radius: 5px;
     cursor: pointer;
 }
+
 text {
     font-size: large;
 }
@@ -571,6 +572,7 @@ text {
     padding-left: 10vmin;
     background: #00000000;
     height: 50vh;
+    z-index: 2;
 }
 
 .sticky-image img {
@@ -601,49 +603,61 @@ text {
 }
 
 /*圖文搭配（二）*/
-.container6 {
-    display: flex;
-    max-width: 100%;
-    margin: 0 auto;
-}
+@import url(https://hsutingyun.github.io/ntujour2024/picture/Picture&Text/1.png);
 
-.image-container6 {
-    width: 40%;
-}
-
-.sticky-image {
-    position: sticky;
-    top: 20%;
-    padding-left: 10vmin;
-    background: #00000000;
-    height: 50vh;
-}
-
-.sticky-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    /* 保持圖片比例 */
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-.sticky-image img.active {
-    opacity: 1;
-}
-
-.content-container6 {
-    width: 60%;
-}
-
-.section6 {
-    min-height: 80vh;
-    padding-right: 10vw;
-    margin-bottom: 5vw;
+#circle-shape-example {
+    font-family: Open Sans, sans-serif;
+    margin: 2rem;
     color: #FAFAFA;
+    left: 20%;
+    right: 20%;
+    top:20%;
+    bottom:20%;
+}
+
+#circle-shape-example p {
+    line-height: 1.8;
+}
+
+#circle-shape-example .curve {
+    width: 33%;
+    height: auto;
+    min-width: 150px;
+    float: left;
+    margin-right: 2rem;
+    border-radius: 50;
+    left: 20%;
+    right: 20%;
+    top:20%;
+    bottom:20%;
+}
+@import url(https://hsutingyun.github.io/ntujour2024/picture/Picture&Text/2.png);
+
+#circle-shape-example2 {
+    font-family: Open Sans, sans-serif;
+    margin: 4rem;
+    color: #FAFAFA;
+    left: 20%;
+    right: 20%;
+    top:20%;
+    bottom:20%;
+}
+
+#circle-shape-example2 p {
+    line-height: 1.8;
+}
+
+#circle-shape-example2 .curve {
+    width: 33%;
+    height: auto;
+    min-width: 150px;
+    float: left;
+    margin-right: 2rem;
+    border-radius: 50;
+    left: 20%;
+    right: 20%;
+    top:20%;
+    bottom:20%;
 }
 
 /* Conclusion text*/
@@ -1110,13 +1124,13 @@ mark {
     background-color: transparent !important;
     color: inherit;
     background: linear-gradient(to right,
-            orange 50%,
+            rgb(247, 231, 152) 50%,
             transparent 50%);
     /* background: orange; */
     background-position: 100%;
     background-size: 200% 100%;
     padding: 0 !important;
-    transition: background-position .8s ease-out, color .8s ease-out;
+    transition: background-position 3s ease-out, color 3s ease-out;
 }
 
 mark.animate {

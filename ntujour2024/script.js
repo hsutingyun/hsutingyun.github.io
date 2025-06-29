@@ -69,11 +69,12 @@ document.addEventListener('DOMContentLoaded', function () {
   // monitor
   const monitorSection = () => {
     const monitorTexts = [
-      "引言",
+      "——故事開始——",
       "小麥（化名）來臺工作前已懷有身孕。",
       "這天他臥在雇主家中的床將孩子生下，",
       "面對時刻注視自己的監視器，",
       "他將棉被緊緊的覆蓋下半身，仍難掩嬰兒的哭聲迴盪……",
+      "生下孩子的事情曝光了，網路的謾罵不斷蔓延……",
       "",
       "",
       ""
@@ -170,13 +171,13 @@ document.addEventListener('DOMContentLoaded', function () {
     constructor() {
       this.characterData = {
         oldwang: {
-          name: '移工',
-          avatar: 'https://hsutingyun.github.io/ntujour2024/picture/Characters/12.png',
-          scenes: {
-            start: {
-              dialog: [{
-                  type: 'character',
-                  text: "我住在這裡很多年了，從年輕時就住在這個地下室..."
+          d: '老闆',
+          d: 'https://hsutingyun.github.io/ntujour2024/picture/Characters/12.png',
+          d: {
+            d: {
+              d: [{
+                  d: 'character',
+                  d: "我住在這裡很多年了，從年輕時就住在這個地下室..."
                 },
                 {
                   type: 'question',
@@ -351,7 +352,7 @@ document.addEventListener('DOMContentLoaded', function () {
       this.characterData = {
         eric: {
           name: '移工',
-          avatar: 'https://hsutingyun.github.io/ntujour2024/picture/Characters/c1.PNG',
+          avatar: 'https://hsutingyun.github.io/ntujour2024/picture/Characters/12.png',
           scenes: {
             start: {
               text: "我：",
@@ -398,7 +399,7 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         xiaolin: {
           name: 'NGO志工',
-          avatar: 'https://hsutingyun.github.io/ntujour2024/picture/Characters/c2.PNG',
+          avatar: 'https://hsutingyun.github.io/ntujour2024/picture/Characters/12.png',
           scenes: {
             start: {
               text: "我：",
@@ -445,7 +446,7 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         oldwang: {
           name: '雇主',
-          avatar: 'https://hsutingyun.github.io/ntujour2024/picture/Characters/c3.PNG',
+          avatar: 'https://hsutingyun.github.io/ntujour2024/picture/Characters/12.png',
           scenes: {
             start: {
               text: "我：",
@@ -492,7 +493,7 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         fourth: {
           name: '勞動部 官員',
-          avatar: 'https://hsutingyun.github.io/ntujour2024/picture/Characters/c3.PNG',
+          avatar: 'https://hsutingyun.github.io/ntujour2024/picture/Characters/12.png',
           scenes: {
             start: {
               text: "我：",
