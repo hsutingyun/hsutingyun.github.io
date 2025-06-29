@@ -69,6 +69,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // monitor
   const monitorSection = () => {
     const monitorTexts = [
+      "引言",
       "小麥（化名）來臺工作前已懷有身孕。",
       "這天他臥在雇主家中的床將孩子生下，",
       "面對時刻注視自己的監視器，",
@@ -78,6 +79,7 @@ document.addEventListener('DOMContentLoaded', function () {
       ""
     ];
 
+    const monitorDialog = document.querySelector('.monitor-dialog');
     const monitorText = document.querySelector('.monitor-text');
     const sceneLayers = document.querySelectorAll('.scene-layer');
     const typingHand = document.querySelector('.typing-hand');
@@ -126,6 +128,13 @@ document.addEventListener('DOMContentLoaded', function () {
         monitorText.textContent = monitorTexts[textIndex];
         monitorText.style.opacity = '1';
         monitorText.style.transform = 'translateY(0)';
+
+        if (textIndex == 0) {
+          monitorDialog.classList.add('center');
+        }
+        else {
+          monitorDialog.classList.remove('center');
+        }
 
         if (textIndex >= 4) {
           typingHand.style.opacity = '1';
@@ -623,7 +632,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
   //數據
   let currentChart = null;
-  const ctx = document.getElementById('dynamicChart').getContext('2d');
+  const chartElement = document.getElementById('dynamicChart');
+  const ctx = chartElement.getContext('2d');
 
   // 創建圖表的函數
   function createChart(type, labels, data, prefix, title) {
@@ -687,6 +697,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     Chart.defaults.color = '#FAFAFA';
+    Chart.defaults.font.size = parseFloat(getComputedStyle(chartElement).fontSize);
     Chart.overrides['line'].plugins = {
       legend: {
         display: false
@@ -874,4 +885,24 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   // 處理影片播放
+
+  const marks = document.querySelectorAll('mark');
+        
+  const marks_observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Add animation class when element comes into view
+        entry.target.classList.add('animate');
+        // Unobserve after animation to improve performance
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    // Trigger when 30% of the element is visible
+    threshold: 0.3,
+    // Add margin to trigger slightly before the element is fully in view
+    rootMargin: '20px'
+  });
+  
+  marks.forEach(mark => marks_observer.observe(mark));
 });

@@ -8,8 +8,12 @@ hr {
     border-width: 1px;
 }
 
+.loading-screen-content .text {
+    background-color: transparent;
+}
+
 .loading-screen-content {
-    background-color: #000;
+    background-color: #000000d0;
     z-index: 89;
     width: 100vw;
     height: 100vh;
@@ -23,7 +27,6 @@ hr {
 
 .loading-image-container {
     position: relative;
-    background-color: black;
     display: flex;
 }
 
@@ -91,8 +94,8 @@ hr {
     text-align: center;
     background-color: #000000;
     letter-spacing: normal;
-    padding-left: 50vh;
-    padding-right: 50vh;
+    padding-left: 20vh;
+    padding-right: 20vh;
     padding-top: 20vh;
     padding-bottom: 20vh;
 }
@@ -797,6 +800,10 @@ text {
     z-index: 3;
 }
 
+.monitor-dialog.center {
+    bottom: 50vh;
+}
+
 .monitor-text {
     font-size: 1.2em;
     line-height: 1.6;
@@ -1100,15 +1107,21 @@ time {
 }
 
 mark {
-    animation: highlight linear forwards;
-    animation-timeline: view(30% 20%);
+    background-color: transparent !important;
+    color: inherit;
     background: linear-gradient(to right,
             orange 50%,
             transparent 50%);
+    /* background: orange; */
     background-position: 100%;
     background-size: 200% 100%;
-    border-radius: 0.125rem;
-    padding-inline: 0.125rem;
+    padding: 0 !important;
+    transition: background-position .8s ease-out, color .8s ease-out;
+}
+
+mark.animate {
+    color: #000;
+    background-position: 0%;
 }
 
 /* Eend | Hightlisht Style */
