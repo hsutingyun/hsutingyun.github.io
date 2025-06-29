@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function () {
       "面對時刻注視自己的監視器，",
       "他將棉被緊緊的覆蓋下半身，仍難掩嬰兒的哭聲迴盪……",
       "生下孩子的事情曝光了，網路的謾罵不斷蔓延……",
-      ""
+      "", "", ""
     ];
 
     const monitorDialog = document.querySelector('.monitor-dialog');
