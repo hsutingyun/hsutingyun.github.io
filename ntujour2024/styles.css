@@ -1197,6 +1197,15 @@ mark.animate {
     border-color: #000;
 }
 
+.character-card img {
+    object-fit: contain;
+    left: 50%;
+    width: 80%;
+    height: 80%;
+    display: block;
+    justify-self: center;
+}
+
 .character-emoji {
     font-size: 3em;
     margin-bottom: 10px;
@@ -1206,7 +1215,7 @@ mark.animate {
 .character-name {
     font-size: 1.2em;
     font-weight: bold;
-    margin-bottom: 5px;
+    padding-top: 1em;
 }
 
 .character-desc {
