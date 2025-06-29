@@ -290,58 +290,53 @@
 
         <!-- Text Adventure Game -->
         <div class="game-container">
-            <!-- 角色選擇區域 -->
-            <div class="character-selection">
-                <h2>挑選一個人物，聽聽他的故事。</h2>
-                <div class="character-buttons">
-                    <button class="character-btn" data-character="移工">
-                        <div>
-                            <img src="https://hsutingyun.github.io/ntujour2024/picture/Characters/c1.PNG" alt="移工">
-                            <div class="character-info">
-                                <h3>移工</h3>
-                            </div>
-                        </div>
-                    </button>
-                    <button class="character-btn" data-character="NGO志工">
-                        <div>
-                            <img src="https://hsutingyun.github.io/ntujour2024/picture/Characters/c2.PNG" alt="NGO志工">
-                            <div class="character-info">
-                                <h3>NGO志工</h3>
-                            </div>
-                        </div>
-                    </button>
-                    <button class="character-btn" data-character="雇主">
-                        <div>
-                            <img src="https://hsutingyun.github.io/ntujour2024/picture/Characters/c3.PNG" alt="雇主">
-                            <div class="character-info">
-                                <h3>雇主</h3>
-                            </div>
-                        </div>
-                    </button>
-                    <button class="character-btn" data-character="勞動部 官員">
-                        <div>
-                            <img src="https://hsutingyun.github.io/ntujour2024/picture/Characters/c3.PNG" alt="勞動部 官員">
-                            <div class="character-info">
-                                <h3>勞動部 官員</h3>
-                            </div>
-                        </div>
-                    </button>
+            <h1>d</h1>
+            <h1 class="game-title">移工人生</h1>
+            <p class="game-subtitle">體驗不同視角的移工議題文字冒險遊戲</p>
+
+            <!-- 角色選擇 -->
+            <div id="character-selection" class="character-selection">
+                <div class="character-card" data-character="worker">
+                    <span class="character-emoji">👷</span>
+                    <div class="character-name">移工</div>
+                    <div class="character-desc"></div>
+                </div>
+                <div class="character-card" data-character="ngo">
+                    <span class="character-emoji">🤝</span>
+                    <div class="character-name">NGO工作者</div>
+                    <div class="character-desc"></div>
+                </div>
+                <div class="character-card" data-character="employer">
+                    <span class="character-emoji">👔</span>
+                    <div class="character-name">雇主</div>
+                    <div class="character-desc"></div>
+                </div>
+                <div class="character-card" data-character="government">
+                    <span class="character-emoji">🏛️</span>
+                    <div class="character-name">政府官員</div>
+                    <div class="character-desc"></div>
                 </div>
             </div>
 
-            <!-- 遊戲對話區域 -->
-            <div class="game-container" style="display: none;">
-                <div class="scene">
-                    <div class="background"></div>
-                    <div class="character-avatar"></div>
-                    <div class="dialog-box">
-                        <div id="dialog-text" style="font-size:large" ;></div>
-                        <div class="choices"></div>
+            <!-- 遊戲內容 -->
+            <div id="game-content" class="game-content">
+                <div class="character-info">
+                    <div id="character-avatar" class="character-avatar"></div>
+                    <div class="character-details">
+                        <div id="character-title" class="character-title"></div>
+                        <div id="character-description" class="character-description"></div>
                     </div>
                 </div>
-                <button class="back-btn" style="display: none; font-size:large">返回選擇其他人物</button>
+
+                <div class="story-section">
+                    <div id="story-text" class="story-text"></div>
+                    <div id="choices" class="choices"></div>
+                </div>
+
+                <button id="restart-btn" class="restart-btn">重新開始</button>
             </div>
         </div>
+
 
         <!--圖文搭配（二）-->
         <div id="circle-shape-example" style="height: 80vh;">

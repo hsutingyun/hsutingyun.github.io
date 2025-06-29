@@ -611,8 +611,8 @@ text {
     color: #FAFAFA;
     left: 20%;
     right: 20%;
-    top:20%;
-    bottom:20%;
+    top: 20%;
+    bottom: 20%;
 }
 
 #circle-shape-example p {
@@ -628,9 +628,10 @@ text {
     border-radius: 50;
     left: 20%;
     right: 20%;
-    top:20%;
-    bottom:20%;
+    top: 20%;
+    bottom: 20%;
 }
+
 @import url(https://hsutingyun.github.io/ntujour2024/picture/Picture&Text/2.png);
 
 #circle-shape-example2 {
@@ -639,8 +640,8 @@ text {
     color: #FAFAFA;
     left: 20%;
     right: 20%;
-    top:20%;
-    bottom:20%;
+    top: 20%;
+    bottom: 20%;
 }
 
 #circle-shape-example2 p {
@@ -656,8 +657,8 @@ text {
     border-radius: 50;
     left: 20%;
     right: 20%;
-    top:20%;
-    bottom:20%;
+    top: 20%;
+    bottom: 20%;
 }
 
 /* Conclusion text*/
@@ -1139,3 +1140,219 @@ mark.animate {
 }
 
 /* Eend | Hightlisht Style */
+.game-container {
+    background: black;
+    max-width: 70%;
+    width: 100%;
+    margin: 0 auto;
+    padding: 30px;
+    backdrop-filter: blur(10px);
+    height: 80vh;
+}
+
+.game-title {
+    text-align: center;
+    color: #FAFAFA;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.game-subtitle {
+    text-align: center;
+    color: #fafaff;
+    font-size: 1.1em;
+    margin-bottom: 30px;
+}
+
+.character-selection {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.character-card {
+    background: linear-gradient(145deg,#FAFAFA);
+    border: 2px solid transparent;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    color: #000;
+    width: 100%;
+}
+
+.character-card:hover {
+    transform: translateY(-5px);
+    border-color: #000;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.character-card.selected {
+    background: linear-gradient(145deg, #e74c3c, #c0392b);
+    color: black;
+    border-color: #000;
+}
+
+.character-emoji {
+    font-size: 3em;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.character-name {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.character-desc {
+    font-size: 0.9em;
+    opacity: 0.8;
+}
+
+.game-content {
+    display: none;
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.story-section {
+    background: #f8f9fa;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.story-text {
+    font-size: 1.1em;
+    color: black;
+    margin-bottom: 20px;
+}
+
+.choices {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.choice-btn {
+    background: linear-gradient(145deg,  #e74c3c, #c0392b);
+    color: black;
+    border: none;
+    padding: 45px 50px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: all 0.3s ease;
+    text-align: left;
+}
+
+.choice-btn:hover {
+    transform: translateY(-2px);
+}
+
+.choice-btn:active {
+    transform: translateY(0);
+}
+
+.character-info {
+    background: #efe9e9;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.character-avatar {
+    font-size: 4em;
+    background: linear-gradient(145deg, #e74c3c, #c0392b);
+    padding: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: left;
+    justify-content: center;
+    min-width: 100px;
+    height: 100px;
+    z-index: -10;
+    width: 10px;
+}
+
+.character-details {
+    flex: 1;
+}
+
+.character-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 5px;
+}
+
+.character-description {
+    color: #000;
+    font-size: 1.1em;
+    line-height: 1.4;
+}
+
+.restart-btn {
+    background: linear-gradient(145deg, #e74c3c, #c0392b);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+}
+
+.restart-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+}
+
+.ending {
+    background: linear-gradient(145deg, #e74c3c, #c0392b);
+    color: white;
+    border-radius: 15px;
+    padding: 25px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.ending h3 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+}
+
+@media (max-width: 600px) {
+    .game-container {
+        padding: 20px;
+    }
+
+    .game-title {
+        font-size: 2em;
+    }
+
+    .character-selection {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

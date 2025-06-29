@@ -132,8 +132,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (textIndex == 0) {
           monitorDialog.classList.add('center');
-        }
-        else {
+        } else {
           monitorDialog.classList.remove('center');
         }
 
@@ -166,470 +165,352 @@ document.addEventListener('DOMContentLoaded', function () {
       this.classList.toggle('flipped');
     });
   });
-  // Text Adventure Game
-  class VisualNovelDialog {
+  // Text Adventure Game更新
+  class MigrantWorkerGame {
     constructor() {
-      this.characterData = {
-        oldwang: {
-          d: '老闆',
-          d: 'https://hsutingyun.github.io/ntujour2024/picture/Characters/12.png',
-          d: {
-            d: {
-              d: [{
-                  d: 'character',
-                  d: "我住在這裡很多年了，從年輕時就住在這個地下室..."
-                },
-                {
-                  type: 'question',
-                  options: [{
-                      text: "屋頂漏水、蟑螂滿地的頂加生記",
-                      nextScene: "leakage"
-                    },
-                    {
-                      text: "辛酸血淚累積而成的找房經驗",
-                      nextScene: "experience"
-                    }
-                  ]
-                }
-              ]
-            },
-            leakage: {
-              dialog: [{
-                  type: 'character',
-                  text: "每到雨季就特別困擾，房東也不太理會這些問題..."
-                },
-                {
-                  type: 'question',
-                  options: [{
-                    text: "那您有想過要搬家嗎？",
-                    nextScene: "moveOut"
-                  }]
-                }
-              ]
-            },
-            moveOut: {
-              dialog: [{
-                  type: 'character',
-                  text: "想是想啦，但現在房租都漲很多，找到便宜又合適的很難..."
-                },
-                {
-                  type: 'question',
-                  options: [{
-                    text: "返回",
-                    nextScene: "start"
-                  }]
-                }
-              ]
-            },
-            experience: {
-              dialog: [{
-                  type: 'character',
-                  text: "找房子真的很辛苦，常常看到合適的，一問價錢就傻眼了..."
-                },
-                {
-                  type: 'question',
-                  options: [{
-                    text: "您都是怎麼找房子的呢？",
-                    nextScene: "searchMethod"
-                  }]
-                }
-              ]
-            },
-            searchMethod: {
-              dialog: [{
-                  type: 'character',
-                  text: "以前都是到處問親朋好友，現在比較多用網路找，但有時候照片跟實際差很多..."
-                },
-                {
-                  type: 'question',
-                  options: [{
-                    text: "返回",
-                    nextScene: "start"
-                  }]
-                }
-              ]
-            }
-          }
-        }
+      this.currentCharacter = null;
+      this.gameState = {
+        reputation: 50,
+        resources: 50,
+        currentScene: 0
       };
-
-      this.currentCharacter = 'oldwang';
-      this.currentScene = null;
-      this.currentDialogIndex = 0;
-      this.initializeGame();
+      this.init();
     }
 
-    initializeGame() {
-      const dialogBox = document.querySelector('.dialog-box');
-      // const continueHint = document.querySelector('.continue-hint');
+    init() {
+      this.bindEvents();
+      this.showCharacterSelection();
+    }
 
-      // 點擊對話框繼續對話
-      dialogBox.addEventListener('click', () => {
-        const currentScene = this.characterData[this.currentCharacter].scenes[this.currentScene];
-        if (!currentScene) return;
-
-        const currentDialog = currentScene.dialog[this.currentDialogIndex];
-        if (!currentDialog) return;
-
-        if (currentDialog.type === 'character') {
-          this.currentDialogIndex++;
-          this.updateDialog();
-        }
+    bindEvents() {
+      document.querySelectorAll('.character-card').forEach(card => {
+        card.addEventListener('click', (e) => {
+          const character = e.currentTarget.dataset.character;
+          this.selectCharacter(character);
+        });
       });
 
-      this.startGame();
+      document.getElementById('restart-btn').addEventListener('click', () => {
+        this.restart();
+      });
+    }
+
+    selectCharacter(character) {
+      this.currentCharacter = character;
+      this.gameState = {
+        currentScene: 0
+      };
+
+      // 更新UI
+      document.querySelectorAll('.character-card').forEach(card => {
+        card.classList.remove('selected');
+      });
+      document.querySelector(`[data-character="${character}"]`).classList.add('selected');
+
+      setTimeout(() => {
+        this.startGame();
+      }, 500);
     }
 
     startGame() {
-      const character = this.characterData[this.currentCharacter];
+      document.getElementById('character-selection').style.display = 'none';
+      document.getElementById('game-content').style.display = 'block';
 
-      // 設置角色資訊
-      const avatar = document.querySelector('.character-avatar');
-      const name = document.querySelector('.character-name');
-      if (avatar) avatar.style.backgroundImage = `url(${character.avatar})`;
-      if (name) name.textContent = character.name;
-
-      this.showScene('start');
-    }
-
-    showScene(sceneId) {
-      const character = this.characterData[this.currentCharacter];
-      const scene = character.scenes[sceneId];
-
-      if (!scene) {
-        console.error('Scene not found:', sceneId);
-        return;
-      }
-
-      this.currentScene = sceneId;
-      this.currentDialogIndex = 0;
-      this.updateDialog();
-    }
-
-    updateDialog() {
-      const scene = this.characterData[this.currentCharacter].scenes[this.currentScene];
-      const currentDialog = scene.dialog[this.currentDialogIndex];
-
-      const dialogText = document.getElementById('dialog-text');
-      // const questionBox = document.querySelector('.question-box');
-      // const continueHint = document.querySelector('.continue-hint');
-
-      if (!currentDialog) return;
-
-      if (currentDialog.type === 'character') {
-        // 顯示角色對話
-        dialogText.textContent = currentDialog.text;
-        // questionBox.style.display = 'none';
-        // continueHint.style.display = 'block';
-      } else if (currentDialog.type === 'question') {
-        // 顯示問題選項
-        dialogText.textContent = '';
-        // questionBox.style.display = 'flex';
-        // continueHint.style.display = 'none';
-
-        // 更新問題按鈕
-        // questionBox.innerHTML = '';
-        currentDialog.options.forEach(option => {
-          const button = document.createElement('button');
-          button.className = 'question-btn';
-          button.textContent = option.text;
-          button.addEventListener('click', () => {
-            this.showScene(option.nextScene);
-          });
-          // questionBox.appendChild(button);
-        });
-      }
-    }
-  }
-
-  // 初始化遊戲
-  window.onload = () => {
-    const game = new VisualNovelDialog();
-  };
-  // Text Adventure Game Class
-  class TextAdventure {
-    constructor() {
-      this.characterData = {
-        eric: {
-          name: '移工',
-          avatar: 'https://hsutingyun.github.io/ntujour2024/picture/Characters/12.png',
-          scenes: {
-            start: {
-              text: "我：",
-              choices: [{
-                text: "小姐您好，我們想聽聽您的工作生活。",
-                nextScene: "step1"
-              }, ]
-            },
-            step1: {
-              text: "移工：",
-              choices: [{
-                text: '我是小雅，為了賺錢來到台灣工作。至今來台灣也五年了。丈夫和小孩都在印尼，幾乎兩年沒看到他們了。最近一起來的朋友剛懷孕，讓我也想要有第二胎……',
-                nextScene: 'step2'
-              }]
-            },
-            step2: {
-              text: '我：',
-              choices: [{
-                text: "請問您近期有懷孕的計畫嗎?",
-                nextScene: "step3_1"
-              }, {
-                text: "如果在台灣懷孕了，您會怎麼尋求幫助呢?",
-                nextScene: "step3_2"
-              }]
-            },
-            step3_1: {
-              text: "移工",
-              choices: [{
-                text: '可能回印尼再考慮吧。現在的工作要每天24小時照顧阿公，還需要把阿公抱上床或馬桶，實在不適合懷孕……',
-                nextScene: 'ending'
-              }]
-            },
-            step3_2: {
-              text: '移工：',
-              choices: [{
-                text: '不知道耶……我試圖在TikTok上尋找資訊，可是上面說法很亂，就連我朋友也不知道哪個才是真的。',
-                nextScene: 'ending'
-              }]
-            },
-            ending: {
-              text: "對話內容已結束，請按右上角按鍵，和其他人聊聊吧！。"
-            }
-          }
+      const characterData = {
+        worker: {
+          emoji: '👷',
+          title: '移工',
+          description: '來自東南亞的外籍勞工，為了家庭的未來而遠離故鄉工作。面對語言隔閡、文化差異和工作挑戰，需要在異鄉中找到生存之道。'
         },
-        xiaolin: {
-          name: 'NGO志工',
-          avatar: 'https://hsutingyun.github.io/ntujour2024/picture/Characters/12.png',
-          scenes: {
-            start: {
-              text: "我：",
-              choices: [{
-                text: "林先生您好，請自我介紹一下。",
-                nextScene: "step1"
-              }, ]
-            },
-            step1: {
-              text: "NGO志工：",
-              choices: [{
-                text: '我在一個關心移工權益的NGO擔任志工，關心在台移工的基本人權，期許外國來台工作者在未來都能享有安心生育以及撫養小孩的權利。',
-                nextScene: 'step2'
-              }]
-            },
-            step2: {
-              text: '我：',
-              choices: [{
-                text: "您認為，「生育孩子」屬於移工在台灣工作期間的基本權益嗎？",
-                nextScene: "step3_1"
-              }, {
-                text: "若要改善移工的懷孕困境，得先從哪個部分著手呢？",
-                nextScene: "step3_2"
-              }]
-            },
-            step3_1: {
-              text: "NGO志工：",
-              choices: [{
-                text: '《性工法》保障勞工的生育權益，而這當然也包含移工朋友們！\n雖然多數民眾對此抱持顧慮，但我們這些志工仍會透過社會倡議，讓更多人理解移工媽媽們的處境。',
-                nextScene: 'ending'
-              }]
-            },
-            step3_2: {
-              text: 'NGO志工：',
-              choices: [{
-                text: '我認為是「法律宣導」的部分吧。\n移工基於語言障礙，難以理解台灣法律；而許多雇主也不清楚移工懷孕後可申請的相關措施……這使得雙方都不知道怎麼保障自己的權益，唉！',
-                nextScene: 'ending'
-              }]
-            },
-            ending: {
-              text: "對話內容已結束，請按右上角按鍵，和其他人聊聊吧！。"
-            }
-          }
+        ngo: {
+          emoji: '🤝',
+          title: 'NGO工作者',
+          description: '致力於維護移工權益的社會工作者。透過法律協助、政策倡議和社會教育，努力改善移工的處境，促進社會公平正義。'
         },
-        oldwang: {
-          name: '雇主',
-          avatar: 'https://hsutingyun.github.io/ntujour2024/picture/Characters/12.png',
-          scenes: {
-            start: {
-              text: "我：",
-              choices: [{
-                text: "黃女士您好，請問您有僱用外籍移工的經驗嗎?",
-                nextScene: "step1"
-              }, ]
-            },
-            step1: {
-              text: "雇主：",
-              choices: [{
-                text: '有，我曾經請過印尼移工照顧過媽媽，雖然那只有短短的三個月而已。',
-                nextScene: 'step2'
-              }]
-            },
-            step2: {
-              text: '我：',
-              choices: [{
-                text: "您覺得台灣人對於移工足夠友善嗎?",
-                nextScene: "step3_1"
-              }, {
-                text: "如果家裡的移工有在台懷孕的計畫，您會支持他嗎？",
-                nextScene: "step3_2"
-              }]
-            },
-            step3_1: {
-              text: "雇主：",
-              choices: [{
-                text: '挺友善的吧。畢竟移工的工作是台灣人不太想做的，或多或少也是挺包容他們的……\n但老實說，新聞和FB上好像還是有一些比較偏激的意見存在啦。',
-                nextScene: 'ending'
-              }]
-            },
-            step3_2: {
-              text: '雇主：',
-              choices: [{
-                text: '我、我還是希望不要耶...…如果移工懷有身孕的同時還得把媽媽抱上抱下，感覺很容易受傷啊……若有個萬一，誰要負責呢？',
-                nextScene: 'ending'
-              }]
-            },
-            ending: {
-              text: "對話內容已結束，請按右上角按鍵，和其他人聊聊吧！。"
-            }
-          }
+        employer: {
+          emoji: '👔',
+          title: '雇主',
+          description: '面臨人力需求的企業主。需要在營運成本、法規遵循和人道關懷之間找到平衡點，同時承擔企業社會責任。'
         },
-        fourth: {
-          name: '勞動部 官員',
-          avatar: 'https://hsutingyun.github.io/ntujour2024/picture/Characters/12.png',
-          scenes: {
-            start: {
-              text: "我：",
-              choices: [{
-                text: "您好，我們有幾個問題想請教您。",
-                nextScene: "step1"
-              }, ]
-            },
-            step1: {
-              text: "勞動部 官員：",
-              choices: [{
-                text: '你們好，我是在勞動部任職的小蔡，為台灣的勞工把關權益，有什麼好奇的都歡迎問我吧。',
-                nextScene: 'step2'
-              }]
-            },
-            step2: {
-              text: '我：',
-              choices: [{
-                text: "現今臺灣社會中，移工的權益問題為何對我們如此重要?",
-                nextScene: "step3_1"
-              }, {
-                text: "如果家裡的移工有在台懷孕的計畫，您會支持他嗎？",
-                nextScene: "step3_2"
-              }]
-            },
-            step3_1: {
-              text: "勞動部 官員：",
-              choices: [{
-                text: '移工挹注許多產業的勞動力，如台灣高齡化後所面臨的人力缺口，就需要仰賴這群來自異鄉的朋友支持。\n因此，創造一個讓移工安心工作、平安養育的環境，以吸引移工來台灣，就會是社會的重要課題。',
-                nextScene: 'ending'
-              }]
-            },
-            step3_2: {
-              text: '勞動部 官員：',
-              choices: [{
-                text: '嗯……寶寶們後續的安置與醫療問題的確需要關心，但這方面是衛服部與其他單位負責，我們就比較難介入……\n實際上，許多社會工作需要各政府部門謹慎分工來完成，雖然依法行政有其必要，卻也因此缺乏彈性，讓改革難以完善。',
-                nextScene: 'ending'
-              }]
-            },
-            ending: {
-              text: "對話內容已結束，請按右上角按鍵，和其他人聊聊吧！。"
-            }
-          }
+        government: {
+          emoji: '🏛️',
+          title: '政府官員',
+          description: '負責制定和執行移工政策的公務員。需要在經濟發展、社會和諧和人權保障之間取得平衡，回應各方關切。'
         }
       };
 
-      this.currentCharacter = null;
-      this.currentScene = null;
-      this.initializeUI();
+      const character = characterData[this.currentCharacter];
+      document.getElementById('character-avatar').textContent = character.emoji;
+      document.getElementById('character-title').textContent = character.title;
+      document.getElementById('character-description').textContent = character.description;
+
+      this.showScene();
     }
 
-    initializeUI() {
-      const characterBtns = document.querySelectorAll('.character-btn');
-      characterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const character = btn.dataset.character;
-          this.startGame(character);
-        });
-      });
+    showScene() {
+      const scenes = this.getScenes();
+      const currentScene = scenes[this.gameState.currentScene];
 
-      const backBtn = document.querySelector('.back-btn');
-      if (backBtn) {
-        backBtn.addEventListener('click', () => this.returnToSelection());
-      }
-    }
-
-    startGame(character) {
-      console.log('Starting game with character:', character);
-      this.currentCharacter = character;
-
-      const gameContainers = document.querySelectorAll('.game-container');
-      const charSelection = document.querySelector('.character-selection');
-      const dialogContainer = gameContainers[1]; // 第二個 game-container
-      const backBtn = document.querySelector('.back-btn');
-
-      if (charSelection) charSelection.style.display = 'none';
-      if (dialogContainer) dialogContainer.style.display = 'block';
-      if (backBtn) backBtn.style.display = 'block';
-
-      const avatar = document.querySelector('.character-avatar');
-      if (avatar) {
-        avatar.style.backgroundImage = `url(${this.characterData[character].avatar})`;
-      }
-
-      this.showScene('start');
-    }
-
-    showScene(sceneId) {
-      console.log('Showing scene:', sceneId);
-      const character = this.characterData[this.currentCharacter];
-      const scene = character.scenes[sceneId];
-
-      if (!scene) {
-        console.error('Scene not found:', sceneId);
+      if (!currentScene) {
+        this.showEnding();
         return;
       }
 
-      this.currentScene = sceneId;
+      document.getElementById('story-text').innerHTML = currentScene.text;
+      this.showChoices(currentScene.choices);
+    }
 
-      const dialogText = document.getElementById('dialog-text');
-      const choicesContainer = document.querySelector('.choices');
-
-      if (!dialogText || !choicesContainer) {
-        console.error('Dialog elements not found!');
-        return;
-      }
-
-      dialogText.textContent = scene.text;
+    showChoices(choices) {
+      const choicesContainer = document.getElementById('choices');
       choicesContainer.innerHTML = '';
 
-      scene.choices.forEach(choice => {
+      choices.forEach((choice, index) => {
         const button = document.createElement('button');
         button.className = 'choice-btn';
         button.textContent = choice.text;
-        button.addEventListener('click', () => this.showScene(choice.nextScene));
+        button.addEventListener('click', () => {
+          this.makeChoice(choice);
+        });
         choicesContainer.appendChild(button);
       });
     }
 
-    returnToSelection() {
-      const gameContainers = document.querySelectorAll('.game-container');
-      const dialogContainer = gameContainers[1];
-      const charSelection = document.querySelector('.character-selection');
-      const backBtn = document.querySelector('.back-btn');
+    makeChoice(choice) {
+      this.gameState.currentScene = choice.nextScene;
 
-      if (dialogContainer) dialogContainer.style.display = 'none';
-      if (charSelection) charSelection.style.display = 'block';
-      if (backBtn) backBtn.style.display = 'none';
+      setTimeout(() => {
+        this.showScene();
+      }, 300);
+    }
 
+    getScenes() {
+      const scenes = {
+        worker: [{
+            text: '你是來自東南亞的移工，剛抵達台灣。仲介告訴你工作條件和薪資，但實際情況似乎與當初承諾的不同。你發現工時比預期長，薪資也被扣除了許多費用。',
+            choices: [{
+                text: '直接向雇主抗議不合理的工作條件',
+                nextScene: 1
+              },
+              {
+                text: '默默承受，擔心失去工作機會',
+                nextScene: 2
+              },
+              {
+                text: '尋求其他移工的建議和支持',
+                nextScene: 3
+              }
+            ]
+          },
+          {
+            text: '你勇敢地向雇主表達不滿，雇主起初很生氣，但後來意識到確實有問題。他答應改善工作條件，但警告你不要再惹麻煩。',
+            choices: [{
+                text: '感謝雇主的理解，努力工作證明自己',
+                nextScene: 4
+              },
+              {
+                text: '要求書面承諾，確保權益受到保障',
+                nextScene: 5
+              }
+            ]
+          },
+          {
+            text: '你選擇忍受不公平的待遇，工作雖然辛苦，但至少穩定。然而，長期的壓力開始影響你的身心健康。',
+            choices: [{
+                text: '終於決定尋求外界協助',
+                nextScene: 6
+              },
+              {
+                text: '繼續忍耐，希望情況會改善',
+                nextScene: 7
+              }
+            ]
+          },
+          {
+            text: '你與其他移工分享經驗，發現大家都遇到類似問題。你們決定一起尋求NGO組織的協助。',
+            choices: [{
+                text: '組織移工聯盟，集體爭取權益',
+                nextScene: 8
+              },
+              {
+                text: '個別尋求法律援助',
+                nextScene: 9
+              }
+            ]
+          }
+        ],
+        ngo: [{
+            text: '作為NGO工作者，你接到一個移工的求助電話。他反映雇主違法扣薪、超時工作，還限制他的行動自由。你需要決定如何幫助他。',
+            choices: [{
+                text: '立即前往現場了解情況',
+                nextScene: 1
+              },
+              {
+                text: '先收集更多證據再行動',
+                nextScene: 2
+              },
+              {
+                text: '建議他先向勞工局申訴',
+                nextScene: 3
+              }
+            ]
+          },
+          {
+            text: '你親自到現場，發現情況比想像中嚴重。雇主不但拒絕配合，還威脅要遣返移工。你需要採取更強硬的措施。',
+            choices: [{
+                text: '聯繫媒體曝光此事',
+                nextScene: 4
+              },
+              {
+                text: '尋求法律途徑解決',
+                nextScene: 5
+              }
+            ]
+          },
+          {
+            text: '你謹慎地收集證據，包括工時記錄、薪資條等。有了充分的證據後，你更有信心為移工爭取權益。',
+            choices: [{
+                text: '與雇主協商，尋求和解',
+                nextScene: 6
+              },
+              {
+                text: '直接向勞工局檢舉',
+                nextScene: 7
+              }
+            ]
+          }
+        ],
+        employer: [{
+            text: '你是一家製造業公司的老闆，面臨人力不足的問題。你正在考慮聘請移工，但需要在成本控制和合法聘雇之間找到平衡。',
+            choices: [{
+                text: '通過合法管道聘請移工，提供合理薪資',
+                nextScene: 1
+              },
+              {
+                text: '尋找更便宜的勞力，降低成本',
+                nextScene: 2
+              },
+              {
+                text: '投資自動化設備，減少對人力的依賴',
+                nextScene: 3
+              }
+            ]
+          },
+          {
+            text: '你選擇合法聘雇移工，雖然成本較高，但工作效率很好。移工們也很感激你的公平對待。',
+            choices: [{
+                text: '建立良好的勞雇關係，提供職業訓練',
+                nextScene: 4
+              },
+              {
+                text: '維持現狀，穩定經營',
+                nextScene: 5
+              }
+            ]
+          },
+          {
+            text: '你選擇了壓低成本的做法，但很快就面臨勞工抗議和政府稽查。你的公司形象受到損害。',
+            choices: [{
+                text: '立即改善工作條件，挽回形象',
+                nextScene: 6
+              },
+              {
+                text: '堅持原有做法，認為這是市場競爭',
+                nextScene: 7
+              }
+            ]
+          }
+        ],
+        government: [{
+            text: '你是負責移工政策的政府官員。最近移工權益問題頻傳，你需要制定新的政策來平衡各方利益。',
+            choices: [{
+                text: '加強對雇主的監管和處罰',
+                nextScene: 1
+              },
+              {
+                text: '提高移工的保障和福利',
+                nextScene: 2
+              },
+              {
+                text: '平衡各方利益，謹慎改革',
+                nextScene: 3
+              }
+            ]
+          },
+          {
+            text: '你推動了嚴格的雇主監管政策，違法雇主面臨重罰。雖然一些企業抗議，但移工權益得到了保障。',
+            choices: [{
+                text: '繼續強化執法，不向壓力屈服',
+                nextScene: 4
+              },
+              {
+                text: '適度調整政策，尋求平衡',
+                nextScene: 5
+              }
+            ]
+          },
+          {
+            text: '你提高了移工的薪資保障和福利，但也增加了政府的財政負擔。一些民眾質疑政策的必要性。',
+            choices: [{
+                text: '堅持人權立場，繼續推動改革',
+                nextScene: 6
+              },
+              {
+                text: '調整政策，減輕財政壓力',
+                nextScene: 7
+              }
+            ]
+          }
+        ]
+      };
+
+      return scenes[this.currentCharacter] || [];
+    }
+
+    showEnding() {
+      const endings = this.getEndings();
+      const choicesContainer = document.getElementById('choices');
+      choicesContainer.innerHTML = '';
+
+      const endingDiv = document.createElement('div');
+      endingDiv.className = 'ending';
+      endingDiv.innerHTML = `
+                    <h3>故事結局</h3>
+                    <p>${endings}</p>
+                `;
+
+      document.getElementById('story-text').appendChild(endingDiv);
+    }
+
+    getEndings() {
+      const endings = {
+        worker: '你在異鄉的路途雖然充滿挑戰，但透過不同的選擇，你學會了如何在困境中生存，也理解了移工在台灣面臨的各種處境。每一個決定都會帶來不同的結果，這就是移工生活的真實寫照。',
+        ngo: '作為NGO工作者，你見證了移工權益爭取的艱辛過程。無論選擇哪條路，你都在為社會正義而努力。每一個案例都是寶貴的經驗，讓你更了解如何有效地幫助需要協助的人。',
+        employer: '身為雇主，你體驗了在商業利益與人道關懷之間的掙扎。不同的選擇會帶來不同的後果，也讓你思考企業在社會中應該扮演的角色和責任。',
+        government: '作為政府官員，你面臨了政策制定的複雜性。每個決定都需要考慮多方利益，平衡經濟發展與人權保障。這個經驗讓你更深刻理解治理的挑戰。'
+      };
+
+      return endings[this.currentCharacter] || '感謝你完成這個故事體驗。';
+    }
+
+    showCharacterSelection() {
+      document.getElementById('character-selection').style.display = 'grid';
+      document.getElementById('game-content').style.display = 'none';
+    }
+
+    restart() {
       this.currentCharacter = null;
-      this.currentScene = null;
+      this.gameState = {
+        currentScene: 0
+      };
+      this.showCharacterSelection();
     }
   }
 
-  // 初始化遊戲
-  const game = new TextAdventure();
+  // 啟動遊戲
+  window.addEventListener('DOMContentLoaded', () => {
+    new MigrantWorkerGame();
+  });
+
 
   //數據
   let currentChart = null;
@@ -888,7 +769,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // 處理影片播放
 
   const marks = document.querySelectorAll('mark');
-        
+
   const marks_observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -904,6 +785,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // Add margin to trigger slightly before the element is fully in view
     rootMargin: '20px'
   });
-  
+
   marks.forEach(mark => marks_observer.observe(mark));
 });
