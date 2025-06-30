@@ -1174,7 +1174,7 @@ mark.animate {
 }
 
 .character-card {
-    background: linear-gradient(145deg,#FAFAFA);
+    background: linear-gradient(145deg, #FAFAFA);
     border: 2px solid transparent;
     border-radius: 15px;
     padding: 20px;
@@ -1244,10 +1244,18 @@ mark.animate {
 .story-section {
     background: #f8f9fa;
     border-radius: 15px;
-    padding: 25px;
-    margin-bottom: 20px;
-    line-height: 1.6;
     height: 30vh;
+    width: 100%;
+    max-width: 100%;
+    padding: 20px;
+    font-size: 1.2rem;
+    line-height: 1.4;
+    white-space: normal;
+    /* 允許文字換行 */
+    word-break: break-word;
+    /* 必要時斷字 */
+    margin-bottom: 15px;
+    border: none;
 }
 
 .story-text {
@@ -1263,7 +1271,7 @@ mark.animate {
 }
 
 .choice-btn {
-    background: linear-gradient(145deg,  #f38376);
+    background: linear-gradient(145deg, #f38376);
     color: black;
     border: #940808;
     padding: 45px 50px;
@@ -1273,6 +1281,21 @@ mark.animate {
     font-size: 1em;
     transition: all 0.3s ease;
     text-align: left;
+    display: flex;
+    flex-direction: column;
+    /* 直向排列 */
+    gap: 10px;
+}
+
+@media (min-width: 768px) {
+    .choice-btn {
+        flex-direction: row;
+        /* 寬螢幕下橫向排列 */
+    }
+
+    .story-section button {
+        flex: 1;
+    }
 }
 
 .choice-btn:hover {
