@@ -1208,11 +1208,6 @@ mark.animate {
     justify-self: center;
 }
 
-.character-emoji {
-    font-size: 3em;
-    margin-bottom: 10px;
-    display: block;
-}
 
 .character-name {
     font-size: 1.2em;
@@ -1245,7 +1240,7 @@ mark.animate {
 .story-section {
     background: #f8f9fa;
     border-radius: 15px;
-    padding: 20px;
+    padding: 20px ;
     font-size: 1.2rem;
     line-height: 1.4;
     white-space: normal;
@@ -1256,8 +1251,10 @@ mark.animate {
     width: 100%;
     max-width: 100%;
     /** ✅ 修正：不要固定高度，改為自動高度以包覆內容 */
-    height: auto;
+    height:max-content;
     box-sizing: border-box;
+    padding-top: 1em;
+    border-bottom: 5vh;
 }
 
 .story-text {
@@ -1276,23 +1273,26 @@ mark.animate {
     flex-direction: column;
     width: 100%; /* ✅ 讓按鈕撐滿區塊，避免擠壓 */
     box-sizing: border-box;
+    padding-top: 1em;
+    border-bottom: 10vh;
 }
 
 .choice-btn {
     background: linear-gradient(145deg, #f38376);
     color: black;
     border: #940808;
-    padding: 25px 30px;
+    padding: 5px 10px;
     border-radius: 10px;
     border-style: outset;
     cursor: pointer;
     font-size: 1em;
     transition: all 0.3s ease;
-    text-align: left;
+    text-align: center;
     display: flex;
     flex-direction: column;
     /* 直向排列 */
     gap: 5px;
+    padding-top: 0.5em;
     
 }
 @media (min-width: 768px) {
@@ -1320,7 +1320,6 @@ mark.animate {
 .choice-btn:hover {
     transform: translateY(-2px);
     background-color: #c0392b;
-    cursor: default;
 }
 
 .choice-btn:active {
@@ -1372,12 +1371,14 @@ mark.animate {
     background: linear-gradient(145deg, #e74c3c, #c0392b);
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 10px 30px;
     border-radius: 10px;
     cursor: pointer;
     font-size: 1em;
     transition: all 0.3s ease;
     margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 38vh;
     right:10%;
 }
 
