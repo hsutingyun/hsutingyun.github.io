@@ -137,6 +137,7 @@ footer {
     z-index: 5;
     background-color: #000000;
     top: 0vh;
+    object-fit: contain;
 }
 
 .content {
