@@ -1247,6 +1247,7 @@ mark.animate {
     padding: 25px;
     margin-bottom: 20px;
     line-height: 1.6;
+    height: fit-content;
 }
 
 .story-text {
@@ -1279,6 +1280,7 @@ mark.animate {
 
 .choice-btn:active {
     transform: translateY(0);
+    background-color: #e74c3c;
 }
 
 .character-info {
