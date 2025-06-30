@@ -1245,19 +1245,19 @@ mark.animate {
 .story-section {
     background: #f8f9fa;
     border-radius: 15px;
-    height: 30vh;
-    width: 100%;
-    max-width: 100%;
     padding: 20px;
     font-size: 1.2rem;
     line-height: 1.4;
     white-space: normal;
-    /* 允許文字換行 */
     word-break: break-word;
-    /* 必要時斷字 */
     margin-bottom: 15px;
     border: none;
     object-fit: contain;
+    width: 100%;
+    max-width: 100%;
+    /** ✅ 修正：不要固定高度，改為自動高度以包覆內容 */
+    height: auto;
+    box-sizing: border-box;
 }
 
 .story-text {
@@ -1271,7 +1271,11 @@ mark.animate {
     flex-direction: column;
     gap: 10px;
     object-fit: contain;
-    cursor: pointer;
+    padding: 1.2em 1.5em;
+    font-size: 1em;
+    flex-direction: column;
+    width: 100%; /* ✅ 讓按鈕撐滿區塊，避免擠壓 */
+    box-sizing: border-box;
 }
 
 .choice-btn {
@@ -1289,6 +1293,17 @@ mark.animate {
     flex-direction: column;
     /* 直向排列 */
     gap: 5px;
+    
+}
+@media (min-width: 768px) {
+    .choices {
+        flex-direction: row;
+        flex-wrap: wrap; /* ✅ 避免按鈕被壓扁時自動換行 */
+    }
+
+    .choice-btn {
+        flex: 1 1 calc(50% - 10px); /* 每行最多兩個，留 gap */
+    }
 }
 
 @media (min-width: 768px) {
@@ -1363,6 +1378,7 @@ mark.animate {
     font-size: 1em;
     transition: all 0.3s ease;
     margin-top: 20px;
+    right:10%;
 }
 
 .restart-btn:hover {
