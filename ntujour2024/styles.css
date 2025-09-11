@@ -563,6 +563,10 @@ text {
     margin: 0 auto;
 }
 
+.story-container h2 {
+    color: #000;
+}
+
 .image-container5 {
     width: 40%;
 }
