@@ -1,0 +1,1601 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>考前作戰室｜台大商研備考計畫</title>
+    <style>
+        :root {
+            --ink: #1B2333;
+            --ink-2: #242F45;
+            --paper: #FBF6EC;
+            --paper-dim: #EFE7D4;
+            --gold: #C9A227;
+            --line: #3B4763;
+            --text-light: #EDE6D6;
+            --text-dim: #9AA4C0;
+            --micro: #5B5FEF;
+            /* 個經 */
+            --macro: #1F9C8C;
+            /* 總經 */
+            --calc: #E08A2B;
+            /* 微積分 */
+            --eng: #D65D6E;
+            /* 英文 */
+            --app: #8C5BC9;
+            /* 推甄 */
+            --rest: #6B7280;
+            /* 休息 */
+            font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: var(--ink);
+            color: var(--text-light);
+            min-height: 100vh;
+        }
+
+        .serif {
+            font-family: "Noto Serif TC", "Songti TC", "PMingLiU", serif;
+        }
+
+        .mono {
+            font-family: "JetBrains Mono", "SF Mono", Consolas, monospace;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            padding: 28px 20px 20px;
+            background:
+                radial-gradient(ellipse at top left, rgba(201, 162, 39, 0.10), transparent 55%),
+                var(--ink);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .header-inner {
+            max-width: 1080px;
+            margin: 0 auto;
+        }
+
+        .eyebrow {
+            color: var(--gold);
+            letter-spacing: 0.25em;
+            font-size: 11px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .title-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: clamp(24px, 4vw, 34px);
+            font-weight: 700;
+            color: var(--paper);
+        }
+
+        .dday {
+            background: var(--gold);
+            color: var(--ink);
+            padding: 10px 18px;
+            border-radius: 2px;
+            font-weight: 700;
+            white-space: nowrap;
+            position: relative;
+        }
+
+        .dday small {
+            display: block;
+            font-weight: 500;
+            font-size: 10px;
+            letter-spacing: 0.1em;
+            opacity: 0.75;
+        }
+
+        .dday span {
+            font-size: 22px;
+        }
+
+        .quote-bar {
+            margin-top: 18px;
+            padding: 14px 18px;
+            border-left: 3px solid var(--gold);
+            background: rgba(255, 255, 255, 0.03);
+            font-size: 14.5px;
+            line-height: 1.7;
+            color: var(--text-light);
+        }
+
+        .quote-bar b {
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        /* ===== NAV ===== */
+        nav {
+            max-width: 1080px;
+            margin: 18px auto 0;
+            padding: 0 20px;
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        nav button {
+            background: transparent;
+            border: 1px solid var(--line);
+            color: var(--text-dim);
+            padding: 9px 16px;
+            border-radius: 999px;
+            font-size: 13.5px;
+            cursor: pointer;
+            transition: .15s;
+            font-family: inherit;
+        }
+
+        nav button:hover {
+            border-color: var(--gold);
+            color: var(--paper);
+        }
+
+        nav button.active {
+            background: var(--gold);
+            color: var(--ink);
+            border-color: var(--gold);
+            font-weight: 700;
+        }
+
+        main {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 22px 20px 80px;
+        }
+
+        .view {
+            display: none;
+        }
+
+        .view.active {
+            display: block;
+        }
+
+        /* ===== WEEK PROGRESS ===== */
+        .week-progress {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 22px;
+            padding: 16px 18px;
+            background: var(--ink-2);
+            border: 1px solid var(--line);
+            border-radius: 6px;
+        }
+
+        .week-progress .label {
+            font-size: 13px;
+            color: var(--text-dim);
+            white-space: nowrap;
+        }
+
+        .bar-track {
+            flex: 1;
+            height: 9px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 99px;
+            overflow: hidden;
+        }
+
+        .bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--gold), #E8C766);
+            border-radius: 99px;
+            transition: width .35s;
+        }
+
+        .week-progress .pct {
+            font-family: inherit;
+            font-weight: 700;
+            color: var(--gold);
+            min-width: 42px;
+            text-align: right;
+        }
+
+        /* subject filter chips */
+        .filters {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 18px;
+        }
+
+        .chip {
+            padding: 6px 13px;
+            border-radius: 999px;
+            font-size: 12.5px;
+            cursor: pointer;
+            border: 1px solid var(--line);
+            color: var(--text-dim);
+            user-select: none;
+        }
+
+        .chip[data-sub="micro"] {
+            --c: var(--micro);
+        }
+
+        .chip[data-sub="macro"] {
+            --c: var(--macro);
+        }
+
+        .chip[data-sub="calc"] {
+            --c: var(--calc);
+        }
+
+        .chip[data-sub="eng"] {
+            --c: var(--eng);
+        }
+
+        .chip[data-sub="app"] {
+            --c: var(--app);
+        }
+
+        .chip.on {
+            background: var(--c, var(--gold));
+            color: var(--ink);
+            border-color: var(--c, var(--gold));
+            font-weight: 700;
+        }
+
+        /* ===== WEEK GRID ===== */
+        .week-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 12px;
+        }
+
+        @media(max-width:900px) {
+            .week-grid {
+                grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            }
+        }
+
+        .day-card {
+            background: var(--paper);
+            color: #26241C;
+            border-radius: 6px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            border: 2px solid transparent;
+        }
+
+        .day-card.today {
+            border-color: var(--gold);
+        }
+
+        .day-head {
+            padding: 12px 14px 10px;
+            background: var(--paper-dim);
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .day-head .dname {
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .day-head .ddate {
+            font-size: 11px;
+            color: #8A7F63;
+        }
+
+        .day-card.today .day-head {
+            background: var(--gold);
+        }
+
+        .day-card.today .day-head .dname,
+        .day-card.today .day-head .ddate {
+            color: var(--ink);
+        }
+
+        .day-bar {
+            height: 5px;
+            background: #E5DCC3;
+        }
+
+        .day-bar i {
+            display: block;
+            height: 100%;
+            background: #B98F1E;
+        }
+
+        .task-list {
+            padding: 8px 10px 12px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .task {
+            display: flex;
+            gap: 8px;
+            align-items: flex-start;
+            padding: 7px 8px;
+            border-radius: 4px;
+            font-size: 12.3px;
+            line-height: 1.45;
+            background: rgba(0, 0, 0, 0.02);
+            border-left: 3px solid var(--c);
+            cursor: pointer;
+        }
+
+        .task.done {
+            opacity: 0.42;
+        }
+
+        .task.done .txt {
+            text-decoration: line-through;
+        }
+
+        .task input {
+            margin-top: 2px;
+            flex-shrink: 0;
+            accent-color: #B98F1E;
+        }
+
+        .task .meta {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+        }
+
+        .task .time {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 10px;
+            color: #8A7F63;
+        }
+
+        .task .sub {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--c);
+        }
+
+        .task[data-sub="micro"] {
+            --c: var(--micro);
+        }
+
+        .task[data-sub="macro"] {
+            --c: var(--macro);
+        }
+
+        .task[data-sub="calc"] {
+            --c: var(--calc);
+        }
+
+        .task[data-sub="eng"] {
+            --c: var(--eng);
+        }
+
+        .task[data-sub="app"] {
+            --c: var(--app);
+        }
+
+        .task[data-sub="rest"] {
+            --c: var(--rest);
+        }
+
+        .task.dim {
+            display: none;
+        }
+
+        .add-task {
+            margin: 2px 10px 10px;
+            padding: 6px 8px;
+            font-size: 11.5px;
+            border: 1px dashed #C9BC96;
+            border-radius: 4px;
+            background: transparent;
+            color: #8A7F63;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .add-task:hover {
+            border-color: var(--gold);
+            color: var(--ink);
+        }
+
+        /* ===== SECTION HEADERS ===== */
+        .section-head {
+            margin: 0 0 6px;
+            font-size: 20px;
+            color: var(--paper);
+        }
+
+        .section-sub {
+            color: var(--text-dim);
+            font-size: 13px;
+            margin: 0 0 18px;
+            line-height: 1.7;
+        }
+
+        /* ===== WRONG QUESTION BANK ===== */
+        .wq-toolbar {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 18px;
+            flex-wrap: wrap;
+        }
+
+        .upload-btn {
+            background: var(--gold);
+            color: var(--ink);
+            border: none;
+            padding: 10px 18px;
+            border-radius: 4px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 13.5px;
+        }
+
+        .wq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 12px;
+        }
+
+        .wq-card {
+            background: var(--ink-2);
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: .15s;
+        }
+
+        .wq-card:hover {
+            border-color: var(--gold);
+        }
+
+        .wq-card img {
+            width: 100%;
+            height: 110px;
+            object-fit: cover;
+            display: block;
+            background: #0e131f;
+        }
+
+        .wq-info {
+            padding: 8px 10px;
+        }
+
+        .wq-info .tag {
+            font-size: 10.5px;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 99px;
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+
+        .wq-info .note {
+            font-size: 11.5px;
+            color: var(--text-dim);
+            line-height: 1.4;
+            max-height: 32px;
+            overflow: hidden;
+        }
+
+        .wq-info .rev {
+            font-size: 10px;
+            color: var(--gold);
+            margin-top: 5px;
+        }
+
+        .wq-empty {
+            color: var(--text-dim);
+            font-size: 13.5px;
+            padding: 40px 0;
+            text-align: center;
+            border: 1px dashed var(--line);
+            border-radius: 6px;
+        }
+
+        .modal-bg {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 13, 22, 0.82);
+            z-index: 50;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-bg.open {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--paper);
+            color: #26241C;
+            border-radius: 8px;
+            max-width: 520px;
+            width: 100%;
+            max-height: 90vh;
+            overflow: auto;
+        }
+
+        .modal img {
+            width: 100%;
+            display: block;
+        }
+
+        .modal-body {
+            padding: 18px 20px;
+        }
+
+        .modal-body label {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            margin: 12px 0 4px;
+            color: #5c5541;
+        }
+
+        .modal-body select,
+        .modal-body textarea,
+        .modal-body input[type=text] {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid #D9CFAF;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 13px;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+        }
+
+        .modal-actions button {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--ink);
+        }
+
+        .btn-ghost {
+            background: #EFE7D4;
+            color: #4a4530;
+        }
+
+        .btn-danger {
+            background: #F0DCDC;
+            color: #9c3b3b;
+        }
+
+        /* ===== ENGLISH ===== */
+        .res-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+
+        .res-card {
+            display: block;
+            background: var(--ink-2);
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            padding: 14px 16px;
+            text-decoration: none;
+            color: var(--text-light);
+            transition: .15s;
+        }
+
+        .res-card:hover {
+            border-color: var(--eng);
+        }
+
+        .res-card .rname {
+            font-weight: 700;
+            font-size: 14.5px;
+            color: var(--paper);
+            margin-bottom: 4px;
+        }
+
+        .res-card .rdesc {
+            font-size: 12px;
+            color: var(--text-dim);
+            line-height: 1.5;
+        }
+
+        .log-box {
+            background: var(--ink-2);
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            padding: 18px;
+        }
+
+        .log-box label {
+            display: block;
+            font-size: 12.5px;
+            color: var(--text-dim);
+            margin: 10px 0 5px;
+        }
+
+        .log-box input[type=text],
+        .log-box textarea {
+            width: 100%;
+            padding: 9px 11px;
+            background: var(--ink);
+            border: 1px solid var(--line);
+            border-radius: 4px;
+            color: var(--text-light);
+            font-family: inherit;
+            font-size: 13px;
+        }
+
+        .log-box textarea {
+            min-height: 70px;
+            resize: vertical;
+        }
+
+        .log-save {
+            margin-top: 12px;
+            background: var(--eng);
+            color: #fff;
+            border: none;
+            padding: 9px 20px;
+            border-radius: 4px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .log-history {
+            margin-top: 22px;
+        }
+
+        .log-history h4 {
+            font-size: 13px;
+            color: var(--text-dim);
+            margin-bottom: 8px;
+        }
+
+        .log-item {
+            padding: 9px 12px;
+            border-left: 3px solid var(--eng);
+            background: rgba(255, 255, 255, 0.03);
+            margin-bottom: 6px;
+            border-radius: 3px;
+            font-size: 12.5px;
+        }
+
+        .log-item .ld {
+            color: var(--gold);
+            font-family: monospace;
+            font-size: 11px;
+            margin-right: 8px;
+        }
+
+        /* ===== APPLICATION MILESTONES ===== */
+        .milestone {
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+            background: var(--ink-2);
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            padding: 14px 16px;
+            margin-bottom: 10px;
+        }
+
+        .milestone.done {
+            opacity: 0.5;
+        }
+
+        .milestone input {
+            margin-top: 3px;
+            accent-color: var(--app);
+            flex-shrink: 0;
+        }
+
+        .milestone .mtitle {
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--paper);
+        }
+
+        .milestone.done .mtitle {
+            text-decoration: line-through;
+        }
+
+        .milestone .mwhen {
+            font-size: 11.5px;
+            color: var(--app);
+            font-family: monospace;
+            margin-top: 2px;
+        }
+
+        .milestone .mnote {
+            font-size: 12px;
+            color: var(--text-dim);
+            margin-top: 4px;
+            line-height: 1.5;
+        }
+
+        footer {
+            text-align: center;
+            color: var(--text-dim);
+            font-size: 11.5px;
+            padding: 30px 20px;
+            border-top: 1px solid var(--line);
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="header-inner">
+            <div class="eyebrow">台大商研備考 · 考前作戰室</div>
+            <div class="title-row">
+                <h1 class="serif">個經 · 總經 · 商管微積分 · 英文 · 推甄</h1>
+                <div class="dday">
+                    <small id="ddayLabel">距離推甄資料截止</small>
+                    <span id="ddayNum">D-</span>
+                </div>
+            </div>
+            <div class="quote-bar serif" id="quoteBar"></div>
+        </div>
+        <nav>
+            <button data-view="week" class="active">📅 本週作戰計畫</button>
+            <button data-view="wq">📌 經濟學錯題本</button>
+            <button data-view="eng">🗞 英文商業閱讀</button>
+            <button data-view="app">🎯 推甄任務牆</button>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- ============ WEEK VIEW ============ -->
+        <section class="view active" id="view-week">
+            <div class="week-progress">
+                <span class="label">本週完成度</span>
+                <div class="bar-track">
+                    <div class="bar-fill" id="weekBarFill" style="width:0%"></div>
+                </div>
+                <span class="pct" id="weekBarPct">0%</span>
+            </div>
+            <div class="filters" id="filters">
+                <div class="chip on" data-sub="all">全部</div>
+                <div class="chip" data-sub="micro">個體經濟學</div>
+                <div class="chip" data-sub="macro">總體經濟學</div>
+                <div class="chip" data-sub="calc">商管微積分</div>
+                <div class="chip" data-sub="eng">英文</div>
+                <div class="chip" data-sub="app">推甄</div>
+            </div>
+            <div class="week-grid" id="weekGrid"></div>
+        </section>
+
+        <!-- ============ WRONG QUESTION BANK ============ -->
+        <section class="view" id="view-wq">
+            <h2 class="section-head serif">經濟學錯題本</h2>
+            <p class="section-sub">拍照上傳個經 / 總經錯題，標記單元與筆記，之後可隨時點開複習、標記已複習次數。資料只存在你這台裝置的瀏覽器中。</p>
+            <div class="wq-toolbar">
+                <button class="upload-btn" id="uploadBtn">＋ 上傳錯題照片</button>
+                <input type="file" id="fileInput" accept="image/*" style="display:none">
+                <span style="font-size:12px;color:var(--text-dim)" id="wqCount"></span>
+            </div>
+            <div class="wq-grid" id="wqGrid"></div>
+        </section>
+
+        <!-- ============ ENGLISH ============ -->
+        <section class="view" id="view-eng">
+            <h2 class="section-head serif">英文商業閱讀</h2>
+            <p class="section-sub">每天精讀一篇商業英文文章，累積閱讀語感與商管詞彙，也對推甄面試與口試有幫助。</p>
+            <div class="res-grid">
+                <a class="res-card" href="https://www.economist.com/business" target="_blank" rel="noopener">
+                    <div class="rname">The Economist — Business</div>
+                    <div class="rdesc">總體經濟與國際商業趨勢分析，句構嚴謹，適合精讀＋做筆記。</div>
+                </a>
+                <a class="res-card" href="https://hbr.org/" target="_blank" rel="noopener">
+                    <div class="rname">Harvard Business Review</div>
+                    <div class="rdesc">管理個案與策略思維文章，適合累積推甄自傳／面試素材。</div>
+                </a>
+                <a class="res-card" href="https://www.bloomberg.com/businessweek" target="_blank" rel="noopener">
+                    <div class="rname">Bloomberg Businessweek</div>
+                    <div class="rdesc">產業與市場即時報導，訓練快速抓重點的閱讀速度。</div>
+                </a>
+                <a class="res-card" href="https://www.wsj.com/news/business" target="_blank" rel="noopener">
+                    <div class="rname">The Wall Street Journal</div>
+                    <div class="rdesc">財經新聞用字精確，適合累積個經／總經應用實例。</div>
+                </a>
+                <a class="res-card" href="https://www.ft.com/" target="_blank" rel="noopener">
+                    <div class="rname">Financial Times</div>
+                    <div class="rdesc">國際金融與總經視角，適合搭配總經課程對照現況。</div>
+                </a>
+            </div>
+            <div class="log-box">
+                <h4 style="margin:0 0 4px;color:var(--paper);font-size:14px;">今日閱讀紀錄</h4>
+                <label>文章標題</label>
+                <input type="text" id="engTitle" placeholder="例如：Why interest rate cuts...">
+                <label>重點筆記 / 生字整理</label>
+                <textarea id="engNote" placeholder="摘要重點、商業詞彙、可用於自傳或面試的觀點..."></textarea>
+                <button class="log-save" id="engSave">儲存今日紀錄</button>
+                <div class="log-history">
+                    <h4>過去 7 天</h4>
+                    <div id="engHistory"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ APPLICATION MILESTONES ============ -->
+        <section class="view" id="view-app">
+            <h2 class="section-head serif">推甄任務牆</h2>
+            <p class="section-sub">預設里程碑，實際校系與備審項目可自行調整內容，目標於 <b>10/1 前完成送出</b>。</p>
+            <div id="milestoneList"></div>
+        </section>
+
+    </main>
+
+    <div class="modal-bg" id="modalBg">
+        <div class="modal">
+            <img id="modalImg" src="">
+            <div class="modal-body">
+                <label>科目</label>
+                <select id="modalSub">
+                    <option value="micro">個體經濟學</option>
+                    <option value="macro">總體經濟學</option>
+                </select>
+                <label>單元 / 標籤</label>
+                <input type="text" id="modalTag" placeholder="例如：無異曲線、IS-LM模型...">
+                <label>錯誤筆記</label>
+                <textarea id="modalNote" rows="3" placeholder="錯在哪裡、正確觀念是什麼..."></textarea>
+                <div class="modal-actions">
+                    <button class="btn-primary" id="modalSave">儲存</button>
+                    <button class="btn-ghost" id="modalReview">✓ 標記已複習 (<span id="modalRevCount">0</span>)</button>
+                    <button class="btn-danger" id="modalDelete">刪除</button>
+                </div>
+                <button class="btn-ghost" id="modalClose" style="width:100%;margin-top:8px;">關閉</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>考前作戰室 · 資料儲存於本機瀏覽器 · 換裝置或清除瀏覽資料將會遺失紀錄，重要內容建議定期截圖備份</footer>
+
+    <script>
+        /* ================= UTIL ================= */
+        function pad(n) {
+            return n < 10 ? '0' + n : n;
+        }
+
+        function fmtDate(d) {
+            return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+        }
+
+        function dayOfYear(d) {
+            const start = new Date(d.getFullYear(), 0, 0);
+            return Math.floor((d - start) / 86400000);
+        }
+        /* 記憶體備援：即使 window.storage 卡住/不存在，App 在這次瀏覽期間仍可正常運作與互動 */
+        const MEM = {};
+        let storageOK = true;
+
+        function withTimeout(p, ms = 2000) {
+            return new Promise((resolve, reject) => {
+                const t = setTimeout(() => reject(new Error('storage-timeout')), ms);
+                p.then(v => {
+                    clearTimeout(t);
+                    resolve(v);
+                }).catch(e => {
+                    clearTimeout(t);
+                    reject(e);
+                });
+            });
+        }
+        async function storeGet(key) {
+            try {
+                if (typeof window.storage === 'undefined') throw new Error('no-storage-api');
+                const r = await withTimeout(window.storage.get(key, false));
+                const val = r ? JSON.parse(r.value) : null;
+                if (val !== null) MEM[key] = val;
+                return val;
+            } catch (e) {
+                storageOK = storageOK && !(e.message === 'storage-timeout');
+                return MEM.hasOwnProperty(key) ? MEM[key] : null;
+            }
+        }
+        async function storeSet(key, val) {
+            MEM[key] = val; // 一定先寫進記憶體,確保畫面互動不受阻
+            try {
+                if (typeof window.storage === 'undefined') throw new Error('no-storage-api');
+                await withTimeout(window.storage.set(key, JSON.stringify(val), false));
+            } catch (e) {
+                storageOK = false;
+                console.warn('雲端儲存失敗,已改用本次瀏覽記憶體暫存：', e.message);
+            }
+        }
+
+        /* ================= QUOTES ================= */
+        const QUOTES = [
+            "你現在寫的每一題,都是未來面試桌上那份從容的來源。",
+            "沒有人天生看得懂總體經濟,只是有人多算了三次考古題。",
+            "備審資料不是在介紹過去的你,是在證明你想成為的人已經在路上。",
+            "今天的極限題,就是明天考場上那道你秒解的題目。",
+            "焦慮解決不了 IS-LM,但今天這兩小時可以。",
+            "你不需要看起來很努力,你只需要今天的進度條走到底。",
+            "每一份錯題整理,都是在替十月的你買一份保險。",
+            "英文閱讀的複利,會在口試那五分鐘一次領出來。",
+            "教室待到九點的人,和早走一小時的人,考場上分數不一樣。",
+            "申請截止日不會等你準備好,所以現在就開始準備。",
+            "你正在做的,是大多數人只敢想的事。",
+            "個經總經沒有奇蹟,只有把觀念用夠多題目撞熟。",
+            "今天多讀的一篇 HBR,是明天自傳裡多一個有力的句子。",
+            "計畫寫得再完美,也要靠你打勾才算數。",
+            "你不是在跟別人比,你是在跟十月一號那天的自己比。",
+            "累的時候休息,但別讓休息變成放棄今天的清單。",
+            "每個科目都在等你給它今天應得的兩小時。",
+            "錯題本厚一點沒關係,代表你正在把弱點一個個消滅。",
+            "申請的路上沒有捷徑,只有一份份誠實完成的任務。",
+            "現在的辛苦,是十月那份從容的定金。"
+        ];
+
+        /* ================= WEEKDAY TEMPLATE ================= */
+        // getDay(): 0 Sun 1 Mon 2 Tue 3 Wed 4 Thu 5 Fri 6 Sat
+        const TEMPLATE = {
+            1: [ // Mon
+                {
+                    time: "09:00-14:00",
+                    sub: "micro",
+                    txt: "觀看週六上傳經濟學網課(5hr,個經+總經進度)＋隨堂筆記"
+                },
+                {
+                    time: "14:30-16:00",
+                    sub: "calc",
+                    txt: "商管微積分習題演練"
+                },
+                {
+                    time: "16:00-17:00",
+                    sub: "eng",
+                    txt: "精讀一篇商業英文文章＋單字整理"
+                },
+                {
+                    time: "19:00-21:00",
+                    sub: "app",
+                    txt: "書審資料撰寫（讀書計畫／自傳／研究計畫輪替）"
+                }
+            ],
+            2: [ // Tue
+                {
+                    time: "09:00-10:30",
+                    sub: "micro",
+                    txt: "個體經濟學：週六網課內容習題演練"
+                },
+                {
+                    time: "10:30-12:00",
+                    sub: "macro",
+                    txt: "總體經濟學：週六網課內容習題演練"
+                },
+                {
+                    time: "13:30-15:00",
+                    sub: "calc",
+                    txt: "商管微積分習題演練"
+                },
+                {
+                    time: "15:00-16:00",
+                    sub: "eng",
+                    txt: "精讀文章＋口說跟讀(shadowing)"
+                },
+                {
+                    time: "19:00-21:00",
+                    sub: "app",
+                    txt: "書審資料撰寫／教授聯繫信件草擬"
+                }
+            ],
+            3: [ // Wed
+                {
+                    time: "09:00-10:30",
+                    sub: "micro",
+                    txt: "個體經濟學：錯題本複習"
+                },
+                {
+                    time: "10:30-12:00",
+                    sub: "macro",
+                    txt: "總體經濟學：錯題本複習＋考古題1回"
+                },
+                {
+                    time: "13:30-15:30",
+                    sub: "calc",
+                    txt: "商管微積分：週末課程預習＋錯題複習"
+                },
+                {
+                    time: "15:30-16:30",
+                    sub: "eng",
+                    txt: "精讀文章＋商業詞彙卡整理"
+                },
+                {
+                    time: "19:00-21:00",
+                    sub: "app",
+                    txt: "備審資料修訂／請教前輩或老師意見"
+                }
+            ],
+            4: [ // Thu
+                {
+                    time: "09:00-14:00",
+                    sub: "macro",
+                    txt: "觀看週四上傳經濟學網課(5hr,個經+總經進度)＋隨堂筆記"
+                },
+                {
+                    time: "14:30-16:00",
+                    sub: "calc",
+                    txt: "商管微積分習題演練"
+                },
+                {
+                    time: "16:00-17:00",
+                    sub: "eng",
+                    txt: "精讀一篇商業英文文章"
+                },
+                {
+                    time: "19:00-20:30",
+                    sub: "app",
+                    txt: "書審資料撰寫"
+                }
+            ],
+            5: [ // Fri
+                {
+                    time: "09:00-10:30",
+                    sub: "micro",
+                    txt: "個體經濟學：本週筆記統整＋考古題1回"
+                },
+                {
+                    time: "10:30-12:00",
+                    sub: "macro",
+                    txt: "總體經濟學：本週筆記統整＋考古題1回"
+                },
+                {
+                    time: "13:30-15:30",
+                    sub: "calc",
+                    txt: "商管微積分：觀念統整＋週末課程預習"
+                },
+                {
+                    time: "15:30-16:30",
+                    sub: "eng",
+                    txt: "精讀文章＋本週單字複習"
+                },
+                {
+                    time: "19:00-21:00",
+                    sub: "app",
+                    txt: "模擬面試題目準備／資料校對"
+                }
+            ],
+            6: [ // Sat - 微積分上課 09:30-13:00, 待教室到21:00
+                {
+                    time: "09:30-13:00",
+                    sub: "calc",
+                    txt: "【上課】商管微積分（補習班）"
+                },
+                {
+                    time: "13:00-14:00",
+                    sub: "rest",
+                    txt: "午餐休息"
+                },
+                {
+                    time: "14:00-16:00",
+                    sub: "calc",
+                    txt: "今日課程複習＋課後習題（教室自習）"
+                },
+                {
+                    time: "16:00-18:00",
+                    sub: "micro",
+                    txt: "個經／總經本週內容複習＋錯題整理（教室自習）"
+                },
+                {
+                    time: "18:00-19:00",
+                    sub: "eng",
+                    txt: "精讀文章（教室自習）"
+                },
+                {
+                    time: "19:00-21:00",
+                    sub: "app",
+                    txt: "書審資料撰寫（教室自習）"
+                }
+            ],
+            0: [ // Sun - 微積分上課 09:30-13:00, 待教室到21:00
+                {
+                    time: "09:30-13:00",
+                    sub: "calc",
+                    txt: "【上課】商管微積分（補習班）"
+                },
+                {
+                    time: "13:00-14:00",
+                    sub: "rest",
+                    txt: "午餐休息"
+                },
+                {
+                    time: "14:00-16:00",
+                    sub: "calc",
+                    txt: "本週習題總複習（教室自習）"
+                },
+                {
+                    time: "16:00-18:00",
+                    sub: "macro",
+                    txt: "個經／總經本週考古題1-2回（教室自習）"
+                },
+                {
+                    time: "18:00-19:30",
+                    sub: "eng",
+                    txt: "精讀文章＋本週單字總複習（教室自習）"
+                },
+                {
+                    time: "19:30-21:00",
+                    sub: "app",
+                    txt: "本週進度回顧＋下週計畫調整（教室自習）"
+                }
+            ]
+        };
+        const SUBNAME = {
+            micro: "個體經濟學",
+            macro: "總體經濟學",
+            calc: "商管微積分",
+            eng: "英文",
+            app: "推甄",
+            rest: "休息"
+        };
+        const DNAME = ["日", "一", "二", "三", "四", "五", "六"];
+
+        let activeFilter = "all";
+
+        /* ================= WEEK VIEW ================= */
+        function mondayOf(d) {
+            const day = d.getDay();
+            const diff = (day === 0 ? -6 : 1 - day);
+            const m = new Date(d);
+            m.setDate(d.getDate() + diff);
+            return m;
+        }
+
+        async function getDayTasks(dateObj) {
+            const key = "day:" + fmtDate(dateObj);
+            let saved = await storeGet(key);
+            if (saved) return saved;
+            const wd = dateObj.getDay();
+            const tpl = (TEMPLATE[wd] || []).map((t, i) => ({
+                id: wd + "-" + i,
+                time: t.time,
+                sub: t.sub,
+                txt: t.txt,
+                done: false
+            }));
+            await storeSet(key, tpl);
+            return tpl;
+        }
+        async function saveDayTasks(dateObj, tasks) {
+            await storeSet("day:" + fmtDate(dateObj), tasks);
+        }
+
+        async function renderWeek() {
+            const grid = document.getElementById('weekGrid');
+            grid.innerHTML = "";
+            const today = new Date();
+            const monday = mondayOf(today);
+            let totalAll = 0,
+                doneAll = 0;
+
+            for (let i = 0; i < 7; i++) {
+                const d = new Date(monday);
+                d.setDate(monday.getDate() + i);
+                const isToday = fmtDate(d) === fmtDate(today);
+                const tasks = await getDayTasks(d);
+
+                const card = document.createElement('div');
+                card.className = "day-card" + (isToday ? " today" : "");
+                const done = tasks.filter(t => t.done).length;
+                const total = tasks.length || 1;
+                totalAll += tasks.length;
+                doneAll += done;
+                const pct = Math.round(done / total * 100);
+
+                card.innerHTML = `
+      <div class="day-head">
+        <span class="dname">週${DNAME[d.getDay()]}</span>
+        <span class="ddate mono">${pad(d.getMonth()+1)}/${pad(d.getDate())}</span>
+      </div>
+      <div class="day-bar"><i style="width:${pct}%"></i></div>
+      <div class="task-list"></div>
+    `;
+                const list = card.querySelector('.task-list');
+                tasks.forEach(t => {
+                    const row = document.createElement('label');
+                    row.className = "task" + (t.done ? " done" : "") + (activeFilter !== "all" &&
+                        activeFilter !== t.sub ? " dim" : "");
+                    row.setAttribute('data-sub', t.sub);
+                    row.innerHTML = `
+        <input type="checkbox" ${t.done?"checked":""}>
+        <div class="meta">
+          <span class="time">${t.time}</span>
+          <span class="sub">${SUBNAME[t.sub]}</span>
+          <span class="txt">${t.txt}</span>
+        </div>`;
+                    row.querySelector('input').addEventListener('change', async (e) => {
+                        t.done = e.target.checked;
+                        await saveDayTasks(d, tasks);
+                        renderWeek();
+                    });
+                    list.appendChild(row);
+                });
+                const addBtn = document.createElement('div');
+                addBtn.className = "add-task";
+                addBtn.textContent = "＋ 新增任務";
+
+                const addForm = document.createElement('div');
+                addForm.className = "add-form";
+                addForm.style.display = "none";
+                addForm.innerHTML = `
+      <select class="af-sub">
+        <option value="micro">個經</option>
+        <option value="macro">總經</option>
+        <option value="calc">微積分</option>
+        <option value="eng">英文</option>
+        <option value="app">推甄</option>
+      </select>
+      <input type="text" class="af-txt" placeholder="任務內容...">
+      <div class="af-actions">
+        <button type="button" class="af-save">新增</button>
+        <button type="button" class="af-cancel">取消</button>
+      </div>`;
+
+                addBtn.addEventListener('click', () => {
+                    addForm.style.display = addForm.style.display === "none" ? "block" : "none";
+                    if (addForm.style.display === "block") addForm.querySelector('.af-txt').focus();
+                });
+                addForm.querySelector('.af-cancel').addEventListener('click', () => {
+                    addForm.style.display = "none";
+                });
+                addForm.querySelector('.af-save').addEventListener('click', async () => {
+                    const txt = addForm.querySelector('.af-txt').value.trim();
+                    const sub = addForm.querySelector('.af-sub').value;
+                    if (!txt) return;
+                    tasks.push({
+                        id: "c" + Date.now(),
+                        time: "自訂",
+                        sub,
+                        txt,
+                        done: false
+                    });
+                    await saveDayTasks(d, tasks);
+                    renderWeek();
+                });
+                addForm.querySelector('.af-txt').addEventListener('keydown', (e) => {
+                    if (e.key === "Enter") addForm.querySelector('.af-save').click();
+                });
+
+                card.appendChild(addBtn);
+                card.appendChild(addForm);
+                grid.appendChild(card);
+            }
+            const pctAll = totalAll ? Math.round(doneAll / totalAll * 100) : 0;
+            document.getElementById('weekBarFill').style.width = pctAll + "%";
+            document.getElementById('weekBarPct').textContent = pctAll + "%";
+        }
+
+        document.getElementById('filters').addEventListener('click', (e) => {
+            const chip = e.target.closest('.chip');
+            if (!chip) return;
+            document.querySelectorAll('.chip').forEach(c => c.classList.remove('on'));
+            chip.classList.add('on');
+            activeFilter = chip.dataset.sub;
+            renderWeek();
+        });
+
+        /* ================= NAV ================= */
+        document.querySelectorAll('nav button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+                document.getElementById('view-' + btn.dataset.view).classList.add('active');
+            });
+        });
+
+        /* ================= DDAY + QUOTE ================= */
+        function renderHeader() {
+            const today = new Date();
+            const target = new Date(2026, 9, 1); // Oct 1 2026
+            const diffDays = Math.ceil((target - today) / 86400000);
+            document.getElementById('ddayNum').textContent = diffDays > 0 ? ("D-" + diffDays) : (diffDays === 0 ?
+                "D-DAY" : "已截止");
+            const q = QUOTES[dayOfYear(today) % QUOTES.length];
+            document.getElementById('quoteBar').innerHTML = `<b>今日一句：</b>${q}`;
+        }
+
+        /* ================= WRONG QUESTION BANK ================= */
+        let wqList = [];
+        let activeWq = null;
+
+        async function loadWq() {
+            wqList = (await storeGet('wrongquestions')) || [];
+        }
+        async function saveWq() {
+            await storeSet('wrongquestions', wqList);
+        }
+
+        function renderWq() {
+            const grid = document.getElementById('wqGrid');
+            document.getElementById('wqCount').textContent = wqList.length + " 題已收錄";
+            if (!wqList.length) {
+                grid.innerHTML = '<div class="wq-empty" style="grid-column:1/-1;">還沒有錯題，點上方「＋ 上傳錯題照片」開始建立你的錯題本。</div>';
+                return;
+            }
+            grid.innerHTML = "";
+            wqList.slice().reverse().forEach(item => {
+                const card = document.createElement('div');
+                card.className = "wq-card";
+                const color = item.sub === 'micro' ? 'var(--micro)' : 'var(--macro)';
+                card.innerHTML = `
+      <img src="${item.image}">
+      <div class="wq-info">
+        <span class="tag" style="background:${color};color:#fff;">${SUBNAME[item.sub]}${item.tag?" · "+item.tag:""}</span>
+        <div class="note">${item.note||"（尚無筆記）"}</div>
+        <div class="rev">已複習 ${item.reviewCount||0} 次</div>
+      </div>`;
+                card.addEventListener('click', () => openWqModal(item.id));
+                grid.appendChild(card);
+            });
+        }
+
+        function resizeImage(file) {
+            return new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        const maxW = 800;
+                        const scale = Math.min(1, maxW / img.width);
+                        const canvas = document.createElement('canvas');
+                        canvas.width = img.width * scale;
+                        canvas.height = img.height * scale;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                        resolve(canvas.toDataURL('image/jpeg', 0.72));
+                    };
+                    img.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+
+        document.getElementById('uploadBtn').addEventListener('click', () => document.getElementById('fileInput')
+        .click());
+        document.getElementById('fileInput').addEventListener('change', async (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            const dataUrl = await resizeImage(file);
+            const item = {
+                id: 'wq' + Date.now(),
+                date: fmtDate(new Date()),
+                sub: 'micro',
+                tag: '',
+                note: '',
+                image: dataUrl,
+                reviewCount: 0
+            };
+            wqList.push(item);
+            await saveWq();
+            renderWq();
+            openWqModal(item.id);
+            e.target.value = "";
+        });
+
+        function openWqModal(id) {
+            activeWq = wqList.find(w => w.id === id);
+            if (!activeWq) return;
+            document.getElementById('modalImg').src = activeWq.image;
+            document.getElementById('modalSub').value = activeWq.sub;
+            document.getElementById('modalTag').value = activeWq.tag || "";
+            document.getElementById('modalNote').value = activeWq.note || "";
+            document.getElementById('modalRevCount').textContent = activeWq.reviewCount || 0;
+            document.getElementById('modalBg').classList.add('open');
+        }
+        document.getElementById('modalClose').addEventListener('click', () => document.getElementById('modalBg')
+            .classList.remove('open'));
+        document.getElementById('modalSave').addEventListener('click', async () => {
+            if (!activeWq) return;
+            activeWq.sub = document.getElementById('modalSub').value;
+            activeWq.tag = document.getElementById('modalTag').value;
+            activeWq.note = document.getElementById('modalNote').value;
+            await saveWq();
+            renderWq();
+            document.getElementById('modalBg').classList.remove('open');
+        });
+        document.getElementById('modalReview').addEventListener('click', async () => {
+            if (!activeWq) return;
+            activeWq.reviewCount = (activeWq.reviewCount || 0) + 1;
+            document.getElementById('modalRevCount').textContent = activeWq.reviewCount;
+            await saveWq();
+            renderWq();
+        });
+        document.getElementById('modalDelete').addEventListener('click', async () => {
+            if (!activeWq) return;
+            if (!confirm('確定刪除這張錯題嗎？')) return;
+            wqList = wqList.filter(w => w.id !== activeWq.id);
+            await saveWq();
+            renderWq();
+            document.getElementById('modalBg').classList.remove('open');
+        });
+
+        /* ================= ENGLISH LOG ================= */
+        async function renderEngToday() {
+            const key = 'english:' + fmtDate(new Date());
+            const saved = await storeGet(key);
+            if (saved) {
+                document.getElementById('engTitle').value = saved.title || "";
+                document.getElementById('engNote').value = saved.note || "";
+            }
+        }
+        document.getElementById('engSave').addEventListener('click', async () => {
+            const key = 'english:' + fmtDate(new Date());
+            await storeSet(key, {
+                title: document.getElementById('engTitle').value,
+                note: document.getElementById('engNote').value,
+                date: fmtDate(new Date())
+            });
+            renderEngHistory();
+            const btn = document.getElementById('engSave');
+            const old = btn.textContent;
+            btn.textContent = "已儲存 ✓";
+            setTimeout(() => btn.textContent = old, 1200);
+        });
+        async function renderEngHistory() {
+            const box = document.getElementById('engHistory');
+            box.innerHTML = "";
+            const today = new Date();
+            let any = false;
+            for (let i = 0; i < 7; i++) {
+                const d = new Date(today);
+                d.setDate(today.getDate() - i);
+                const rec = await storeGet('english:' + fmtDate(d));
+                if (rec && (rec.title || rec.note)) {
+                    any = true;
+                    const div = document.createElement('div');
+                    div.className = "log-item";
+                    div.innerHTML =
+                        `<span class="ld">${pad(d.getMonth()+1)}/${pad(d.getDate())}</span><b>${rec.title||"（未填標題）"}</b><br>${rec.note||""}`;
+                    box.appendChild(div);
+                }
+            }
+            if (!any) box.innerHTML = '<div style="color:var(--text-dim);font-size:12.5px;">最近 7 天還沒有紀錄。</div>';
+        }
+
+        /* ================= APPLICATION MILESTONES ================= */
+        const DEFAULT_MILESTONES = [{
+                id: 'm1',
+                title: '確認申請校系名單與各校備審資料清單',
+                when: '7月中旬前',
+                note: '列出每個校系要求的文件與格式差異。'
+            },
+            {
+                id: 'm2',
+                title: '讀書計畫初稿',
+                when: '7月底前',
+                note: '說明報考動機、生涯規劃、與該所資源的連結。'
+            },
+            {
+                id: 'm3',
+                title: '自傳初稿',
+                when: '8月中旬前',
+                note: '突出商管相關經歷、經濟學／量化能力佐證。'
+            },
+            {
+                id: 'm4',
+                title: '研究計畫 / 學習計畫初稿',
+                when: '8月底前',
+                note: '若該所需要研究計畫，先列出想探討的商管議題方向。'
+            },
+            {
+                id: 'm5',
+                title: '邀請推薦人並提供資料',
+                when: '8月底前',
+                note: '提前預留教授撰寫時間，附上自傳與成績單。'
+            },
+            {
+                id: 'm6',
+                title: '英文成績（如需）確認送件',
+                when: '9月初前',
+                note: '確認多益／托福等成績是否符合各校門檻與有效期。'
+            },
+            {
+                id: 'm7',
+                title: '備審資料全份校對＋請人複閱',
+                when: '9月中旬前',
+                note: '請學長姐、老師或同儕交叉檢查內容與格式。'
+            },
+            {
+                id: 'm8',
+                title: '模擬面試（至少2次）',
+                when: '9月下旬',
+                note: '練習自我介紹、研究興趣、經濟學時事提問。'
+            },
+            {
+                id: 'm9',
+                title: '所有資料上傳／寄送完成',
+                when: '10/1 前',
+                note: '預留緩衝，避免系統壅塞或郵寄延誤。'
+            }
+        ];
+
+        async function renderMilestones() {
+            let list = await storeGet('tuijian_tasks');
+            if (!list) {
+                list = DEFAULT_MILESTONES.map(m => ({
+                    ...m,
+                    done: false
+                }));
+                await storeSet('tuijian_tasks', list);
+            }
+            const box = document.getElementById('milestoneList');
+            box.innerHTML = "";
+            list.forEach(m => {
+                const row = document.createElement('label');
+                row.className = "milestone" + (m.done ? " done" : "");
+                row.innerHTML = `
+      <input type="checkbox" ${m.done?"checked":""}>
+      <div>
+        <div class="mtitle">${m.title}</div>
+        <div class="mwhen">目標：${m.when}</div>
+        <div class="mnote">${m.note}</div>
+      </div>`;
+                row.querySelector('input').addEventListener('change', async (e) => {
+                    m.done = e.target.checked;
+                    await storeSet('tuijian_tasks', list);
+                    renderMilestones();
+                });
+                box.appendChild(row);
+            });
+        }
+
+        /* ================= INIT ================= */
+        (async function init() {
+            renderHeader();
+            await renderWeek();
+            await loadWq();
+            renderWq();
+            await renderEngToday();
+            await renderEngHistory();
+            await renderMilestones();
+        })();
+
+    </script>
+</body>
+
+</html>
